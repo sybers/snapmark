@@ -1,0 +1,41 @@
+{
+  "name": "snapmark",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "postinstall": "nuxt prepare && simple-git-hooks"
+  },
+  "dependencies": {
+    "@nuxt/content": "3.8.2",
+    "@nuxt/image": "2.0.0",
+    "@nuxt/ui": "4.2.1",
+    "nuxt": "^4.2.1",
+    "vue": "^3.5.24",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "1.10.0",
+    "@nuxt/hints": "1.0.0-alpha.2",
+    "@nuxt/test-utils": "^3.20.1",
+    "@vue/test-utils": "^2.4.6",
+    "eslint": "^9.0.0",
+    "happy-dom": "^20.0.10",
+    "lint-staged": "^16.2.7",
+    "playwright-core": "^1.56.1",
+    "simple-git-hooks": "^2.13.1",
+    "typescript": "^5.6.3",
+    "vitest": "^4.0.13"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "bun lint-staged"
+  },
+  "lint-staged": {
+    "*": "bun lint:fix"
+  }
+}
