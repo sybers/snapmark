@@ -8,6 +8,9 @@ export default defineNuxtConfig({
     '@nuxt/test-utils',
     '@nuxt/hints',
   ],
+  components: {
+    dirs: [],
+  },
   imports: {
     autoImport: false,
   },

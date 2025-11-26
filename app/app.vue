@@ -1,69 +1,26 @@
-<script setup lang="ts">
-import { useHead } from '#imports';
-
-useHead({
-  meta: [
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-  ],
-  link: [
-    { rel: 'icon', href: '/favicon.ico' },
-  ],
-  htmlAttrs: {
-    lang: 'en',
-  },
-});
-</script>
-
 <template>
   <UApp>
-    <UHeader>
-      <template #left>
-        <NuxtLink to="/">
-          Nuxt 4 Template
-        </NuxtLink>
-
-        <TemplateMenu />
-      </template>
-
-      <template #right>
-        <UColorModeButton />
-
-        <UButton
-          to="https://github.com/sybers/snapmark"
-          target="_blank"
-          icon="i-simple-icons-github"
-          aria-label="GitHub"
-          color="neutral"
-          variant="ghost"
-        />
-      </template>
-    </UHeader>
-
     <UMain>
-      <NuxtLayout>
-        <NuxtPage />
-      </NuxtLayout>
-    </UMain>
-
-    <USeparator />
-
-    <UFooter>
-      <template #left>
-        <p class="text-sm text-muted">
-          Nuxt 4 Template
-        </p>
-      </template>
-
-      <template #right>
-        <UButton
-          to="https://github.com/nuxt-ui-templates/starter"
-          target="_blank"
-          icon="i-simple-icons-github"
-          aria-label="GitHub"
-          color="neutral"
-          variant="ghost"
+      <div class="h-screen lg:flex">
+        <PreviewPanel
+          :canvas-width="canvasWidth"
+          :canvas-height="canvasHeight"
         />
-      </template>
-    </UFooter>
+
+        <ControlPanel
+          :canvas-width="canvasWidth"
+          :canvas-height="canvasHeight"
+        />
+      </div>
+    </UMain>
   </UApp>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import PreviewPanel from './components/PreviewPanel/PreviewPanel.vue';
+import ControlPanel from './components/ControlPanel/ControlPanel.vue';
+
+const canvasWidth = ref(1200);
+const canvasHeight = ref(630);
+</script>
