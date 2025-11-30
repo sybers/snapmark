@@ -1,15 +1,19 @@
 <template>
   <img
-    v-if="canvasStore.screenshot"
-    :src="canvasStore.screenshot.src"
+    v-if="screenshotStore.screenshot"
+    :src="screenshotStore.screenshot.src"
     alt="Uploaded Image"
     class="absolute"
-    :style="{ transform: `rotate(${canvasStore.rotation}deg) scale(${canvasStore.scale})` }"
+    :style="{
+      transform: `rotate(${screenshotStore.rotation}deg) scale(${screenshotStore.scale})`,
+      borderRadius: screenshotStore.roundness + 'px',
+      boxShadow: screenshotStore.boxShadow,
+    }"
   >
 </template>
 
 <script setup lang="ts">
-import { useCanvasStore } from '../../stores/canvas.store';
+import { useScreenshotStore } from '~/stores/screenshot.store';
 
-const canvasStore = useCanvasStore();
+const screenshotStore = useScreenshotStore();
 </script>

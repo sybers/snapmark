@@ -39,21 +39,14 @@
     <USeparator class="mb-2" />
 
     <ControlPanelSection title="Shadow">
-      <template #title-right>
-        <USwitch v-model="shadowEnabled" />
-      </template>
-
-      <div v-if="shadowEnabled">
-        <label class="block mb-2 text-sm font-medium">Intensity</label>
-        <USlider
-          v-model="shadowIntensity"
-          :min="0"
-          :max="100"
-          color="primary"
-        />
-        <div class="text-xs text-neutral-500 text-right mt-1">
-          {{ shadowIntensity }}%
-        </div>
+      <USlider
+        v-model="screenshotStore.selectedBoxShadowIndex"
+        :min="0"
+        :max="screenshotStore.boxShadowOptions.length - 1"
+        color="primary"
+      />
+      <div class="text-xs text-neutral-500 text-right mt-1">
+        {{ screenshotStore.selectedBoxShadowIndex }}
       </div>
     </ControlPanelSection>
 
@@ -62,12 +55,13 @@
     <ControlPanelSection title="Corner Radius">
       <USlider
         id="corner-radius"
-        v-model="cornerRadius"
+        v-model="screenshotStore.roundness"
         :min="0"
-        :max="50"
+        :max="48"
+        :step="1"
       />
       <div class="text-xs text-neutral-500 text-right">
-        {{ cornerRadius }}px
+        {{ screenshotStore.roundness }}px
       </div>
     </ControlPanelSection>
 
@@ -84,14 +78,14 @@
         <div>
           <label class="text-xs text-neutral-500 mb-2 block">Width</label>
           <UInput
-            v-model="canvasWidth"
+            v-model="canvasStore.canvasWidth"
             type="number"
           />
         </div>
         <div>
           <label class="text-xs text-neutral-500 mb-2 block">Height</label>
           <UInput
-            v-model="canvasHeight"
+            v-model="canvasStore.canvasHeight"
             type="number"
           />
         </div>
@@ -137,16 +131,16 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { storeToRefs } from '#imports';
 import SColorChooser from '../ui/SColorChooser.vue';
 import ControlPanelHeader from './ControlPanelHeader.vue';
 import ControlPanelSection from './ControlPanelSection.vue';
 
+import { useScreenshotStore } from '~/stores/screenshot.store';
 import { useCanvasStore } from '../../stores/canvas.store';
 
 const canvasStore = useCanvasStore();
 
-const { canvasWidth, canvasHeight } = storeToRefs(canvasStore);
+const screenshotStore = useScreenshotStore();
 
 const backgroundType = ref('gradient');
 const backgroundTypes = ref([
@@ -157,11 +151,6 @@ const backgroundTypes = ref([
 const gradientStart = ref('#8B5CF6');
 const gradientEnd = ref('#EC4899');
 const solidColor = ref('#F3F4F6');
-
-const shadowEnabled = ref(false);
-const shadowIntensity = ref(50);
-
-const cornerRadius = ref(12);
 
 const selectedCanvasSize = ref('twitter');
 const canvasSizes = [
