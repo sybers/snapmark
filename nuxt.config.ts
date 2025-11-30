@@ -5,6 +5,8 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/content',
     '@nuxt/ui',
+    '@pinia/nuxt',
+    '@vueuse/nuxt',
     '@nuxt/test-utils',
     '@nuxt/hints',
   ],
