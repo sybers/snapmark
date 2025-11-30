@@ -126,6 +126,12 @@
         </UButton>
       </div>
     </ControlPanelSection>
+
+    <USeparator class="mb-2" />
+
+    <ControlPanelSection title="Settings">
+      <UColorModeSelect />
+    </ControlPanelSection>
   </div>
 </template>
 
