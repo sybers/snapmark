@@ -37,13 +37,7 @@
             </UButton>
           </div>
 
-          <img
-            v-if="canvasStore.screenshot"
-            :src="canvasStore.screenshot.src"
-            alt="Uploaded Image"
-            class="absolute"
-            :style="{ transform: `rotate(${canvasStore.rotation}deg) scale(${canvasStore.scale})` }"
-          >
+          <PreviewPanelScreenshot />
         </div>
       </div>
     </div>
@@ -118,6 +112,8 @@ import { storeToRefs } from 'pinia';
 import { computed, useTemplateRef } from 'vue';
 import { useElementSize } from '@vueuse/core';
 import { useCanvasStore } from '../../stores/canvas.store';
+
+import PreviewPanelScreenshot from './PreviewPanelScreenshot.vue';
 
 const canvasStore = useCanvasStore();
 
