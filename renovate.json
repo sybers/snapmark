@@ -1,0 +1,37 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "group:allNonMajor"
+  ],
+  "labels": ["dependencies"],
+  "rangeStrategy": "pin",
+  "packageRules": [
+    {
+      "description": "Group Nuxt ecosystem packages",
+      "matchPackagePatterns": ["^@nuxt/", "^nuxt$"],
+      "groupName": "nuxt"
+    },
+    {
+      "description": "Group Vue ecosystem packages",
+      "matchPackagePatterns": ["^vue$", "^vue-router$", "^@vue/", "^@pinia/", "^@vueuse/"],
+      "groupName": "vue"
+    },
+    {
+      "description": "Group testing packages",
+      "matchPackagePatterns": ["vitest", "playwright", "happy-dom", "@vue/test-utils", "@nuxt/test-utils"],
+      "groupName": "testing"
+    },
+    {
+      "description": "Group linting packages",
+      "matchPackagePatterns": ["eslint", "lint-staged"],
+      "groupName": "linting"
+    },
+    {
+      "description": "Automerge non-major dev dependencies",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ]
+}
