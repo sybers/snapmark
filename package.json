@@ -23,18 +23,18 @@
   "devDependencies": {
     "@nuxt/eslint": "1.10.0",
     "@nuxt/hints": "1.0.0-alpha.2",
-    "@nuxt/test-utils": "^3.20.1",
+    "@nuxt/test-utils": "3.21.0",
     "@pinia/nuxt": "^0.11.3",
-    "@vue/test-utils": "^2.4.6",
+    "@vue/test-utils": "2.4.6",
     "@vueuse/core": "^14.1.0",
     "@vueuse/nuxt": "^14.1.0",
     "eslint": "^9.0.0",
-    "happy-dom": "^20.0.10",
+    "happy-dom": "20.0.11",
     "lint-staged": "^16.2.7",
-    "playwright-core": "^1.56.1",
+    "playwright-core": "1.57.0",
     "simple-git-hooks": "2.13.1",
     "typescript": "5.9.3",
-    "vitest": "^4.0.13"
+    "vitest": "4.0.15"
   },
   "simple-git-hooks": {
     "pre-commit": "bun lint-staged"
