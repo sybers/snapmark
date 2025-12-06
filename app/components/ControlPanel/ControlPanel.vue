@@ -1,9 +1,5 @@
 <template>
-  <div class="w-full h-full lg:w-1/4 bg-white dark:bg-neutral-900 border-l border-neutral-200 dark:border-neutral-800 overflow-y-auto">
-    <ControlPanelHeader />
-
-    <USeparator class="mb-2" />
-
+  <div class="w-full h-full lg:w-1/4 bg-white dark:bg-neutral-900 overflow-y-auto">
     <ControlPanelSection title="Background">
       <div>
         <label class="text-xs text-neutral-500 mb-2 block">Type</label>
@@ -36,8 +32,6 @@
       </div>
     </ControlPanelSection>
 
-    <USeparator class="mb-2" />
-
     <ControlPanelSection title="Shadow">
       <USlider
         v-model="screenshotStore.selectedBoxShadowIndex"
@@ -50,22 +44,21 @@
       </div>
     </ControlPanelSection>
 
-    <USeparator class="mb-2" />
-
-    <ControlPanelSection title="Corner Radius">
-      <USlider
-        id="corner-radius"
-        v-model="screenshotStore.roundness"
-        :min="0"
-        :max="48"
-        :step="1"
-      />
+    <ControlPanelSection>
+      <div class="flex justify-between gap-2">
+        <label class="shrink-0 text-xs text-neutral-500 mb-2 block">Corner Radius</label>
+        <USlider
+          id="corner-radius"
+          v-model="screenshotStore.roundness"
+          :min="0"
+          :max="48"
+          :step="1"
+        />
+      </div>
       <div class="text-xs text-neutral-500 text-right">
         {{ screenshotStore.roundness }}px
       </div>
     </ControlPanelSection>
-
-    <USeparator class="mb-2" />
 
     <ControlPanelSection title="Canvas Size">
       <USelectMenu
@@ -91,8 +84,6 @@
         </div>
       </div>
     </ControlPanelSection>
-
-    <USeparator class="mb-2" />
 
     <ControlPanelSection title="Presets">
       <div class="grid grid-cols-2 gap-2">
@@ -121,8 +112,6 @@
       </div>
     </ControlPanelSection>
 
-    <USeparator class="mb-2" />
-
     <ControlPanelSection title="Settings">
       <UColorModeSelect />
     </ControlPanelSection>
@@ -132,7 +121,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import SColorChooser from '../ui/SColorChooser.vue';
-import ControlPanelHeader from './ControlPanelHeader.vue';
 import ControlPanelSection from './ControlPanelSection.vue';
 
 import { useScreenshotStore } from '~/stores/screenshot.store';

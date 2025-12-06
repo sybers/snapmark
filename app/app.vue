@@ -1,17 +1,23 @@
 <template>
   <UApp>
     <UMain>
-      <div class="h-screen lg:flex">
-        <PreviewPanel
-          :canvas-width="canvasWidth"
-          :canvas-height="canvasHeight"
-        />
+      <ClientOnly>
+        <div class="h-screen lg:flex">
+          <PreviewPanel
+            :canvas-width="canvasWidth"
+            :canvas-height="canvasHeight"
+          />
 
-        <ControlPanel
-          :canvas-width="canvasWidth"
-          :canvas-height="canvasHeight"
-        />
-      </div>
+          <ControlPanel
+            :canvas-width="canvasWidth"
+            :canvas-height="canvasHeight"
+          />
+        </div>
+
+        <template #fallback>
+          Loading...
+        </template>
+      </ClientOnly>
     </UMain>
   </UApp>
 </template>

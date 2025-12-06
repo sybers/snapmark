@@ -1,7 +1,10 @@
 <template>
   <div class="px-4 py-2">
     <div class="flex items-center justify-between">
-      <span class="text-sm font-medium">{{ title }}</span>
+      <span
+        v-if="title"
+        class="text-sm font-medium"
+      >{{ title }}</span>
 
       <slot name="title-right" />
     </div>
@@ -12,6 +15,6 @@
 
 <script setup lang="ts">
 defineProps<{
-  title: string;
+  title?: string;
 }>();
 </script>
