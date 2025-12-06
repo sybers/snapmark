@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { useScreenshotStore } from '~/stores/screenshot.store';
+import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';
 
 const screenshotStore = useScreenshotStore();
 

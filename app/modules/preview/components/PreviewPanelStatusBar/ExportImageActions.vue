@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineShortcuts, extractShortcuts, reactive, useToast, watch } from '#imports';
 import { toPng, toJpeg, toSvg, toBlob } from 'html-to-image';
-import { useCanvasStore } from '~/stores/canvas.store';
+import { useCanvasStore } from '~/modules/shared/stores/canvas.store';
 
 const toast = useToast();
 
@@ -124,7 +124,7 @@ defineShortcuts({
 <template>
   <div class="flex gap-2">
     <UPopover
-      :ui="{ content: 'min-w-[240px]' }"
+      :ui="{ content: 'min-w-[320px]' }"
       :items="exportOptions"
     >
       <UTooltip
@@ -170,6 +170,9 @@ defineShortcuts({
               :max="100"
               :step="1"
             />
+            <div class="text-xs text-neutral-500 text-right">
+              {{ exportSettings.quality }}
+            </div>
           </div>
 
           <div class="flex flex-col gap-2">
