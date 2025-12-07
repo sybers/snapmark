@@ -1,6 +1,21 @@
 <template>
   <div class="w-full h-full lg:max-w-xs p-4 bg-white dark:bg-neutral-900 overflow-y-auto">
     <SettingsPanelSection title="Screenshot">
+      <SettingsItem label="Scale">
+        <USlider
+          v-model="screenshotStore.scale"
+          class="mt-2"
+          size="xs"
+          color="neutral"
+          :min="0"
+          :max="150"
+          :step="1"
+        />
+        <div class="text-xs text-neutral-500 text-right">
+          {{ screenshotStore.scale }}
+        </div>
+      </SettingsItem>
+
       <SettingsItem label="Shadow">
         <USlider
           v-model="screenshotStore.selectedBoxShadowIndex"

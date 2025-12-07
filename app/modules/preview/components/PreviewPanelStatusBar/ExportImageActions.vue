@@ -2,10 +2,26 @@
 import { defineShortcuts, extractShortcuts, reactive, useToast, watch } from '#imports';
 import { toPng, toJpeg, toSvg, toBlob } from 'html-to-image';
 import { useCanvasStore } from '~/modules/shared/stores/canvas.store';
+import { useBackgroundStore } from '~/modules/shared/stores/background.store';
 
 const toast = useToast();
 
 const canvasStore = useCanvasStore();
+const backgroundStore = useBackgroundStore();
+
+const pixelRatioOptions = [
+  { label: '1x', value: 1 },
+  { label: '2x', value: 2 },
+  { label: '3x', value: 3 },
+  { label: '4x', value: 4 },
+  { label: '6x', value: 6 },
+];
+
+const exportFormatOptions = [
+  { label: 'PNG', value: 'PNG' },
+  { label: 'JPEG', value: 'JPEG' },
+  { label: 'SVG', value: 'SVG' },
+];
 
 const exportOptions = [
   {
@@ -17,10 +33,10 @@ const exportOptions = [
     },
   },
   {
-    label: 'as JPG',
+    label: 'as JPEG',
     kbds: ['meta', 'j'],
     onSelect: () => {
-      exportSettings.format = 'JPG';
+      exportSettings.format = 'JPEG';
       saveImage();
     },
   },
@@ -39,7 +55,7 @@ type ExportSettings = {
 } & ({
   format: 'PNG' | 'SVG';
 } | {
-  format: 'JPG';
+  format: 'JPEG';
   quality: number;
 });
 
@@ -48,8 +64,8 @@ const exportSettings = reactive<ExportSettings>({
   pixelRatio: window.devicePixelRatio,
 });
 watch(() => exportSettings.format, (format) => {
-  // @ts-expect-error - quality is only defined for jpg format
-  exportSettings.quality = format === 'JPG' ? 80 : undefined;
+  // @ts-expect-error - quality is only defined for JPEG format
+  exportSettings.quality = format === 'JPEG' ? 80 : undefined;
 }, { immediate: true });
 
 async function saveImage() {
@@ -58,7 +74,7 @@ async function saveImage() {
 
   const formatFunctions = {
     PNG: toPng,
-    JPG: toJpeg,
+    JPEG: toJpeg,
     SVG: toSvg,
   };
 
@@ -69,7 +85,7 @@ async function saveImage() {
 
   const dataUrl = await formatFunction(canvasStore.exportContainer, {
     pixelRatio: exportSettings.pixelRatio,
-    quality: exportSettings.format === 'JPG' ? (exportSettings.quality / 100) : undefined,
+    quality: exportSettings.format === 'JPEG' ? (exportSettings.quality / 100) : undefined,
   });
 
   const downloadLink = document.createElement('a');
@@ -124,7 +140,7 @@ defineShortcuts({
 <template>
   <div class="flex gap-2">
     <UPopover
-      :ui="{ content: 'min-w-[320px]' }"
+      :ui="{ content: 'w-[320px]' }"
       :items="exportOptions"
     >
       <UTooltip
@@ -154,13 +170,21 @@ defineShortcuts({
               variant="table"
               indicator="hidden"
               size="sm"
-              :items="['PNG', 'JPG', 'SVG']"
+              :items="exportFormatOptions"
               :ui="{ item: 'grow' }"
+            />
+
+            <UAlert
+              v-if="exportSettings.format === 'JPEG' && backgroundStore.hasTransparency"
+              color="neutral"
+              variant="subtle"
+              title="JPEG doesn’t support transparency"
+              description="Transparent areas will be filled with a solid background."
             />
           </div>
 
           <div
-            v-if="exportSettings.format === 'JPG'"
+            v-if="exportSettings.format === 'JPEG'"
             class="flex flex-col gap-2"
           >
             <label class="text-sm font-medium">Quality</label>
@@ -183,7 +207,7 @@ defineShortcuts({
               variant="table"
               indicator="hidden"
               size="sm"
-              :items="[{ label: '1x', value: 1 }, { label: '2x', value: 2 }, { label: '3x', value: 3 }, { label: '4x', value: 4 }, { label: '6x', value: 6 }]"
+              :items="pixelRatioOptions"
               :ui="{ item: 'grow' }"
             />
           </div>

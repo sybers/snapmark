@@ -4,7 +4,7 @@
     alt="Uploaded Image"
     class="absolute"
     :style="{
-      transform: `rotate(${rotation}deg) scale(${scale})`,
+      transform: `rotate(${rotation}deg) scale(${scale / 100})`,
       borderRadius: `${roundness}px`,
       boxShadow: boxShadow,
     }"

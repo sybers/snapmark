@@ -2,7 +2,7 @@
   <div
     class="absolute inset-0"
     :style="{
-      backgroundColor: backgroundStyle,
+      background: backgroundStyle,
       opacity: opacity / 100,
       borderRadius: `${roundness}px`,
     }"

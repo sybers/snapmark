@@ -34,7 +34,7 @@ export const useScreenshotStore = defineStore('screenshot', () => {
   }, { immediate: true });
 
   const rotation = ref(0);
-  const scale = ref(0.65);
+  const scale = ref(65);
   const roundness = ref(0);
 
   function setScreenshot(file: File) {
