@@ -86,6 +86,7 @@ async function saveImage() {
   const dataUrl = await formatFunction(canvasStore.exportContainer, {
     pixelRatio: exportSettings.pixelRatio,
     quality: exportSettings.format === 'JPEG' ? (exportSettings.quality / 100) : undefined,
+    filter: (el) => el.dataset?.exportExcluded === undefined,
   });
 
   const downloadLink = document.createElement('a');

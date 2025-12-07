@@ -18,15 +18,15 @@
 
       <SettingsItem label="Shadow">
         <USlider
-          v-model="screenshotStore.selectedBoxShadowIndex"
+          v-model="selectedBoxShadowIndex"
           class="mt-2"
           size="xs"
           color="neutral"
           :min="0"
-          :max="screenshotStore.boxShadowOptions.length - 1"
+          :max="boxShadowOptions.length - 1"
         />
         <div class="text-xs text-neutral-500 text-right mt-1">
-          {{ screenshotStore.selectedBoxShadowIndex }}
+          {{ selectedBoxShadowIndex }}
         </div>
       </SettingsItem>
 
@@ -76,6 +76,9 @@
           {{ backgroundStore.roundness }}px
         </div>
       </SettingsItem>
+      <SettingsItem label="Noise">
+        <USwitch v-model="backgroundStore.noise" />
+      </SettingsItem>
     </SettingsPanelSection>
 
     <SettingsPanelSection title="Canvas Size">
@@ -86,7 +89,7 @@
         />
       </SettingsItem>
 
-      <SettingsItem label="Width">
+      <SettingsItem label="Height">
         <UInput
           v-model="canvasStore.canvasHeight"
           type="number"
@@ -135,9 +138,29 @@ import SettingsItem from './components/SettingsItem.vue';
 import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';
 import { useCanvasStore } from '~/modules/shared/stores/canvas.store';
 import { useBackgroundStore } from '~/modules/shared/stores/background.store';
+import { ref, watch } from 'vue';
 
 const canvasStore = useCanvasStore();
 
 const screenshotStore = useScreenshotStore();
 const backgroundStore = useBackgroundStore();
+
+const boxShadowOptions = [
+  'none',
+  'rgba(0, 0, 0, 0.1) 0px 0px 10px',
+  'rgba(0, 0, 0, 0.2) 0px 10px 35px 0px',
+  'rgba(0, 0, 0, 0.25) 0px 20px 40px 0px',
+  'rgba(0, 0, 0, 0.3) 0px 25px 45px 0px',
+  'rgba(0, 0, 0, 0.3) 0px 30px 50px 0px',
+  'rgba(0, 0, 0, 0.34) 0px 35px 55px 0px',
+  'rgba(0, 0, 0, 0.38) 0px 40px 60px 0px',
+  'rgba(0, 0, 0, 0.38) 0px 45px 65px 0px',
+  'rgba(0, 0, 0, 0.4) 0px 50px 70px 0px',
+  'rgba(0, 0, 0, 0.5) 0px 55px 75px 0px',
+];
+
+const selectedBoxShadowIndex = ref(boxShadowOptions.indexOf(screenshotStore.boxShadow));
+watch(selectedBoxShadowIndex, (index) => {
+  screenshotStore.boxShadow = boxShadowOptions[index]!;
+}, { immediate: true });
 </script>

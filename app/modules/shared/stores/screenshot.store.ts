@@ -1,19 +1,12 @@
 import { defineStore } from 'pinia';
-import { computed, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 
-const boxShadowOptions = [
-  'none',
-  'rgba(0, 0, 0, 0.1) 0px 0px 10px',
-  'rgba(0, 0, 0, 0.2) 0px 10px 35px 0px',
-  'rgba(0, 0, 0, 0.25) 0px 20px 40px 0px',
-  'rgba(0, 0, 0, 0.3) 0px 25px 45px 0px',
-  'rgba(0, 0, 0, 0.3) 0px 30px 50px 0px',
-  'rgba(0, 0, 0, 0.34) 0px 35px 55px 0px',
-  'rgba(0, 0, 0, 0.38) 0px 40px 60px 0px',
-  'rgba(0, 0, 0, 0.38) 0px 45px 65px 0px',
-  'rgba(0, 0, 0, 0.4) 0px 50px 70px 0px',
-  'rgba(0, 0, 0, 0.5) 0px 55px 75px 0px',
-];
+export interface ScreenshotStoreOptions {
+  rotation: number;
+  scale: number;
+  roundness: number;
+  boxShadow: string;
+}
 
 export const useScreenshotStore = defineStore('screenshot', () => {
   const screenshotSrc = ref<string | null>(null);
@@ -36,24 +29,36 @@ export const useScreenshotStore = defineStore('screenshot', () => {
   const rotation = ref(0);
   const scale = ref(65);
   const roundness = ref(0);
+  const boxShadow = ref('rgba(0, 0, 0, 0.3) 0px 25px 45px 0px');
 
   function setScreenshot(file: File) {
     screenshotSrc.value = URL.createObjectURL(file);
   }
 
-  const selectedBoxShadowIndex = ref(0);
-  const boxShadow = computed(() => {
-    return boxShadowOptions[selectedBoxShadowIndex.value];
-  });
+  function importValues(values: ScreenshotStoreOptions) {
+    rotation.value = values.rotation;
+    scale.value = values.scale;
+    roundness.value = values.roundness;
+    boxShadow.value = values.boxShadow;
+  }
+
+  function exportValues(): ScreenshotStoreOptions {
+    return {
+      rotation: rotation.value,
+      scale: scale.value,
+      roundness: roundness.value,
+      boxShadow: boxShadow.value,
+    };
+  }
 
   return {
     screenshot,
     rotation,
     scale,
     roundness,
-    selectedBoxShadowIndex,
     boxShadow,
-    boxShadowOptions,
     setScreenshot,
+    importValues,
+    exportValues,
   };
 });
