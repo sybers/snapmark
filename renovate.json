@@ -4,33 +4,58 @@
     "config:recommended",
     "group:allNonMajor"
   ],
-  "labels": ["dependencies"],
+  "labels": [
+    "dependencies"
+  ],
   "rangeStrategy": "pin",
   "packageRules": [
     {
       "description": "Group Nuxt ecosystem packages",
-      "matchPackagePatterns": ["^@nuxt/", "^nuxt$"],
-      "groupName": "nuxt"
+      "groupName": "nuxt",
+      "matchPackageNames": [
+        "/^@nuxt//",
+        "/^nuxt$/"
+      ]
     },
     {
       "description": "Group Vue ecosystem packages",
-      "matchPackagePatterns": ["^vue$", "^vue-router$", "^@vue/", "^@pinia/", "^@vueuse/"],
-      "groupName": "vue"
+      "groupName": "vue",
+      "matchPackageNames": [
+        "/^vue$/",
+        "/^vue-router$/",
+        "/^@vue//",
+        "/^@pinia//",
+        "/^@vueuse//"
+      ]
     },
     {
       "description": "Group testing packages",
-      "matchPackagePatterns": ["vitest", "playwright", "happy-dom", "@vue/test-utils", "@nuxt/test-utils"],
-      "groupName": "testing"
+      "groupName": "testing",
+      "matchPackageNames": [
+        "/vitest/",
+        "/playwright/",
+        "/happy-dom/",
+        "/@vue/test-utils/",
+        "/@nuxt/test-utils/"
+      ]
     },
     {
       "description": "Group linting packages",
-      "matchPackagePatterns": ["eslint", "lint-staged"],
-      "groupName": "linting"
+      "groupName": "linting",
+      "matchPackageNames": [
+        "/eslint/",
+        "/lint-staged/"
+      ]
     },
     {
       "description": "Automerge non-major dev dependencies",
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "automerge": true
     }
   ]
