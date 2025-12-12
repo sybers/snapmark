@@ -13,7 +13,6 @@
     "postinstall": "nuxt prepare && simple-git-hooks"
   },
   "dependencies": {
-    "@nuxt/content": "3.9.0",
     "@nuxt/image": "2.0.0",
     "@nuxt/ui": "4.2.1",
     "html-to-image": "1.11.13",

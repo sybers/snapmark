@@ -3,7 +3,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
-    '@nuxt/content',
     '@nuxt/ui',
     '@pinia/nuxt',
     '@vueuse/nuxt',
@@ -18,11 +17,6 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
-  content: {
-    experimental: {
-      sqliteConnector: 'native',
-    },
-  },
   compatibilityDate: '2025-07-15',
   nitro: {
     preset: 'bun',
