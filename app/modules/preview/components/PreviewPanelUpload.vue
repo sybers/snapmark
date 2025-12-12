@@ -32,7 +32,7 @@ const screenshotStore = useScreenshotStore();
 function handleScreenshotUpload() {
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
-  fileInput.accept = 'image/*';
+  fileInput.accept = 'image/png, image/jpeg, image/svg+xml';
   fileInput.onchange = (event) => {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
