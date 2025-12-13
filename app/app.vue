@@ -1,24 +1,29 @@
 <template>
   <UApp>
     <UMain>
-      <ClientOnly>
+      <ClientOnlyTransition
+        name="fade"
+        mode="out-in"
+      >
         <div class="h-screen lg:flex">
           <PreviewPanel class="grow" />
           <SettingsPanel />
         </div>
 
         <template #fallback>
-          Loading...
+          <LoadingFallback />
         </template>
-      </ClientOnly>
+      </ClientOnlyTransition>
     </UMain>
   </UApp>
 </template>
 
 <script setup lang="ts">
 import { usePresetsStore } from '~/modules/shared/stores/presets.store';
-import PreviewPanel from './modules/preview/PreviewPanel.vue';
-import SettingsPanel from './modules/settings/SettingsPanel.vue';
+import ClientOnlyTransition from '~/modules/shared/components/ClientOnlyTransition.vue';
+import LoadingFallback from '~/modules/shared/components/LoadingFallback.vue';
+import PreviewPanel from '~/modules/preview/PreviewPanel.vue';
+import SettingsPanel from '~/modules/settings/SettingsPanel.vue';
 
 const presetsStore = usePresetsStore();
 
