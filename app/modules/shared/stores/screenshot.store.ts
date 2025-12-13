@@ -9,15 +9,17 @@ export interface ScreenshotStoreOptions {
 }
 
 export const useScreenshotStore = defineStore('screenshot', () => {
-  const screenshotSrc = ref<string | null>(null);
+  const screenshotFile = ref<File | null>(null);
   const screenshot = ref<HTMLImageElement | null>(null);
 
-  watch(screenshotSrc, () => {
-    if (!screenshotSrc.value)
+  watch(screenshotFile, () => {
+    if (!screenshotFile.value)
       return;
 
+    const src = URL.createObjectURL(screenshotFile.value);
+
     const image = new Image();
-    image.src = screenshotSrc.value;
+    image.src = src;
     image.onload = () => {
       screenshot.value = image;
     };
@@ -30,10 +32,6 @@ export const useScreenshotStore = defineStore('screenshot', () => {
   const scale = ref(65);
   const roundness = ref(0);
   const boxShadow = ref('rgba(0, 0, 0, 0.3) 0px 25px 45px 0px');
-
-  function setScreenshot(file: File) {
-    screenshotSrc.value = URL.createObjectURL(file);
-  }
 
   function importValues(values: ScreenshotStoreOptions) {
     rotation.value = values.rotation;
@@ -52,12 +50,12 @@ export const useScreenshotStore = defineStore('screenshot', () => {
   }
 
   return {
+    screenshotFile,
     screenshot,
     rotation,
     scale,
     roundness,
     boxShadow,
-    setScreenshot,
     importValues,
     exportValues,
   };

@@ -3,7 +3,10 @@
     ref="previewContainer"
     class="flex items-center justify-center"
   >
-    <PreviewPanelUpload v-if="!screenshotStore.screenshot" />
+    <PreviewPanelUpload
+      v-if="!screenshotStore.screenshotFile"
+      v-model="screenshotStore.screenshotFile"
+    />
     <div
       v-else
       class="shrink-0 relative"

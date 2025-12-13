@@ -27,16 +27,26 @@
 <script setup lang="ts">
 import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';
 
+const props = withDefaults(defineProps<{
+  accept?: string;
+}>(), {
+  accept: 'image/png, image/jpeg, image/svg+xml',
+});
+
+const model = defineModel<File | null>({
+  default: null,
+});
+
 const screenshotStore = useScreenshotStore();
 
 function handleScreenshotUpload() {
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
-  fileInput.accept = 'image/png, image/jpeg, image/svg+xml';
+  fileInput.accept = props.accept;
   fileInput.onchange = (event) => {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
-      screenshotStore.setScreenshot(file);
+      model.value = file;
     }
   };
   fileInput.click();
