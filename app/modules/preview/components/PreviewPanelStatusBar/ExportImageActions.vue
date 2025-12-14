@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineShortcuts, extractShortcuts, reactive, useToast, watch } from '#imports';
+import { computed, defineShortcuts, extractShortcuts, reactive, useI18n, useToast, watch } from '#imports';
 import { toPng, toJpeg, toSvg, toBlob } from 'html-to-image';
 import { useCanvasStore } from '~/modules/shared/stores/canvas.store';
 import { useBackgroundStore } from '~/modules/shared/stores/background.store';
@@ -23,9 +23,11 @@ const exportFormatOptions = [
   { label: 'SVG', value: 'SVG' },
 ];
 
-const exportOptions = [
+const { t } = useI18n();
+
+const exportOptions = computed(() => [
   {
-    label: 'as PNG',
+    label: t('export.asPng'),
     kbds: ['meta', 'p'],
     onSelect: () => {
       exportSettings.format = 'PNG';
@@ -33,7 +35,7 @@ const exportOptions = [
     },
   },
   {
-    label: 'as JPEG',
+    label: t('export.asJpeg'),
     kbds: ['meta', 'j'],
     onSelect: () => {
       exportSettings.format = 'JPEG';
@@ -41,14 +43,14 @@ const exportOptions = [
     },
   },
   {
-    label: 'as SVG',
+    label: t('export.asSvg'),
     kbds: ['meta', 'g'],
     onSelect: () => {
       exportSettings.format = 'SVG';
       saveImage();
     },
   },
-];
+]);
 
 type ExportSettings = {
   pixelRatio: number;
@@ -99,14 +101,14 @@ async function copyImageToClipboard(): Promise<void> {
   try {
     await elementToImageClipboard(canvasStore.exportContainer);
     toast.add({
-      title: 'Image copied to clipboard',
+      title: t('export.imageCopiedToClipboard'),
       icon: 'i-lucide-clipboard',
     });
   } catch (error: unknown) {
     console.error(error);
     toast.add({
       color: 'error',
-      title: 'Failed to copy image to clipboard',
+      title: t('export.failedToCopyImageToClipboard'),
       icon: 'i-lucide-clipboard-x',
     });
   }
@@ -131,11 +133,11 @@ async function elementToImageClipboard(el: HTMLElement | null): Promise<void> {
   ]);
 }
 
-defineShortcuts({
-  ...extractShortcuts(exportOptions),
+defineShortcuts(computed(() => ({
+  ...extractShortcuts(exportOptions.value),
   meta_s: saveImage,
   meta_c: copyImageToClipboard,
-});
+})));
 </script>
 
 <template>
@@ -145,12 +147,12 @@ defineShortcuts({
       :items="exportOptions"
     >
       <UTooltip
-        text="Export settings"
+        :text="$t('export.settings')"
         :delay-duration="50"
         :content="{ side: 'top' }"
       >
         <UButton
-          aria-label="Export settings"
+          :aria-label="$t('export.settings')"
           color="neutral"
           variant="outline"
           icon="heroicons:adjustments-horizontal-16-solid"
@@ -160,11 +162,11 @@ defineShortcuts({
       <template #content>
         <div class="p-6 space-y-6">
           <h3 class="text-lg font-medium">
-            Export settings
+            {{ $t('export.settings') }}
           </h3>
 
           <div class="flex flex-col gap-2">
-            <label class="text-sm font-medium">Format</label>
+            <label class="text-sm font-medium">{{ $t('ui.format') }}</label>
             <URadioGroup
               v-model="exportSettings.format"
               orientation="horizontal"
@@ -179,8 +181,8 @@ defineShortcuts({
               v-if="exportSettings.format === 'JPEG' && backgroundStore.hasTransparency"
               color="neutral"
               variant="subtle"
-              title="JPEG doesn’t support transparency"
-              description="Transparent areas will be filled with a solid background."
+              :title="$t('export.jpegNoTransparency')"
+              :description="$t('export.jpegTransparencyDescription')"
             />
           </div>
 
@@ -188,7 +190,7 @@ defineShortcuts({
             v-if="exportSettings.format === 'JPEG'"
             class="flex flex-col gap-2"
           >
-            <label class="text-sm font-medium">Quality</label>
+            <label class="text-sm font-medium">{{ $t('ui.quality') }}</label>
             <USlider
               v-model="exportSettings.quality"
               :min="0"
@@ -201,7 +203,7 @@ defineShortcuts({
           </div>
 
           <div class="flex flex-col gap-2">
-            <label class="text-sm font-medium">Scale <span class="text-xs text-neutral-500">{{ exportSettings.pixelRatio }}x</span></label>
+            <label class="text-sm font-medium">{{ $t('ui.scale') }} <span class="text-xs text-neutral-500">{{ exportSettings.pixelRatio }}x</span></label>
             <URadioGroup
               v-model="exportSettings.pixelRatio"
               orientation="horizontal"
@@ -214,7 +216,7 @@ defineShortcuts({
           </div>
 
           <div class="flex flex-col gap-2">
-            <label class="text-sm font-medium">Output resolution</label>
+            <label class="text-sm font-medium">{{ $t('export.outputResolution') }}</label>
             <div class="text-xs text-neutral-500">
               {{ canvasStore.canvasWidth * exportSettings.pixelRatio }} × {{ canvasStore.canvasHeight * exportSettings.pixelRatio }}
             </div>
@@ -224,14 +226,14 @@ defineShortcuts({
     </UPopover>
 
     <UTooltip
-      text="Copy PNG image to clipboard"
+      :text="$t('export.copyPngToClipboard')"
       :delay-duration="50"
       :content="{ side: 'top' }"
       :kbds="['meta', 'C']"
       @click="copyImageToClipboard"
     >
       <UButton
-        label="Copy to clipboard"
+        :label="$t('export.copyToClipboard')"
         color="neutral"
         variant="outline"
       />
@@ -239,7 +241,7 @@ defineShortcuts({
 
     <UFieldGroup>
       <UTooltip
-        :text="`Save as ${exportSettings.format}`"
+        :text="`${$t('ui.save')} ${exportSettings.format}`"
         :delay-duration="50"
         :content="{ side: 'top' }"
         :kbds="['meta', 's']"
@@ -248,7 +250,7 @@ defineShortcuts({
         <UButton
           color="primary"
           variant="subtle"
-          label="Save"
+          :label="$t('ui.save')"
         />
       </UTooltip>
 

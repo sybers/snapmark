@@ -1,6 +1,58 @@
 {
-    "open": "Ouvrir",
-    "close": "Fermer",
-    "loading": "Chargement",
-    "viewOnGitHub": "Voir sur GitHub"
+    "ui": {
+        "open": "Ouvrir",
+        "close": "Fermer",
+        "loading": "Chargement",
+        "save": "Enregistrer",
+        "load": "Charger",
+        "color": "Couleur",
+        "scale": "Échelle",
+        "quality": "Qualité",
+        "format": "Format",
+        "width": "Largeur",
+        "height": "Hauteur",
+        "opacity": "Opacité",
+        "roundness": "Arrondi",
+        "gradient": "Dégradé",
+        "solid": "Uni"
+    },
+    "header": {
+        "viewOnGitHub": "Voir sur GitHub"
+    },
+    "export": {
+        "settings": "Paramètres d'export",
+        "outputResolution": "Résolution de sortie",
+        "copyPngToClipboard": "Copier l'image PNG dans le presse-papiers",
+        "copyToClipboard": "Copier dans le presse-papiers",
+        "asPng": "en PNG",
+        "asJpeg": "en JPEG",
+        "asSvg": "en SVG",
+        "imageCopiedToClipboard": "Image copiée dans le presse-papiers",
+        "failedToCopyImageToClipboard": "Échec de la copie de l'image dans le presse-papiers",
+        "jpegNoTransparency": "JPEG ne supporte pas la transparence",
+        "jpegTransparencyDescription": "Les zones transparentes seront remplies avec un arrière-plan uni."
+    },
+    "upload": {
+        "uploadScreenshotToGetStarted": "Téléchargez une capture d'écran pour commencer",
+        "uploadScreenshot": "Télécharger une capture",
+        "uploadedImage": "Image téléchargée"
+    },
+    "screenshot": {
+        "title": "Capture d'écran",
+        "shadow": "Ombre"
+    },
+    "background": {
+        "title": "Arrière-plan",
+        "noise": "Bruit"
+    },
+    "canvas": {
+        "title": "Taille du canvas"
+    },
+    "presets": {
+        "title": "Préréglages",
+        "savePreset": "Enregistrer un préréglage"
+    },
+    "settings": {
+        "title": "Paramètres"
+    }
 }

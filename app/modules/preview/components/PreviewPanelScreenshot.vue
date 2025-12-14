@@ -1,7 +1,7 @@
 <template>
   <img
     :src="screenshot?.src"
-    alt="Uploaded Image"
+    :alt="$t('upload.uploadedImage')"
     class="absolute"
     :style="{
       transform: `rotate(${rotation}deg) scale(${scale / 100})`,
