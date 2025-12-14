@@ -24,9 +24,7 @@
         "outputResolution": "Résolution de sortie",
         "copyPngToClipboard": "Copier l'image PNG dans le presse-papiers",
         "copyToClipboard": "Copier dans le presse-papiers",
-        "asPng": "en PNG",
-        "asJpeg": "en JPEG",
-        "asSvg": "en SVG",
+        "asFormat": "Enregistrer en {format}",
         "imageCopiedToClipboard": "Image copiée dans le presse-papiers",
         "failedToCopyImageToClipboard": "Échec de la copie de l'image dans le presse-papiers",
         "jpegNoTransparency": "JPEG ne supporte pas la transparence",
@@ -49,10 +47,6 @@
         "title": "Taille du canvas"
     },
     "presets": {
-        "title": "Préréglages",
-        "savePreset": "Enregistrer un préréglage"
-    },
-    "settings": {
-        "title": "Paramètres"
+        "title": "Préréglages"
     }
 }

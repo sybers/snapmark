@@ -17,6 +17,8 @@ import LocaleSwitcher from './LocaleSwitcher.vue';
       <div class="flex items-center gap-3">
         <LocaleSwitcher />
 
+        <UColorModeButton />
+
         <UTooltip
           :text="$t('viewOnGitHub')"
           :delay-duration="50"
@@ -25,7 +27,7 @@ import LocaleSwitcher from './LocaleSwitcher.vue';
             icon="i-simple-icons-github"
             :aria-label="$t('viewOnGitHub')"
             color="neutral"
-            variant="subtle"
+            variant="ghost"
             trailing
             external
             to="https://github.com/sybers/snapmark"

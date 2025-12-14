@@ -20,7 +20,7 @@ const menuItems = computed<DropdownMenuItem[]>(() => locales.value.map((locale) 
       :aria-label="$t('open')"
       icon="heroicons:language-20-solid"
       color="neutral"
-      variant="outline"
+      variant="ghost"
     />
   </UDropdownMenu>
 </template>

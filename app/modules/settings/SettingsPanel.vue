@@ -97,7 +97,10 @@
       </SettingsItem>
     </SettingsPanelSection>
 
-    <SettingsPanelSection :title="$t('presets.title')">
+    <SettingsPanelSection
+      :title="$t('presets.title')"
+      no-border
+    >
       <div class="grid grid-cols-2 gap-2">
         <UButton
           color="neutral"
@@ -108,7 +111,7 @@
             name="i-heroicons-bookmark"
             class="w-4 h-4 mr-2"
           />
-          {{ $t('presets.savePreset') }}
+          {{ $t('ui.save') }}
         </UButton>
         <UButton
           color="neutral"
@@ -122,10 +125,6 @@
           {{ $t('ui.load') }}
         </UButton>
       </div>
-    </SettingsPanelSection>
-
-    <SettingsPanelSection :title="$t('settings.title')">
-      <UColorModeSelect />
     </SettingsPanelSection>
   </div>
 </template>

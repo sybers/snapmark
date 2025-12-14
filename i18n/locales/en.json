@@ -24,9 +24,7 @@
         "outputResolution": "Output resolution",
         "copyPngToClipboard": "Copy PNG image to clipboard",
         "copyToClipboard": "Copy to clipboard",
-        "asPng": "as PNG",
-        "asJpeg": "as JPEG",
-        "asSvg": "as SVG",
+        "asFormat": "Save as {format}",
         "imageCopiedToClipboard": "Image copied to clipboard",
         "failedToCopyImageToClipboard": "Failed to copy image to clipboard",
         "jpegNoTransparency": "JPEG doesn't support transparency",
@@ -49,10 +47,6 @@
         "title": "Canvas Size"
     },
     "presets": {
-        "title": "Presets",
-        "savePreset": "Save Preset"
-    },
-    "settings": {
-        "title": "Settings"
+        "title": "Presets"
     }
 }

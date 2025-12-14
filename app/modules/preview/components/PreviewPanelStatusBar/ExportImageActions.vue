@@ -27,7 +27,7 @@ const { t } = useI18n();
 
 const exportOptions = computed(() => [
   {
-    label: t('export.asPng'),
+    label: t('export.asFormat', { format: 'PNG' }),
     kbds: ['meta', 'p'],
     onSelect: () => {
       exportSettings.format = 'PNG';
@@ -35,7 +35,7 @@ const exportOptions = computed(() => [
     },
   },
   {
-    label: t('export.asJpeg'),
+    label: t('export.asFormat', { format: 'JPEG' }),
     kbds: ['meta', 'j'],
     onSelect: () => {
       exportSettings.format = 'JPEG';
@@ -43,7 +43,7 @@ const exportOptions = computed(() => [
     },
   },
   {
-    label: t('export.asSvg'),
+    label: t('export.asFormat', { format: 'SVG' }),
     kbds: ['meta', 'g'],
     onSelect: () => {
       exportSettings.format = 'SVG';
@@ -241,7 +241,7 @@ defineShortcuts(computed(() => ({
 
     <UFieldGroup>
       <UTooltip
-        :text="`${$t('ui.save')} ${exportSettings.format}`"
+        :text="$t('export.asFormat', { format: exportSettings.format })"
         :delay-duration="50"
         :content="{ side: 'top' }"
         :kbds="['meta', 's']"
@@ -255,7 +255,7 @@ defineShortcuts(computed(() => ({
       </UTooltip>
 
       <UDropdownMenu
-        :ui="{ content: 'w-[180px]' }"
+        :ui="{ content: 'min-w-[180px]' }"
         :items="exportOptions"
       >
         <UButton
