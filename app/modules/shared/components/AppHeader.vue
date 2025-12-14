@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import LocaleSwitcher from './LocaleSwitcher.vue';
+</script>
+
 <template>
   <header class="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800">
     <div class="flex items-center justify-between px-6 py-3">
@@ -11,13 +15,15 @@
       </div>
 
       <div class="flex items-center gap-3">
+        <LocaleSwitcher />
+
         <UTooltip
-          text="View on GitHub"
+          :text="$t('viewOnGitHub')"
           :delay-duration="50"
         >
           <UButton
             icon="i-simple-icons-github"
-            aria-label="View on GitHub"
+            :aria-label="$t('viewOnGitHub')"
             color="neutral"
             variant="subtle"
             trailing

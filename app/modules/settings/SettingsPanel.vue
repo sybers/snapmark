@@ -161,6 +161,6 @@ const boxShadowOptions = [
 
 const selectedBoxShadowIndex = ref(boxShadowOptions.indexOf(screenshotStore.boxShadow));
 watch(selectedBoxShadowIndex, (index) => {
-  screenshotStore.boxShadow = boxShadowOptions[index]!;
+  screenshotStore.boxShadow = boxShadowOptions[index] as string;
 }, { immediate: true });
 </script>
