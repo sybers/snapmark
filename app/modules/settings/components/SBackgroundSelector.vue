@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import { useI18n } from '#imports';
 
 const model = defineModel<string>({ required: true });
 
 type ColorType = 'gradient' | 'solid';
 
-const colorTypeOptions: { label: string; value: ColorType }[] = [
-  { label: 'Gradient', value: 'gradient' },
-  { label: 'Solid', value: 'solid' },
-];
+const { t } = useI18n();
+
+const colorTypeOptions = computed(() => [
+  { label: t('ui.gradient'), value: 'gradient' as ColorType },
+  { label: t('ui.solid'), value: 'solid' as ColorType },
+]);
 
 const selectedColorType = ref<ColorType>('gradient');
 
@@ -79,7 +82,7 @@ const isSelectedPreset = (preset: string) => {
       <div class="p-6 space-y-6">
         <div class="flex flex-col gap-2">
           <div class="flex justify-between items-center gap-2">
-            <label class="text-lg font-bold">Color</label>
+            <label class="text-lg font-bold">{{ $t('ui.color') }}</label>
             <UButton
               icon="heroicons:x-mark-20-solid"
               color="neutral"

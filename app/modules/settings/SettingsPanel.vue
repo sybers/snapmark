@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full lg:max-w-xs p-4 bg-white dark:bg-neutral-900 overflow-y-auto">
-    <SettingsPanelSection title="Screenshot">
-      <SettingsItem label="Scale">
+    <SettingsPanelSection :title="$t('screenshot.title')">
+      <SettingsItem :label="$t('ui.scale')">
         <USlider
           v-model="screenshotStore.scale"
           class="mt-2"
@@ -16,7 +16,7 @@
         </div>
       </SettingsItem>
 
-      <SettingsItem label="Shadow">
+      <SettingsItem :label="$t('screenshot.shadow')">
         <USlider
           v-model="selectedBoxShadowIndex"
           class="mt-2"
@@ -30,7 +30,7 @@
         </div>
       </SettingsItem>
 
-      <SettingsItem label="Roundness">
+      <SettingsItem :label="$t('ui.roundness')">
         <USlider
           v-model="screenshotStore.roundness"
           class="mt-2"
@@ -46,12 +46,12 @@
       </SettingsItem>
     </SettingsPanelSection>
 
-    <SettingsPanelSection title="Background">
-      <SettingsItem label="Color">
+    <SettingsPanelSection :title="$t('background.title')">
+      <SettingsItem :label="$t('ui.color')">
         <SBackgroundSelector v-model="backgroundStore.backgroundStyle" />
       </SettingsItem>
 
-      <SettingsItem label="Opacity">
+      <SettingsItem :label="$t('ui.opacity')">
         <USlider
           v-model="backgroundStore.opacity"
           class="mt-2"
@@ -62,7 +62,7 @@
         />
       </SettingsItem>
 
-      <SettingsItem label="Roundness">
+      <SettingsItem :label="$t('ui.roundness')">
         <USlider
           v-model="backgroundStore.roundness"
           class="mt-2"
@@ -76,20 +76,20 @@
           {{ backgroundStore.roundness }}px
         </div>
       </SettingsItem>
-      <SettingsItem label="Noise">
+      <SettingsItem :label="$t('background.noise')">
         <USwitch v-model="backgroundStore.noise" />
       </SettingsItem>
     </SettingsPanelSection>
 
-    <SettingsPanelSection title="Canvas Size">
-      <SettingsItem label="Width">
+    <SettingsPanelSection :title="$t('canvas.title')">
+      <SettingsItem :label="$t('ui.width')">
         <UInput
           v-model="canvasStore.canvasWidth"
           type="number"
         />
       </SettingsItem>
 
-      <SettingsItem label="Height">
+      <SettingsItem :label="$t('ui.height')">
         <UInput
           v-model="canvasStore.canvasHeight"
           type="number"
@@ -97,7 +97,10 @@
       </SettingsItem>
     </SettingsPanelSection>
 
-    <SettingsPanelSection title="Presets">
+    <SettingsPanelSection
+      :title="$t('presets.title')"
+      no-border
+    >
       <div class="grid grid-cols-2 gap-2">
         <UButton
           color="neutral"
@@ -108,7 +111,7 @@
             name="i-heroicons-bookmark"
             class="w-4 h-4 mr-2"
           />
-          Save Preset
+          {{ $t('ui.save') }}
         </UButton>
         <UButton
           color="neutral"
@@ -119,13 +122,9 @@
             name="i-heroicons-folder-open"
             class="w-4 h-4 mr-2"
           />
-          Load
+          {{ $t('ui.load') }}
         </UButton>
       </div>
-    </SettingsPanelSection>
-
-    <SettingsPanelSection title="Settings">
-      <UColorModeSelect />
     </SettingsPanelSection>
   </div>
 </template>
@@ -161,6 +160,6 @@ const boxShadowOptions = [
 
 const selectedBoxShadowIndex = ref(boxShadowOptions.indexOf(screenshotStore.boxShadow));
 watch(selectedBoxShadowIndex, (index) => {
-  screenshotStore.boxShadow = boxShadowOptions[index]!;
+  screenshotStore.boxShadow = boxShadowOptions[index] as string;
 }, { immediate: true });
 </script>

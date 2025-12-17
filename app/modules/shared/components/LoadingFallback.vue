@@ -9,8 +9,8 @@
           class="w-full h-auto object-contain"
         />
       </div>
-      <p class="text-gray-600 dark:text-gray-400 text-lg font-medium loading-text animate-pulse">
-        Loading...
+      <p class="text-gray-600 dark:text-gray-400 text-lg font-medium animate-pulse">
+        {{ $t('loading') }}…
       </p>
     </div>
   </div>

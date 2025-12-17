@@ -1,0 +1,52 @@
+{
+    "ui": {
+        "open": "Open",
+        "close": "Close",
+        "loading": "Loading",
+        "save": "Save",
+        "load": "Load",
+        "color": "Color",
+        "scale": "Scale",
+        "quality": "Quality",
+        "format": "Format",
+        "width": "Width",
+        "height": "Height",
+        "opacity": "Opacity",
+        "roundness": "Roundness",
+        "gradient": "Gradient",
+        "solid": "Solid"
+    },
+    "header": {
+        "viewOnGitHub": "View on GitHub"
+    },
+    "export": {
+        "settings": "Export settings",
+        "outputResolution": "Output resolution",
+        "copyPngToClipboard": "Copy PNG image to clipboard",
+        "copyToClipboard": "Copy to clipboard",
+        "asFormat": "Save as {format}",
+        "imageCopiedToClipboard": "Image copied to clipboard",
+        "failedToCopyImageToClipboard": "Failed to copy image to clipboard",
+        "jpegNoTransparency": "JPEG doesn't support transparency",
+        "jpegTransparencyDescription": "Transparent areas will be filled with a solid background."
+    },
+    "upload": {
+        "uploadScreenshotToGetStarted": "Upload a screenshot to get started",
+        "uploadScreenshot": "Upload Screenshot",
+        "uploadedImage": "Uploaded Image"
+    },
+    "screenshot": {
+        "title": "Screenshot",
+        "shadow": "Shadow"
+    },
+    "background": {
+        "title": "Background",
+        "noise": "Noise"
+    },
+    "canvas": {
+        "title": "Canvas Size"
+    },
+    "presets": {
+        "title": "Presets"
+    }
+}

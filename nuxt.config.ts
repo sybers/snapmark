@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/test-utils',
     '@nuxt/hints',
+    '@nuxtjs/i18n',
   ],
   components: {
     dirs: [],
@@ -30,5 +31,12 @@ export default defineNuxtConfig({
         braceStyle: '1tbs',
       },
     },
+  },
+  i18n: {
+    locales: [
+      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
+      { code: 'fr', language: 'fr-FR', name: 'Français', file: 'fr.json' },
+    ],
+    defaultLocale: 'fr',
   },
 });

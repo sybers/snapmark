@@ -14,6 +14,7 @@
     </div>
 
     <USeparator
+      v-if="!noBorder"
       class="mt-4"
       color="neutral"
     />
@@ -23,5 +24,6 @@
 <script setup lang="ts">
 defineProps<{
   title?: string;
+  noBorder?: boolean;
 }>();
 </script>

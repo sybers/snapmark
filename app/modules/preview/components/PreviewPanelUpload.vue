@@ -8,7 +8,7 @@
       class="w-16 h-16 mx-auto text-neutral-400"
     />
     <p class="text-neutral-500 dark:text-neutral-400">
-      Upload a screenshot to get started
+      {{ $t('upload.uploadScreenshotToGetStarted') }}
     </p>
     <UButton
       color="primary"
@@ -19,7 +19,7 @@
         name="i-heroicons-arrow-up-tray"
         class="w-5 h-5 mr-2"
       />
-      Upload Screenshot
+      {{ $t('upload.uploadScreenshot') }}
     </UButton>
   </div>
 </template>
