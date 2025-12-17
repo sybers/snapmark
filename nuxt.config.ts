@@ -21,6 +21,15 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   nitro: {
     preset: 'bun',
+    /** This is a workaround to fix a bug in nuxt-image module
+    * see {@link https://github.com/nuxt/image/issues/2035#issuecomment-3666162555}
+    * The bug fix also requires to force the css-tree version to 2.2.1 in the package.json resolutions section
+    */
+    externals: {
+      traceInclude: [
+        'node_modules/css-tree/data/patch.json',
+      ],
+    },
   },
   eslint: {
     config: {

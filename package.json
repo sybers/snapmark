@@ -37,6 +37,9 @@
     "typescript": "5.9.3",
     "vitest": "4.0.16"
   },
+  "resolutions": {
+    "css-tree": "2.2.1"
+  },
   "simple-git-hooks": {
     "pre-commit": "bun lint-staged"
   },
