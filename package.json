@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@nuxt/image": "2.0.0",
-    "@nuxt/ui": "4.2.1",
+    "@nuxt/ui": "4.3.0",
     "html-to-image": "1.11.13",
     "nuxt": "4.2.2",
     "vue": "3.5.25",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "1.12.1",
-    "@nuxt/hints": "1.0.0-alpha.3",
+    "@nuxt/hints": "1.0.0-alpha.4",
     "@nuxt/test-utils": "3.21.0",
     "@pinia/nuxt": "0.11.3",
     "@vue/test-utils": "2.4.6",
