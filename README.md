@@ -33,25 +33,3 @@ bun --bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
-## Setup on Render.com
-
-Create a new *Web Service*.
-
-Set Language to *Node*.
-
-Set *Build Command* to:
-
-```bash
-bun install --frozen-lockfile && bun --bun run build
-```
-
-Set *Start Command* to:
-
-```bash
-bun --bun .output/server/index.mjs
-```
-
-Set *Auto Deploy* to *After CI Checks Pass*.
-
-(optional) Set *Pull Request Previews* to *Automatic* to enable preview environments for PRs targetting the `main` branch.
