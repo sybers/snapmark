@@ -3,7 +3,7 @@ import { defineAppConfig } from '#imports';
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: 'indigo',
+      primary: 'snapmark',
       neutral: 'stone',
     },
   },
