@@ -20,12 +20,12 @@ import LocaleSwitcher from './LocaleSwitcher.vue';
         <UColorModeButton />
 
         <UTooltip
-          :text="$t('viewOnGitHub')"
+          :text="$t('header.viewOnGitHub')"
           :delay-duration="50"
         >
           <UButton
             icon="i-simple-icons-github"
-            :aria-label="$t('viewOnGitHub')"
+            :aria-label="$t('header.viewOnGitHub')"
             color="neutral"
             variant="ghost"
             trailing

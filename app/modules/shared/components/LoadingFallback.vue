@@ -10,7 +10,7 @@
         />
       </div>
       <p class="text-gray-600 dark:text-gray-400 text-lg font-medium animate-pulse">
-        {{ $t('loading') }}…
+        {{ $t('ui.loading') }}…
       </p>
     </div>
   </div>

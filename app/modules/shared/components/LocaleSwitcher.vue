@@ -17,7 +17,7 @@ const menuItems = computed<DropdownMenuItem[]>(() => locales.value.map((locale) 
 <template>
   <UDropdownMenu :items="menuItems">
     <UButton
-      :aria-label="$t('open')"
+      :aria-label="$t('ui.open')"
       icon="heroicons:language-20-solid"
       color="neutral"
       variant="ghost"
