@@ -1,24 +1,29 @@
 <template>
-  <div class="text-center space-y-4">
-    <UIcon
-      name="i-heroicons-photo"
-      class="w-16 h-16 mx-auto text-neutral-400"
-    />
-    <p class="text-neutral-500 dark:text-neutral-400">
-      {{ $t('upload.uploadScreenshotToGetStarted') }}
-    </p>
-    <UButton
-      color="primary"
-      size="lg"
-      @click="upload"
-    >
+  <UCard
+    variant="outline"
+    class="shadow-xl"
+  >
+    <div class="text-center space-y-4">
       <UIcon
-        name="i-heroicons-arrow-up-tray"
-        class="w-5 h-5 mr-2"
+        name="i-heroicons-photo"
+        class="w-16 h-16 mx-auto"
       />
-      {{ $t('upload.uploadScreenshot') }}
-    </UButton>
-  </div>
+      <p class="text-neutral-500">
+        {{ $t('upload.uploadScreenshotToGetStarted') }}
+      </p>
+      <UButton
+        color="primary"
+        size="lg"
+        @click="upload"
+      >
+        <UIcon
+          name="i-heroicons-arrow-up-tray"
+          class="w-5 h-5 mr-2"
+        />
+        {{ $t('upload.uploadScreenshot') }}
+      </UButton>
+    </div>
+  </UCard>
 </template>
 
 <script setup lang="ts">
