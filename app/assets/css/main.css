@@ -2,17 +2,27 @@
 @import "@nuxt/ui";
 
 @theme static {
-  /* Define new custom color */
   --color-snapmark-50: #e6efff;
   --color-snapmark-100: #cce0ff;
   --color-snapmark-200: #99c0ff;
   --color-snapmark-300: #66a1ff;
   --color-snapmark-400: #3381ff;
   --color-snapmark-500: #0062ff;
-  --color-snapmark-600: #0041c5;  /* couleur principale du logo */
+  --color-snapmark-600: #0041c5;
   --color-snapmark-700: #003399;
   --color-snapmark-800: #002266;
-  --color-snapmark-900: #090537;  /* couleur foncée du logo */
+  --color-snapmark-900: #090537;
   --color-snapmark-950: #05021f;
-}
 
+  --color-warm-50: #fafaf9; 
+  --color-warm-100: #f5f4f1;
+  --color-warm-200: #ebe9e3;
+  --color-warm-300: #dcd9d0;
+  --color-warm-400: #c4bfb3;
+  --color-warm-500: #a39d8f;
+  --color-warm-600: #857f71;
+  --color-warm-700: #6b6558;
+  --color-warm-800: #504c42;
+  --color-warm-900: #3a3730;
+  --color-warm-950: #2a2723;
+}

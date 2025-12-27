@@ -4,7 +4,7 @@ export default defineAppConfig({
   ui: {
     colors: {
       primary: 'snapmark',
-      neutral: 'stone',
+      neutral: 'warm',
     },
   },
 });
