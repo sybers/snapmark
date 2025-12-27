@@ -17,20 +17,21 @@
           color="neutral"
           variant="ghost"
           icon="ci:crop"
-          label="Crop"
+          :label="$t('cropper.actions.crop')"
+          @click="openCropImageModal"
         />
         <UButton
           color="neutral"
           variant="ghost"
           icon="ci:image-01"
-          label="Replace screenshot"
+          :label="$t('upload.replaceScreenshot')"
           @click="upload"
         />
         <UButton
           color="neutral"
           variant="ghost"
           icon="ci:arrow-reload-02"
-          label="Reset canvas"
+          :label="$t('upload.resetCanvas')"
           @click="screenshotStore.resetScreenshot"
         />
       </UFieldGroup>
@@ -39,15 +40,17 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from '#imports';
+import { storeToRefs, useOverlay } from '#imports';
 import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';
 import { useFileUpload } from '../composables/useImageUpload';
+import CropImageModal from './CropImageModal.vue';
 
 const screenshotStore = useScreenshotStore();
 
 const {
-  screenshot,
   screenshotFile,
+  screenshotDataURL,
+  screenshot,
   rotation,
   scale,
   roundness,
@@ -58,4 +61,21 @@ const { upload } = useFileUpload({
   accept: 'image/png, image/jpeg, image/svg+xml',
   model: screenshotFile,
 });
+
+const overlay = useOverlay();
+
+const modal = overlay.create(CropImageModal);
+
+async function openCropImageModal() {
+  if (!screenshotDataURL.value) {
+    return;
+  }
+
+  const result = await modal.open({
+    imageDataURL: screenshotDataURL.value,
+  });
+  if (result.success) {
+    screenshotStore.setScreenshotDataURL(result.croppedDataURL);
+  }
+}
 </script>

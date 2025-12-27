@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 export interface ScreenshotStoreOptions {
   rotation: number;
@@ -10,28 +10,37 @@ export interface ScreenshotStoreOptions {
 
 export const useScreenshotStore = defineStore('screenshot', () => {
   const screenshotFile = ref<File | null>(null);
+  const screenshotDataURL = computed<string | null>(() => {
+    if (!screenshotFile.value)
+      return null;
+
+    return URL.createObjectURL(screenshotFile.value);
+  });
+
   const screenshot = ref<HTMLImageElement | null>(null);
 
   watch(screenshotFile, () => {
-    if (!screenshotFile.value)
+    if (!screenshotDataURL.value)
       return;
 
-    const src = URL.createObjectURL(screenshotFile.value);
-
-    const image = new Image();
-    image.src = src;
-    image.onload = () => {
-      screenshot.value = image;
-    };
-    image.onerror = () => {
-      screenshot.value = null;
-    };
+    setScreenshotDataURL(screenshotDataURL.value);
   }, { immediate: true });
 
   const rotation = ref(0);
   const scale = ref(65);
   const roundness = ref(0);
   const boxShadow = ref('rgba(0, 0, 0, 0.3) 0px 25px 45px 0px');
+
+  function setScreenshotDataURL(dataURL: string) {
+    const image = new Image();
+    image.src = dataURL;
+    image.onload = () => {
+      screenshot.value = image;
+    };
+    image.onerror = () => {
+      screenshot.value = null;
+    };
+  }
 
   function resetScreenshot() {
     screenshotFile.value = null;
@@ -55,12 +64,14 @@ export const useScreenshotStore = defineStore('screenshot', () => {
 
   return {
     screenshotFile,
+    screenshotDataURL,
     screenshot,
     rotation,
     scale,
     roundness,
     boxShadow,
     resetScreenshot,
+    setScreenshotDataURL,
     importValues,
     exportValues,
   };

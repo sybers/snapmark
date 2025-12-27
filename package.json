@@ -19,6 +19,7 @@
     "html-to-image": "1.11.13",
     "nuxt": "4.2.2",
     "vue": "3.5.26",
+    "vue-advanced-cropper": "2.8.9",
     "vue-router": "4.6.4"
   },
   "devDependencies": {
