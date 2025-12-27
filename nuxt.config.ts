@@ -17,6 +17,14 @@ export default defineNuxtConfig({
     autoImport: false,
   },
   devtools: { enabled: true },
+  app: {
+    head: {
+      title: 'SnapMark - Turn screenshots into eye-catching social media images',
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+      ],
+    },
+  },
   css: ['~/assets/css/main.css'],
   compatibilityDate: '2025-07-15',
   nitro: {
