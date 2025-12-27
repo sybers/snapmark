@@ -31,9 +31,18 @@
         "jpegNoTransparency": "JPEG ne supporte pas la transparence",
         "jpegTransparencyDescription": "Les zones transparentes seront remplies avec un arrière-plan uni."
     },
+    "cropper": {
+        "title": "Recadrer l'image",
+        "actions": {
+            "cancel": "Annuler",
+            "crop": "Recadrer"
+        }
+    },
     "upload": {
         "uploadScreenshotToGetStarted": "Téléchargez une capture d'écran pour commencer",
         "uploadScreenshot": "Télécharger une capture",
+        "replaceScreenshot": "Remplacer la capture",
+        "resetCanvas": "Réinitialiser",
         "uploadedImage": "Image téléchargée"
     },
     "screenshot": {

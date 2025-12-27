@@ -31,9 +31,18 @@
         "jpegNoTransparency": "JPEG doesn't support transparency",
         "jpegTransparencyDescription": "Transparent areas will be filled with a solid background."
     },
+    "cropper": {
+        "title": "Crop image",
+        "actions": {
+            "cancel": "Cancel",
+            "crop": "Crop"
+        }
+    },
     "upload": {
         "uploadScreenshotToGetStarted": "Upload a screenshot to get started",
         "uploadScreenshot": "Upload Screenshot",
+        "replaceScreenshot": "Replace screenshot",
+        "resetCanvas": "Reset canvas",
         "uploadedImage": "Uploaded Image"
     },
     "screenshot": {
