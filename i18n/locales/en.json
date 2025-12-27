@@ -23,6 +23,7 @@
         "settings": "Export settings",
         "outputResolution": "Output resolution",
         "copyPngToClipboard": "Copy PNG image to clipboard",
+        "openInNewTab": "Open in new tab",
         "copyToClipboard": "Copy to clipboard",
         "asFormat": "Save as {format}",
         "imageCopiedToClipboard": "Image copied to clipboard",

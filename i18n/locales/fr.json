@@ -24,6 +24,7 @@
         "outputResolution": "Résolution de sortie",
         "copyPngToClipboard": "Copier l'image PNG dans le presse-papiers",
         "copyToClipboard": "Copier dans le presse-papiers",
+        "openInNewTab": "Ouvrir dans un nouvel onglet",
         "asFormat": "Enregistrer en {format}",
         "imageCopiedToClipboard": "Image copiée dans le presse-papiers",
         "failedToCopyImageToClipboard": "Échec de la copie de l'image dans le presse-papiers",

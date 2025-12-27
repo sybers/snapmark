@@ -23,6 +23,8 @@ const exportFormatOptions = [
   { label: 'SVG', value: 'SVG' },
 ];
 
+const canExportImage = computed(() => Boolean(canvasStore.exportContainer));
+
 const { t } = useI18n();
 
 const exportOptions = computed(() => [
@@ -48,6 +50,23 @@ const exportOptions = computed(() => [
     onSelect: () => {
       exportSettings.format = 'SVG';
       saveImage();
+    },
+  },
+  {
+    type: 'separator' as const,
+  },
+  {
+    label: t('export.openInNewTab'),
+    kbds: ['meta', 'o'],
+    onSelect: () => {
+      openImageInNewTab();
+    },
+  },
+  {
+    label: t('export.copyToClipboard'),
+    kbds: ['meta', 'c'],
+    onSelect: () => {
+      copyImageToClipboard();
     },
   },
 ]);
@@ -114,17 +133,34 @@ async function copyImageToClipboard(): Promise<void> {
   }
 }
 
+async function openImageInNewTab(): Promise<void> {
+  if (!canvasStore.exportContainer) {
+    throw new Error('Export container not found');
+  }
+
+  const pngImageBlob = await getImageBlob(canvasStore.exportContainer);
+  const url = URL.createObjectURL(pngImageBlob);
+  window.open(url, '_blank');
+}
+
+async function getImageBlob(el: HTMLElement): Promise<Blob> {
+  const pngImageBlob = await toBlob(el, {
+    pixelRatio: 1,
+  });
+
+  if (!pngImageBlob) {
+    throw new Error('Failed to create PNG image blob');
+  }
+
+  return pngImageBlob;
+}
+
 async function elementToImageClipboard(el: HTMLElement | null): Promise<void> {
   if (!el) {
     throw new Error('Export container not found');
   }
 
-  const pngImageBlob = await toBlob(el, {
-    pixelRatio: 1,
-  });
-  if (!pngImageBlob) {
-    throw new Error('Failed to create PNG image blob');
-  }
+  const pngImageBlob = await getImageBlob(el);
 
   navigator.clipboard.write([
     new ClipboardItem({
@@ -136,7 +172,6 @@ async function elementToImageClipboard(el: HTMLElement | null): Promise<void> {
 defineShortcuts(computed(() => ({
   ...extractShortcuts(exportOptions.value),
   meta_s: saveImage,
-  meta_c: copyImageToClipboard,
 })));
 </script>
 
@@ -152,6 +187,7 @@ defineShortcuts(computed(() => ({
         :content="{ side: 'top' }"
       >
         <UButton
+          :disabled="!canExportImage"
           :aria-label="$t('export.settings')"
           color="neutral"
           variant="outline"
@@ -225,20 +261,6 @@ defineShortcuts(computed(() => ({
       </template>
     </UPopover>
 
-    <UTooltip
-      :text="$t('export.copyPngToClipboard')"
-      :delay-duration="50"
-      :content="{ side: 'top' }"
-      :kbds="['meta', 'C']"
-      @click="copyImageToClipboard"
-    >
-      <UButton
-        :label="$t('export.copyToClipboard')"
-        color="neutral"
-        variant="outline"
-      />
-    </UTooltip>
-
     <UFieldGroup>
       <UTooltip
         :text="$t('export.asFormat', { format: exportSettings.format })"
@@ -248,6 +270,7 @@ defineShortcuts(computed(() => ({
         @click="saveImage"
       >
         <UButton
+          :disabled="!canExportImage"
           color="primary"
           variant="subtle"
           :label="$t('ui.save')"
@@ -259,6 +282,7 @@ defineShortcuts(computed(() => ({
         :items="exportOptions"
       >
         <UButton
+          :disabled="!canExportImage"
           color="primary"
           variant="subtle"
           icon="heroicons:chevron-down-20-solid"
