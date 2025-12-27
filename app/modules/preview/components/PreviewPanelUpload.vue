@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="!screenshotStore.screenshot"
-    class="text-center space-y-4"
-  >
+  <div class="text-center space-y-4">
     <UIcon
       name="i-heroicons-photo"
       class="w-16 h-16 mx-auto text-neutral-400"
@@ -13,7 +10,7 @@
     <UButton
       color="primary"
       size="lg"
-      @click="handleScreenshotUpload"
+      @click="upload"
     >
       <UIcon
         name="i-heroicons-arrow-up-tray"
@@ -25,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';
+import { useFileUpload } from '../composables/useImageUpload';
 
 const props = withDefaults(defineProps<{
   accept?: string;
@@ -37,18 +34,8 @@ const model = defineModel<File | null>({
   default: null,
 });
 
-const screenshotStore = useScreenshotStore();
-
-function handleScreenshotUpload() {
-  const fileInput = document.createElement('input');
-  fileInput.type = 'file';
-  fileInput.accept = props.accept;
-  fileInput.onchange = (event) => {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-      model.value = file;
-    }
-  };
-  fileInput.click();
-}
+const { upload } = useFileUpload({
+  accept: props.accept,
+  model,
+});
 </script>

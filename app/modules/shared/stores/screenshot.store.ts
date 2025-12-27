@@ -33,6 +33,10 @@ export const useScreenshotStore = defineStore('screenshot', () => {
   const roundness = ref(0);
   const boxShadow = ref('rgba(0, 0, 0, 0.3) 0px 25px 45px 0px');
 
+  function resetScreenshot() {
+    screenshotFile.value = null;
+  }
+
   function importValues(values: ScreenshotStoreOptions) {
     rotation.value = values.rotation;
     scale.value = values.scale;
@@ -56,6 +60,7 @@ export const useScreenshotStore = defineStore('screenshot', () => {
     scale,
     roundness,
     boxShadow,
+    resetScreenshot,
     importValues,
     exportValues,
   };
