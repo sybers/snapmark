@@ -1,5 +1,8 @@
 <template>
-  <UApp class="relative">
+  <UApp
+    class="relative"
+    :toaster="appConfig.toaster"
+  >
     <UMain>
       <div class="h-screen flex flex-col">
         <AppHeader />
@@ -30,6 +33,9 @@ import PreviewPanel from '~/modules/preview/PreviewPanel.vue';
 import SettingsPanel from '~/modules/settings/SettingsPanel.vue';
 import { useTemplateRef, watch } from 'vue';
 import { useAppStore } from '~/stores/app.store';
+import { useAppConfig } from '#app';
+
+const appConfig = useAppConfig();
 
 const presetsStore = usePresetsStore();
 const appStore = useAppStore();
