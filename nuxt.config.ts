@@ -1,3 +1,18 @@
+function createUmamiScript(env: Record<string, string | undefined>) {
+  if (env.NODE_ENV !== 'production') return undefined;
+
+  if (!env.UMAMI_SCRIPT_SRC || !env.UMAMI_WEBSITE_ID) {
+    console.log('Missing Umami script src or website ID, skipping...');
+    return undefined;
+  }
+
+  return {
+    'src': env.UMAMI_SCRIPT_SRC,
+    'async': true,
+    'data-website-id': env.UMAMI_WEBSITE_ID,
+  };
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -23,6 +38,7 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
       ],
+      script: [createUmamiScript(process.env)],
     },
   },
   css: ['~/assets/css/main.css'],
