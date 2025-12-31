@@ -27,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
+import { useEventListener } from '@vueuse/core';
 import { useFileUpload } from '../composables/useImageUpload';
 
 const props = withDefaults(defineProps<{
@@ -42,5 +43,15 @@ const model = defineModel<File | null>({
 const { upload } = useFileUpload({
   accept: props.accept,
   model,
+});
+
+useEventListener(document, 'paste', (event) => {
+  const items = event.clipboardData?.items;
+  if (!items) return;
+
+  const file = items[0]?.getAsFile();
+  if (!file) return;
+
+  model.value = file;
 });
 </script>
