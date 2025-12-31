@@ -43,7 +43,8 @@
         "uploadScreenshot": "Télécharger une capture",
         "replaceScreenshot": "Remplacer la capture",
         "resetCanvas": "Réinitialiser",
-        "uploadedImage": "Image téléchargée"
+        "uploadedImage": "Image téléchargée",
+        "pasteFromClipboard": "utilisez {kbd} pour coller depuis le presse-papiers"
     },
     "screenshot": {
         "title": "Capture d'écran",

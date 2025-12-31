@@ -22,6 +22,19 @@
         />
         {{ $t('upload.uploadScreenshot') }}
       </UButton>
+      <i18n-t
+        keypath="upload.pasteFromClipboard"
+        tag="p"
+        class="text-neutral-400 text-sm"
+      >
+        <template #kbd>
+          <div class="inline-flex gap-0.5">
+            <UKbd value="meta" />
+            <span>+</span>
+            <UKbd value="v" />
+          </div>
+        </template>
+      </i18n-t>
     </div>
   </UCard>
 </template>

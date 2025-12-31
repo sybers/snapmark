@@ -43,7 +43,8 @@
         "uploadScreenshot": "Upload Screenshot",
         "replaceScreenshot": "Replace screenshot",
         "resetCanvas": "Reset canvas",
-        "uploadedImage": "Uploaded Image"
+        "uploadedImage": "Uploaded Image",
+        "pasteFromClipboard": "use {kbd} to paste from clipboard"
     },
     "screenshot": {
         "title": "Screenshot",
