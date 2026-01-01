@@ -27,6 +27,8 @@ export const useScreenshotStore = defineStore('screenshot', () => {
   }, { immediate: true });
 
   const rotation = ref(0);
+  const rotationX = ref(0);
+  const rotationY = ref(0);
   const scale = ref(65);
   const roundness = ref(0);
   const boxShadow = ref('rgba(0, 0, 0, 0.3) 0px 25px 45px 0px');
@@ -67,6 +69,8 @@ export const useScreenshotStore = defineStore('screenshot', () => {
     screenshotDataURL,
     screenshot,
     rotation,
+    rotationX,
+    rotationY,
     scale,
     roundness,
     boxShadow,

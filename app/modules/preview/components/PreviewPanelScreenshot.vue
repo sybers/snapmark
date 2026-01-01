@@ -1,15 +1,19 @@
 <template>
   <UPopover mode="hover">
-    <img
-      :src="screenshot?.src"
-      :alt="$t('upload.uploadedImage')"
+    <div
       class="absolute"
-      :style="{
-        transform: `rotate(${rotation}deg) scale(${scale / 100})`,
-        borderRadius: `${roundness}px`,
-        boxShadow: boxShadow,
-      }"
+      :style="{ transform: `rotate(${rotation}deg) scale(${scale / 100})` }"
     >
+      <img
+        :src="screenshot?.src"
+        :alt="$t('upload.uploadedImage')"
+        :style="{
+          transform: `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`,
+          borderRadius: `${roundness}px`,
+          boxShadow: boxShadow,
+        }"
+      >
+    </div>
 
     <template #content>
       <UFieldGroup>
@@ -52,6 +56,8 @@ const {
   screenshotDataURL,
   screenshot,
   rotation,
+  rotationX,
+  rotationY,
   scale,
   roundness,
   boxShadow,

@@ -13,6 +13,9 @@
         "height": "Hauteur",
         "opacity": "Opacité",
         "roundness": "Arrondi",
+        "rotation": "Rotation",
+        "rotationX": "Horizontal Tilt",
+        "rotationY": "Vertical Tilt",
         "gradient": "Dégradé",
         "solid": "Uni"
     },

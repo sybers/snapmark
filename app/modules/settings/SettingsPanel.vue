@@ -44,6 +44,51 @@
           {{ screenshotStore.roundness }}px
         </div>
       </SettingsItem>
+
+      <SettingsItem :label="$t('ui.rotation')">
+        <USlider
+          v-model="screenshotStore.rotation"
+          class="mt-2"
+          size="xs"
+          color="neutral"
+          :min="0"
+          :max="360"
+          :step="1"
+        />
+        <div class="text-xs text-neutral-500 text-right">
+          {{ screenshotStore.rotation }}deg
+        </div>
+      </SettingsItem>
+
+      <SettingsItem :label="$t('ui.rotationX')">
+        <USlider
+          v-model="screenshotStore.rotationX"
+          class="mt-2"
+          size="xs"
+          color="neutral"
+          :min="0"
+          :max="10"
+          :step="0.1"
+        />
+        <div class="text-xs text-neutral-500 text-right">
+          {{ screenshotStore.rotationX }}deg
+        </div>
+      </SettingsItem>
+
+      <SettingsItem :label="$t('ui.rotationY')">
+        <USlider
+          v-model="screenshotStore.rotationY"
+          class="mt-2"
+          size="xs"
+          color="neutral"
+          :min="0"
+          :max="10"
+          :step="0.1"
+        />
+        <div class="text-xs text-neutral-500 text-right">
+          {{ screenshotStore.rotationY }}deg
+        </div>
+      </SettingsItem>
     </SettingsPanelSection>
 
     <SettingsPanelSection :title="$t('background.title')">
