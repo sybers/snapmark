@@ -1,46 +1,61 @@
 <template>
   <UCard
     variant="outline"
-    class="shadow-xl"
+    :class="{ 'ring-2 ring-primary bg-primary/5': isOverDropZone }"
+    class="shadow-xl transition-all duration-200"
   >
-    <div class="text-center space-y-4">
-      <UIcon
-        name="i-heroicons-photo"
-        class="w-16 h-16 mx-auto"
-      />
-      <p class="text-neutral-500">
-        {{ $t('upload.uploadScreenshotToGetStarted') }}
-      </p>
-      <UButton
-        color="primary"
-        size="lg"
-        @click="upload"
-      >
+    <div class="text-center space-y-5">
+      <div class="space-y-2">
         <UIcon
-          name="i-heroicons-arrow-up-tray"
-          class="w-5 h-5 mr-2"
+          :name="isOverDropZone ? 'i-heroicons-arrow-down-tray' : 'i-heroicons-photo'"
+          class="w-12 h-12 mx-auto text-neutral-400 transition-all duration-200"
+          :class="{ 'scale-110 text-primary': isOverDropZone }"
         />
-        {{ $t('upload.uploadScreenshot') }}
-      </UButton>
-      <i18n-t
-        keypath="upload.pasteFromClipboard"
-        tag="p"
-        class="text-neutral-400 text-sm"
+        <p class="text-neutral-500 text-sm">
+          {{ isOverDropZone ? $t('upload.dropToUpload') : $t('upload.uploadScreenshotToGetStarted') }}
+        </p>
+      </div>
+
+      <div
+        v-if="!isOverDropZone"
+        class="space-y-3"
       >
-        <template #kbd>
-          <div class="inline-flex gap-0.5">
-            <UKbd value="meta" />
-            <span>+</span>
-            <UKbd value="v" />
-          </div>
-        </template>
-      </i18n-t>
+        <UButton
+          color="primary"
+          size="lg"
+          @click="upload"
+        >
+          <UIcon
+            name="i-heroicons-arrow-up-tray"
+            class="w-5 h-5 mr-2"
+          />
+          {{ $t('upload.uploadScreenshot') }}
+        </UButton>
+
+        <p class="text-neutral-500 text-xs flex items-center justify-center gap-2">
+          <span class="inline-flex items-center gap-1">
+            <UKbd
+              value="meta"
+              size="sm"
+            />
+            <UKbd
+              value="v"
+              size="sm"
+            />
+          </span>
+          <USeparator
+            orientation="vertical"
+            class="h-3"
+          />
+          <span>{{ $t('upload.orDragAndDrop') }}</span>
+        </p>
+      </div>
     </div>
   </UCard>
 </template>
 
 <script setup lang="ts">
-import { useEventListener } from '@vueuse/core';
+import { useEventListener, useDropZone } from '@vueuse/core';
 import { useFileUpload } from '../composables/useImageUpload';
 
 const props = withDefaults(defineProps<{
@@ -56,6 +71,18 @@ const model = defineModel<File | null>({
 const { upload } = useFileUpload({
   accept: props.accept,
   model,
+});
+
+const { isOverDropZone } = useDropZone(document, {
+  dataTypes: ['image/png', 'image/jpeg', 'image/svg+xml'],
+  onDrop(files) {
+    if (!files || files.length === 0) return;
+
+    const file = files[0];
+    if (!file) return;
+
+    model.value = file;
+  },
 });
 
 useEventListener(document, 'paste', (event) => {

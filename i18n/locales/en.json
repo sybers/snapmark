@@ -44,7 +44,9 @@
         "replaceScreenshot": "Replace screenshot",
         "resetCanvas": "Reset canvas",
         "uploadedImage": "Uploaded Image",
-        "pasteFromClipboard": "use {kbd} to paste from clipboard"
+        "pasteFromClipboard": "use {kbd} to paste from clipboard",
+        "dropToUpload": "Drop image here",
+        "orDragAndDrop": "or drag your image here"
     },
     "screenshot": {
         "title": "Screenshot",
