@@ -8,7 +8,7 @@
         :src="screenshot?.src"
         :alt="$t('upload.uploadedImage')"
         :style="{
-          transform: `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`,
+          transform: `perspective(1000px) rotateX(${-perspective.x}deg) rotateY(${perspective.y}deg)`,
           borderRadius: `${roundness}px`,
           boxShadow: boxShadow,
         }"
@@ -56,8 +56,7 @@ const {
   screenshotDataURL,
   screenshot,
   rotation,
-  rotationX,
-  rotationY,
+  perspective,
   scale,
   roundness,
   boxShadow,

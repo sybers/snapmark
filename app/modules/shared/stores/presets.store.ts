@@ -29,6 +29,7 @@ const defaultPreset: Preset = {
     rotation: 0,
     scale: 75,
     roundness: 32,
+    perspective: { x: 0, y: 0 },
     boxShadow: 'rgba(0, 0, 0, 0.3) 0px 25px 45px 0px',
   },
 };

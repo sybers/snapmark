@@ -68,7 +68,7 @@ const isSelectedPreset = (preset: string) => {
 
 <template>
   <UPopover
-    :content="{ side: 'left' }"
+    :content="{ side: 'bottom', align: 'center' }"
     :ui="{ content: 'w-[320px]' }"
   >
     <div class="flex items-center gap-2 bg-neutral-200 dark:bg-neutral-800 rounded-md p-2">

@@ -60,34 +60,12 @@
         </div>
       </SettingsItem>
 
-      <SettingsItem :label="$t('ui.rotationX')">
-        <USlider
-          v-model="screenshotStore.rotationX"
-          class="mt-2"
-          size="xs"
-          color="neutral"
-          :min="0"
+      <SettingsItem :label="$t('ui.perspective')">
+        <SRotationPad
+          v-model="screenshotStore.perspective"
+          :min="-10"
           :max="10"
-          :step="0.1"
         />
-        <div class="text-xs text-neutral-500 text-right">
-          {{ screenshotStore.rotationX }}deg
-        </div>
-      </SettingsItem>
-
-      <SettingsItem :label="$t('ui.rotationY')">
-        <USlider
-          v-model="screenshotStore.rotationY"
-          class="mt-2"
-          size="xs"
-          color="neutral"
-          :min="0"
-          :max="10"
-          :step="0.1"
-        />
-        <div class="text-xs text-neutral-500 text-right">
-          {{ screenshotStore.rotationY }}deg
-        </div>
       </SettingsItem>
     </SettingsPanelSection>
 
@@ -177,6 +155,7 @@
 <script setup lang="ts">
 import SettingsPanelSection from './components/SettingsPanelSection.vue';
 import SBackgroundSelector from './components/SBackgroundSelector.vue';
+import SRotationPad from './components/SRotationPad.vue';
 import SettingsItem from './components/SettingsItem.vue';
 
 import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';

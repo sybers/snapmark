@@ -14,8 +14,7 @@
         "opacity": "Opacité",
         "roundness": "Arrondi",
         "rotation": "Rotation",
-        "rotationX": "Horizontal Tilt",
-        "rotationY": "Vertical Tilt",
+        "perspective": "Perspective",
         "gradient": "Dégradé",
         "solid": "Uni"
     },

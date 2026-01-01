@@ -2,9 +2,10 @@ import { defineStore } from 'pinia';
 import { computed, ref, watch } from 'vue';
 
 export interface ScreenshotStoreOptions {
-  rotation: number;
   scale: number;
   roundness: number;
+  rotation: number;
+  perspective: { x: number; y: number };
   boxShadow: string;
 }
 
@@ -27,8 +28,7 @@ export const useScreenshotStore = defineStore('screenshot', () => {
   }, { immediate: true });
 
   const rotation = ref(0);
-  const rotationX = ref(0);
-  const rotationY = ref(0);
+  const perspective = ref({ x: 0, y: 0 });
   const scale = ref(65);
   const roundness = ref(0);
   const boxShadow = ref('rgba(0, 0, 0, 0.3) 0px 25px 45px 0px');
@@ -52,6 +52,7 @@ export const useScreenshotStore = defineStore('screenshot', () => {
     rotation.value = values.rotation;
     scale.value = values.scale;
     roundness.value = values.roundness;
+    perspective.value = values.perspective;
     boxShadow.value = values.boxShadow;
   }
 
@@ -60,6 +61,7 @@ export const useScreenshotStore = defineStore('screenshot', () => {
       rotation: rotation.value,
       scale: scale.value,
       roundness: roundness.value,
+      perspective: perspective.value,
       boxShadow: boxShadow.value,
     };
   }
@@ -69,8 +71,7 @@ export const useScreenshotStore = defineStore('screenshot', () => {
     screenshotDataURL,
     screenshot,
     rotation,
-    rotationX,
-    rotationY,
+    perspective,
     scale,
     roundness,
     boxShadow,

@@ -14,8 +14,7 @@
         "opacity": "Opacity",
         "roundness": "Roundness",
         "rotation": "Rotation",
-        "rotationX": "Vertical Tilt",
-        "rotationY": "Horizontal Tilt",
+        "perspective": "Perspective",
         "gradient": "Gradient",
         "solid": "Solid"
     },
