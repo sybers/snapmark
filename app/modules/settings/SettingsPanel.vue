@@ -1,6 +1,14 @@
 <template>
   <div class="w-full h-full lg:max-w-xs p-4 bg-white dark:bg-neutral-900 overflow-y-auto">
     <SettingsPanelSection :title="$t('screenshot.title')">
+      <SettingsItem :label="$t('ui.frame')">
+        <USelect
+          v-model="frameStore.frameName"
+          class="w-full"
+          :items="frameStore.availableFrames"
+        />
+      </SettingsItem>
+
       <SettingsItem :label="$t('ui.scale')">
         <USlider
           v-model="screenshotStore.scale"
@@ -153,20 +161,22 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue';
+
 import SettingsPanelSection from './components/SettingsPanelSection.vue';
 import SBackgroundSelector from './components/SBackgroundSelector.vue';
 import SRotationPad from './components/SRotationPad.vue';
 import SettingsItem from './components/SettingsItem.vue';
 
 import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';
-import { useCanvasStore } from '~/modules/shared/stores/canvas.store';
+import { useFrameStore } from '~/modules/shared/stores/frame.store';
 import { useBackgroundStore } from '~/modules/shared/stores/background.store';
-import { ref, watch } from 'vue';
-
-const canvasStore = useCanvasStore();
+import { useCanvasStore } from '~/modules/shared/stores/canvas.store';
 
 const screenshotStore = useScreenshotStore();
+const frameStore = useFrameStore();
 const backgroundStore = useBackgroundStore();
+const canvasStore = useCanvasStore();
 
 const boxShadowOptions = [
   'none',

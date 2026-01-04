@@ -4,15 +4,17 @@
       class="absolute"
       :style="{ transform: `rotate(${rotation}deg) scale(${scale / 100})` }"
     >
-      <img
-        :src="screenshot?.src"
-        :alt="$t('upload.uploadedImage')"
+      <PreviewPanelFrame
         :style="{
-          transform: `perspective(1000px) rotateX(${-perspective.x}deg) rotateY(${perspective.y}deg)`,
-          borderRadius: `${roundness}px`,
           boxShadow: boxShadow,
+          transform: `perspective(1000px) rotateX(${-perspective.x}deg) rotateY(${perspective.y}deg)`,
         }"
       >
+        <img
+          :src="screenshot?.src"
+          :alt="$t('upload.uploadedImage')"
+        >
+      </PreviewPanelFrame>
     </div>
 
     <template #content>
@@ -48,6 +50,7 @@ import { storeToRefs, useOverlay } from '#imports';
 import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';
 import { useFileUpload } from '../composables/useImageUpload';
 import CropImageModal from './CropImageModal.vue';
+import PreviewPanelFrame from './PreviewPanelFrame.vue';
 
 const screenshotStore = useScreenshotStore();
 
@@ -58,7 +61,6 @@ const {
   rotation,
   perspective,
   scale,
-  roundness,
   boxShadow,
 } = storeToRefs(screenshotStore);
 

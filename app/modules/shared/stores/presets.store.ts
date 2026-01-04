@@ -5,10 +5,12 @@ import { useScreenshotStore, type ScreenshotStoreOptions } from './screenshot.st
 import { useCanvasStore } from './canvas.store';
 import { useBackgroundStore } from './background.store';
 import { useLocalStorage } from '@vueuse/core';
+import { useFrameStore, type FrameStoreOptions } from './frame.store';
 
 type Preset = {
   name: string;
   canvas: CanvasStoreOptions;
+  frame: FrameStoreOptions;
   background: BackgroundStoreOptions;
   screenshot: ScreenshotStoreOptions;
 };
@@ -18,6 +20,9 @@ const defaultPreset: Preset = {
   canvas: {
     canvasWidth: 1200,
     canvasHeight: 1200,
+  },
+  frame: {
+    frameName: 'arc',
   },
   background: {
     backgroundStyle: 'linear-gradient(45deg, #fada61 0.000%, #ff9188 50.000%, #ff5acd 100.000%)',
@@ -36,6 +41,7 @@ const defaultPreset: Preset = {
 
 export const usePresetsStore = defineStore('presets', () => {
   const screenshotStore = useScreenshotStore();
+  const frameStore = useFrameStore();
   const canvasStore = useCanvasStore();
   const backgroundStore = useBackgroundStore();
 
@@ -47,6 +53,7 @@ export const usePresetsStore = defineStore('presets', () => {
 
   function loadPreset(preset: Preset) {
     canvasStore.importValues(preset.canvas);
+    frameStore.importValues(preset.frame);
     backgroundStore.importValues(preset.background);
     screenshotStore.importValues(preset.screenshot);
   }
@@ -63,6 +70,7 @@ export const usePresetsStore = defineStore('presets', () => {
     savePreset({
       name,
       canvas: canvasStore.exportValues(),
+      frame: frameStore.exportValues(),
       background: backgroundStore.exportValues(),
       screenshot: screenshotStore.exportValues(),
     });
