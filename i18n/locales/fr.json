@@ -16,6 +16,7 @@
         "roundness": "Arrondi",
         "rotation": "Rotation",
         "perspective": "Perspective",
+        "offset": "Décalage",
         "gradient": "Dégradé",
         "solid": "Uni"
     },

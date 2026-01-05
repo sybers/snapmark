@@ -2,7 +2,7 @@
   <UPopover mode="hover">
     <div
       class="absolute"
-      :style="{ transform: `rotate(${rotation}deg) scale(${scale / 100})` }"
+      :style="{ transform: `translate(${offset.y}%, ${offset.x}%) rotate(${rotation}deg) scale(${scale / 100})` }"
     >
       <PreviewPanelFrame
         :style="{
@@ -60,6 +60,7 @@ const {
   screenshot,
   rotation,
   perspective,
+  offset,
   scale,
   boxShadow,
 } = storeToRefs(screenshotStore);

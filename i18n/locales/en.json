@@ -16,6 +16,7 @@
         "roundness": "Roundness",
         "rotation": "Rotation",
         "perspective": "Perspective",
+        "offset": "Offset",
         "gradient": "Gradient",
         "solid": "Solid"
     },

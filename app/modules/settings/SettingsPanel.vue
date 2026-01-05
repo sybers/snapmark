@@ -53,6 +53,19 @@
         </div>
       </SettingsItem>
 
+      <SettingsItem :label="$t('ui.perspective')">
+        <SXYControl
+          v-model="screenshotStore.perspective"
+          icon="i-heroicons-cube-transparent"
+          :min="-10"
+          :max="10"
+        >
+          <template #label="{ x, y }">
+            <span class="tabular-nums">{{ x.toFixed(1) }}° / {{ y.toFixed(1) }}°</span>
+          </template>
+        </SXYControl>
+      </SettingsItem>
+
       <SettingsItem :label="$t('ui.rotation')">
         <USlider
           v-model="screenshotStore.rotation"
@@ -68,12 +81,17 @@
         </div>
       </SettingsItem>
 
-      <SettingsItem :label="$t('ui.perspective')">
-        <SRotationPad
-          v-model="screenshotStore.perspective"
-          :min="-10"
-          :max="10"
-        />
+      <SettingsItem :label="$t('ui.offset')">
+        <SXYControl
+          v-model="screenshotStore.offset"
+          icon="material-symbols-light:drag-pan"
+          :min="-50"
+          :max="50"
+        >
+          <template #label="{ x, y }">
+            <span class="tabular-nums">{{ x.toFixed(0) }}% / {{ y.toFixed(0) }}%</span>
+          </template>
+        </SXYControl>
       </SettingsItem>
     </SettingsPanelSection>
 
@@ -165,7 +183,7 @@ import { ref, watch } from 'vue';
 
 import SettingsPanelSection from './components/SettingsPanelSection.vue';
 import SBackgroundSelector from './components/SBackgroundSelector.vue';
-import SRotationPad from './components/SRotationPad.vue';
+import SXYControl from './components/SXYControl.vue';
 import SettingsItem from './components/SettingsItem.vue';
 
 import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';

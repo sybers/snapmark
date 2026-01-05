@@ -6,6 +6,7 @@ export interface ScreenshotStoreOptions {
   roundness: number;
   rotation: number;
   perspective: { x: number; y: number };
+  offset: { x: number; y: number };
   boxShadow: string;
 }
 
@@ -29,6 +30,7 @@ export const useScreenshotStore = defineStore('screenshot', () => {
 
   const rotation = ref(0);
   const perspective = ref({ x: 0, y: 0 });
+  const offset = ref({ x: 0, y: 0 });
   const scale = ref(65);
   const roundness = ref(0);
   const boxShadow = ref('rgba(0, 0, 0, 0.3) 0px 25px 45px 0px');
@@ -53,6 +55,7 @@ export const useScreenshotStore = defineStore('screenshot', () => {
     scale.value = values.scale;
     roundness.value = values.roundness;
     perspective.value = values.perspective;
+    offset.value = values.offset;
     boxShadow.value = values.boxShadow;
   }
 
@@ -62,6 +65,7 @@ export const useScreenshotStore = defineStore('screenshot', () => {
       scale: scale.value,
       roundness: roundness.value,
       perspective: perspective.value,
+      offset: offset.value,
       boxShadow: boxShadow.value,
     };
   }
@@ -72,6 +76,7 @@ export const useScreenshotStore = defineStore('screenshot', () => {
     screenshot,
     rotation,
     perspective,
+    offset,
     scale,
     roundness,
     boxShadow,

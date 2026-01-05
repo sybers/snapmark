@@ -9,11 +9,14 @@
         variant="outline"
         size="sm"
         class="w-full justify-start"
-        icon="i-heroicons-cube-transparent"
+        :icon="icon"
       >
-        <span class="tabular-nums">
-          {{ model.x.toFixed(1) }}° / {{ model.y.toFixed(1) }}°
-        </span>
+        <slot
+          name="label"
+          v-bind="model"
+        >
+          <span class="tabular-nums">{{ model.x }} / {{ model.y }}</span>
+        </slot>
       </UButton>
 
       <template #content>
@@ -30,7 +33,7 @@
       color="neutral"
       variant="outline"
       size="sm"
-      @click="resetPerspective"
+      @click="reset"
     />
   </UFieldGroup>
 </template>
@@ -39,16 +42,17 @@
 import SXYPad from '~/modules/shared/ui/SXYPad.vue';
 
 withDefaults(defineProps<{
+  icon?: string;
   min?: number;
   max?: number;
 }>(), {
-  min: -10,
-  max: 10,
+  min: -100,
+  max: 100,
 });
 
 const model = defineModel<{ x: number; y: number }>({ required: true });
 
-function resetPerspective() {
+function reset() {
   model.value = { x: 0, y: 0 };
 }
 </script>
