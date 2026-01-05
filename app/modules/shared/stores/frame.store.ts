@@ -7,7 +7,7 @@ export interface FrameStoreOptions {
 
 export const useFrameStore = defineStore('frame', () => {
   const frameName = ref('arc');
-  const availableFrames = ['none', 'macos', 'arc'];
+  const availableFrames = ['none', 'arc', 'macos', 'windows'];
 
   function importValues(values: FrameStoreOptions) {
     frameName.value = values.frameName;
