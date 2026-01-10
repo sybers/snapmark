@@ -11,6 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import PreviewContent from './components/PreviewContent.vue';
-import PreviewPanelStatusBar from './components/PreviewPanelStatusBar/PreviewPanelStatusBar.vue';
+import PreviewContent from './PreviewContent.vue';
+import PreviewPanelStatusBar from './PreviewPanelStatusBar/PreviewPanelStatusBar.vue';
 </script>

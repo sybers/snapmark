@@ -181,10 +181,10 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 
-import SettingsPanelSection from './components/SettingsPanelSection.vue';
-import SBackgroundSelector from './components/SBackgroundSelector';
-import SXYControl from './components/SXYControl.vue';
-import SettingsItem from './components/SettingsItem.vue';
+import SettingsPanelSection from './SettingsPanelSection.vue';
+import SBackgroundSelector from './SBackgroundSelector';
+import SXYControl from './SXYControl.vue';
+import SettingsItem from './SettingsItem.vue';
 
 import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';
 import { useFrameStore } from '~/modules/shared/stores/frame.store';

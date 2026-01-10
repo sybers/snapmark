@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import SXYPad from '~/modules/shared/ui/SXYPad.vue';
+import SXYPad from '~/modules/shared/components/SXYPad.vue';
 
 withDefaults(defineProps<{
   icon?: string;

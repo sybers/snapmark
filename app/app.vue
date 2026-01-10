@@ -27,10 +27,10 @@
 
 <script setup lang="ts">
 import { usePresetsStore } from '~/modules/shared/stores/presets.store';
-import AppHeader from '~/modules/shared/components/AppHeader.vue';
-import LoadingFallback from '~/modules/shared/components/LoadingFallback.vue';
-import PreviewPanel from '~/modules/preview/PreviewPanel.vue';
-import SettingsPanel from '~/modules/settings/SettingsPanel.vue';
+import AppHeader from '~/modules/app/components/AppHeader.vue';
+import LoadingFallback from '~/modules/app/components/LoadingFallback.vue';
+import PreviewPanel from '~/modules/preview/components/PreviewPanel.vue';
+import SettingsPanel from '~/modules/settings/components/SettingsPanel.vue';
 import { useTemplateRef, watch } from 'vue';
 import { useAppStore } from '~/stores/app.store';
 import { useAppConfig } from '#app';

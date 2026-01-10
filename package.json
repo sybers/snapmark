@@ -8,6 +8,7 @@
     "test": "vitest --passWithNoTests",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "typecheck": "nuxt typecheck",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "postinstall": "nuxt prepare && simple-git-hooks"
