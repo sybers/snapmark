@@ -7,6 +7,7 @@
         "load": "Load",
         "frame": "Frame",
         "color": "Color",
+        "colorSwatches": "Color swatches",
         "scale": "Scale",
         "quality": "Quality",
         "format": "Format",
@@ -18,7 +19,8 @@
         "perspective": "Perspective",
         "offset": "Offset",
         "gradient": "Gradient",
-        "solid": "Solid"
+        "solid": "Solid",
+        "gradientDirection": "Gradient direction"
     },
     "header": {
         "viewOnGitHub": "View on GitHub"

@@ -7,6 +7,7 @@
         "load": "Charger",
         "frame": "Cadre",
         "color": "Couleur",
+        "colorSwatches": "Couleurs",
         "scale": "Échelle",
         "quality": "Qualité",
         "format": "Format",
@@ -18,7 +19,8 @@
         "perspective": "Perspective",
         "offset": "Décalage",
         "gradient": "Dégradé",
-        "solid": "Uni"
+        "solid": "Uni",
+        "gradientDirection": "Direction du dégradé"
     },
     "header": {
         "viewOnGitHub": "Voir sur GitHub"

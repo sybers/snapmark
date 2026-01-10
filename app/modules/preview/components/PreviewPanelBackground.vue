@@ -2,7 +2,7 @@
 import { storeToRefs } from '#imports';
 import { useBackgroundStore } from '~/modules/shared/stores/background.store';
 
-const { backgroundStyle, opacity, roundness, noise } = storeToRefs(useBackgroundStore());
+const { backgroundStyleAsCss, opacity, roundness, noise } = storeToRefs(useBackgroundStore());
 </script>
 
 <template>
@@ -12,7 +12,7 @@ const { backgroundStyle, opacity, roundness, noise } = storeToRefs(useBackground
   >
     <div
       class="absolute inset-0"
-      :style="{ background: backgroundStyle }"
+      :style="{ background: backgroundStyleAsCss }"
     />
     <div
       v-if="noise"

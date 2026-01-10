@@ -182,7 +182,7 @@
 import { ref, watch } from 'vue';
 
 import SettingsPanelSection from './components/SettingsPanelSection.vue';
-import SBackgroundSelector from './components/SBackgroundSelector.vue';
+import SBackgroundSelector from './components/SBackgroundSelector';
 import SXYControl from './components/SXYControl.vue';
 import SettingsItem from './components/SettingsItem.vue';
 

@@ -25,7 +25,15 @@ const defaultPreset: Preset = {
     frameName: 'arc',
   },
   background: {
-    backgroundStyle: 'linear-gradient(45deg, #fada61 0.000%, #ff9188 50.000%, #ff5acd 100.000%)',
+    backgroundStyle: {
+      type: 'gradient',
+      rotation: 45,
+      stops: [
+        { color: '#fada61', position: '0.000%' },
+        { color: '#ff9188', position: '50.000%' },
+        { color: '#ff5acd', position: '100.000%' },
+      ],
+    },
     opacity: 100,
     roundness: 32,
     noise: true,

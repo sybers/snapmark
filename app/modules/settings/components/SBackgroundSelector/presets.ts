@@ -1,0 +1,43 @@
+import type { BackgroundStyleSolid, BackgroundStyleGradient } from '~/modules/shared/stores/background.store';
+
+export const solidPresets: BackgroundStyleSolid[] = [
+  { type: 'solid', color: '#0f172a' },
+  { type: 'solid', color: '#1e293b' },
+  { type: 'solid', color: '#f5f5f5' },
+  { type: 'solid', color: '#e5e7eb' },
+  { type: 'solid', color: '#fef3c7' },
+  { type: 'solid', color: '#faf5ff' },
+  { type: 'solid', color: '#e11d48' },
+  { type: 'solid', color: '#ec4899' },
+  { type: 'solid', color: '#f97316' },
+  { type: 'solid', color: '#facc15' },
+  { type: 'solid', color: '#21c65e' },
+  { type: 'solid', color: '#16a34a' },
+  { type: 'solid', color: '#0ea5e9' },
+  { type: 'solid', color: '#38bdf8' },
+  { type: 'solid', color: '#6366f1' },
+  { type: 'solid', color: '#4f46e5' },
+  { type: 'solid', color: '#000000' },
+  { type: 'solid', color: '#ffffff' },
+];
+
+export const gradientPresets: BackgroundStyleGradient[] = [
+  { type: 'gradient', rotation: 0, stops: [{ color: '#ffffc4', position: '0%' }, { color: '#ff6164', position: '50%' }, { color: '#b00012', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#fada61', position: '0%' }, { color: '#ff9188', position: '50%' }, { color: '#ff5acd', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#4159d0', position: '0%' }, { color: '#c84fc0', position: '50%' }, { color: '#ffcd70', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#07aeea', position: '0%' }, { color: '#2bf598', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#000041', position: '0%' }, { color: '#225772', position: '50%' }, { color: '#5bc39a', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#fc8ec5', position: '0%' }, { color: '#ff8dd3', position: '25%' }, { color: '#ffa1d8', position: '50%' }, { color: '#ffc1d2', position: '75%' }, { color: '#ffe0c3', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#81FFEF', position: '10%' }, { color: '#F067B4', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#F05F57', position: '10%' }, { color: '#360940', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#FDD819', position: '10%' }, { color: '#E80505', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#97ABFF', position: '10%' }, { color: '#123597', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: 'rgb(27,53,68)', position: '2.2%' }, { color: 'rgb(110,180,135)', position: '84%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: 'rgb(255,35,90)', position: '0.2%' }, { color: 'rgb(255,35,144)', position: '54.8%' }, { color: 'rgb(250,99,160)', position: '93.4%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#ffffff', position: '0%' }, { color: '#e7ffff', position: '16.667%' }, { color: '#cdfcff', position: '33.333%' }, { color: '#b5e9f4', position: '50%' }, { color: '#a3d7db', position: '66.667%' }, { color: '#9ac6c5', position: '83.333%' }, { color: '#9bb8b4', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#70ffd3', position: '0%' }, { color: '#72ffd2', position: '4%' }, { color: '#74fcd1', position: '8%' }, { color: '#76f7d0', position: '12%' }, { color: '#78f1d0', position: '16%' }, { color: '#79ecd1', position: '20%' }, { color: '#7be6d2', position: '24%' }, { color: '#7ce0d4', position: '28%' }, { color: '#7edad6', position: '32%' }, { color: '#7fd3d9', position: '36%' }, { color: '#80ccdd', position: '40%' }, { color: '#81c6e1', position: '44%' }, { color: '#82bfe5', position: '48%' }, { color: '#83b7ea', position: '52%' }, { color: '#83b0ee', position: '56%' }, { color: '#84a9f3', position: '60%' }, { color: '#84a2f8', position: '64%' }, { color: '#849afe', position: '68%' }, { color: '#8493ff', position: '72%' }, { color: '#848bff', position: '76%' }, { color: '#8484ff', position: '80%' }, { color: '#847cff', position: '84%' }, { color: '#8375ff', position: '88%' }, { color: '#826eff', position: '92%' }, { color: '#8266ff', position: '96%' }, { color: '#815fff', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#00ffff', position: '0%' }, { color: '#ffff00', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#594a0a', position: '0%' }, { color: '#594a0a', position: '14.286%' }, { color: '#9f5c0d', position: '14.286%' }, { color: '#9f5c0d', position: '28.571%' }, { color: '#e37612', position: '28.571%' }, { color: '#e37612', position: '42.857%' }, { color: '#ff9618', position: '42.857%' }, { color: '#ff9618', position: '57.143%' }, { color: '#ffbc1f', position: '57.143%' }, { color: '#ffbc1f', position: '71.429%' }, { color: '#ffe627', position: '71.429%' }, { color: '#ffe627', position: '85.714%' }, { color: '#ffff2f', position: '85.714%' }, { color: '#ffff2f', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#312c00', position: '0%' }, { color: '#312c00', position: '14.286%' }, { color: '#332e1e', position: '14.286%' }, { color: '#332e1e', position: '28.571%' }, { color: '#323149', position: '28.571%' }, { color: '#323149', position: '42.857%' }, { color: '#2c3377', position: '42.857%' }, { color: '#2c3377', position: '57.143%' }, { color: '#2436a2', position: '57.143%' }, { color: '#2436a2', position: '71.429%' }, { color: '#1a39c0', position: '71.429%' }, { color: '#1a39c0', position: '85.714%' }, { color: '#113ccc', position: '85.714%' }, { color: '#113ccc', position: '100%' }] },
+  { type: 'gradient', rotation: 0, stops: [{ color: '#d0415e', position: '0%' }, { color: '#d0415e', position: '20%' }, { color: '#d65767', position: '20%' }, { color: '#d65767', position: '40%' }, { color: '#db7971', position: '40%' }, { color: '#db7971', position: '60%' }, { color: '#e0a57c', position: '60%' }, { color: '#e0a57c', position: '80%' }, { color: '#e6d886', position: '80%' }, { color: '#e6d886', position: '100%' }] },
+];
