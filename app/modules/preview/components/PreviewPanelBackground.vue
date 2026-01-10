@@ -1,21 +1,25 @@
 <script setup lang="ts">
-import { storeToRefs } from '#imports';
-import { useBackgroundStore } from '~/modules/shared/stores/background.store';
+import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 
-const { backgroundStyleAsCss, opacity, roundness, noise } = storeToRefs(useBackgroundStore());
+const {
+  backgroundStyleAsCss,
+  backgroundOpacity,
+  backgroundRoundness,
+  backgroundNoise,
+} = useBackgroundSettings();
 </script>
 
 <template>
   <div
     class="absolute inset-0 overflow-hidden"
-    :style="{ borderRadius: `${roundness}px`, opacity: opacity / 100 }"
+    :style="{ borderRadius: `${backgroundRoundness}px`, opacity: backgroundOpacity / 100 }"
   >
     <div
       class="absolute inset-0"
       :style="{ background: backgroundStyleAsCss }"
     />
     <div
-      v-if="noise"
+      v-if="backgroundNoise"
       class="absolute inset-0 noisy-background"
     />
   </div>

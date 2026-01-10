@@ -1,23 +1,23 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, useTemplateRef } from 'vue';
-import { useCanvasStore } from '~/modules/shared/stores/canvas.store';
+import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
 
-const exportContainer = useTemplateRef('exportContainer');
+const exportContainerRef = useTemplateRef('exportContainerRef');
 
-const canvasStore = useCanvasStore();
+const { exportContainer } = useCanvasSettings();
 
 onMounted(() => {
-  canvasStore.exportContainer = exportContainer.value;
+  exportContainer.value = exportContainerRef.value;
 });
 
 onUnmounted(() => {
-  canvasStore.exportContainer = null;
+  exportContainer.value = null;
 });
 </script>
 
 <template>
   <div
-    ref="exportContainer"
+    ref="exportContainerRef"
     class="absolute inset-0 flex items-center justify-center"
   >
     <slot />

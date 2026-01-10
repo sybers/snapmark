@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useBackgroundStore, type BackgroundStyle, type BackgroundStyleGradient } from '~/modules/shared/stores/background.store';
 import { gradientPresets } from './presets';
 import SColorSwatch from './SColorSwatch.vue';
+import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
+import type { BackgroundStyle, BackgroundStyleGradient } from '~/modules/shared/types';
 
-const { getBackgroundStyleAsCss } = useBackgroundStore();
+const { getBackgroundStyleAsCss } = useBackgroundSettings();
 
 const model = defineModel<BackgroundStyle>({ required: true });
 

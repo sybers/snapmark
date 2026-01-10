@@ -1,4 +1,4 @@
-import type { BackgroundStyleSolid, BackgroundStyleGradient } from '~/modules/shared/stores/background.store';
+import type { BackgroundStyleSolid, BackgroundStyleGradient } from '~/modules/shared/types';
 
 export const solidPresets: BackgroundStyleSolid[] = [
   { type: 'solid', color: '#0f172a' },

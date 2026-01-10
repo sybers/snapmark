@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { computed, defineShortcuts, extractShortcuts, reactive, useI18n, useToast, watch } from '#imports';
 import { toPng, toJpeg, toSvg, toBlob } from 'html-to-image';
-import { useCanvasStore } from '~/modules/shared/stores/canvas.store';
-import { useBackgroundStore } from '~/modules/shared/stores/background.store';
+import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
+import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 
 const toast = useToast();
-
-const canvasStore = useCanvasStore();
-const backgroundStore = useBackgroundStore();
 
 const pixelRatioOptions = [
   { label: '1x', value: 1 },
@@ -23,7 +20,10 @@ const exportFormatOptions = [
   { label: 'SVG', value: 'SVG' },
 ];
 
-const canExportImage = computed(() => Boolean(canvasStore.exportContainer));
+const { exportContainer } = useCanvasSettings();
+const canExportImage = computed(() => Boolean(exportContainer.value));
+const { canvasWidth, canvasHeight } = useCanvasSettings();
+const { hasTransparency } = useBackgroundSettings();
 
 const { t } = useI18n();
 
@@ -90,7 +90,7 @@ watch(() => exportSettings.format, (format) => {
 }, { immediate: true });
 
 async function saveImage() {
-  if (!canvasStore.exportContainer)
+  if (!exportContainer.value)
     return;
 
   const formatFunctions = {
@@ -104,7 +104,7 @@ async function saveImage() {
     return;
   }
 
-  const dataUrl = await formatFunction(canvasStore.exportContainer, {
+  const dataUrl = await formatFunction(exportContainer.value, {
     pixelRatio: exportSettings.pixelRatio,
     quality: exportSettings.format === 'JPEG' ? (exportSettings.quality / 100) : undefined,
     filter: (el) => el.dataset?.exportExcluded === undefined,
@@ -118,7 +118,7 @@ async function saveImage() {
 
 async function copyImageToClipboard(): Promise<void> {
   try {
-    await elementToImageClipboard(canvasStore.exportContainer);
+    await elementToImageClipboard(exportContainer.value);
     toast.add({
       title: t('export.imageCopiedToClipboard'),
       icon: 'i-lucide-clipboard',
@@ -134,11 +134,11 @@ async function copyImageToClipboard(): Promise<void> {
 }
 
 async function openImageInNewTab(): Promise<void> {
-  if (!canvasStore.exportContainer) {
+  if (!exportContainer.value) {
     throw new Error('Export container not found');
   }
 
-  const pngImageBlob = await getImageBlob(canvasStore.exportContainer);
+  const pngImageBlob = await getImageBlob(exportContainer.value);
   const url = URL.createObjectURL(pngImageBlob);
   window.open(url, '_blank');
 }
@@ -214,7 +214,7 @@ defineShortcuts(computed(() => ({
             />
 
             <UAlert
-              v-if="exportSettings.format === 'JPEG' && backgroundStore.hasTransparency"
+              v-if="exportSettings.format === 'JPEG' && hasTransparency"
               color="neutral"
               variant="subtle"
               :title="$t('export.jpegNoTransparency')"
@@ -254,7 +254,7 @@ defineShortcuts(computed(() => ({
           <div class="flex flex-col gap-2">
             <label class="text-sm font-medium">{{ $t('export.outputResolution') }}</label>
             <div class="text-xs text-neutral-500">
-              {{ canvasStore.canvasWidth * exportSettings.pixelRatio }} × {{ canvasStore.canvasHeight * exportSettings.pixelRatio }}
+              {{ canvasWidth * exportSettings.pixelRatio }} × {{ canvasHeight * exportSettings.pixelRatio }}
             </div>
           </div>
         </div>

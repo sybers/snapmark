@@ -2,12 +2,12 @@
   <UPopover mode="hover">
     <div
       class="absolute"
-      :style="{ transform: `translate(${offset.y}%, ${offset.x}%) rotate(${rotation}deg) scale(${scale / 100})` }"
+      :style="{ transform: `translate(${screenshotOffset.y}%, ${screenshotOffset.x}%) rotate(${screenshotRotation}deg) scale(${screenshotScale / 100})` }"
     >
       <PreviewPanelFrame
         :style="{
-          boxShadow: boxShadow,
-          transform: `perspective(1000px) rotateX(${-perspective.x}deg) rotateY(${perspective.y}deg)`,
+          boxShadow: screenshotBoxShadow,
+          transform: `perspective(1000px) rotateX(${-screenshotPerspective.x}deg) rotateY(${screenshotPerspective.y}deg)`,
         }"
       >
         <img
@@ -38,7 +38,7 @@
           variant="ghost"
           icon="ci:arrow-reload-02"
           :label="$t('upload.resetCanvas')"
-          @click="screenshotStore.resetScreenshot"
+          @click="resetScreenshot"
         />
       </UFieldGroup>
     </template>
@@ -46,24 +46,24 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs, useOverlay } from '#imports';
-import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';
+import { useOverlay } from '#imports';
 import { useFileUpload } from '../composables/useImageUpload';
 import CropImageModal from './CropImageModal.vue';
 import PreviewPanelFrame from './PreviewPanelFrame.vue';
-
-const screenshotStore = useScreenshotStore();
+import { useScreenshotSettings } from '~/modules/shared/composables/useScreenshotSettings';
 
 const {
   screenshotFile,
   screenshotDataURL,
   screenshot,
-  rotation,
-  perspective,
-  offset,
-  scale,
-  boxShadow,
-} = storeToRefs(screenshotStore);
+  screenshotRotation,
+  screenshotPerspective,
+  screenshotOffset,
+  screenshotScale,
+  screenshotBoxShadow,
+  resetScreenshot,
+  setScreenshotDataURL,
+} = useScreenshotSettings();
 
 const { upload } = useFileUpload({
   accept: 'image/png, image/jpeg, image/svg+xml',
@@ -71,7 +71,6 @@ const { upload } = useFileUpload({
 });
 
 const overlay = useOverlay();
-
 const modal = overlay.create(CropImageModal);
 
 async function openCropImageModal() {
@@ -83,7 +82,7 @@ async function openCropImageModal() {
     imageDataURL: screenshotDataURL.value,
   });
   if (result.success) {
-    screenshotStore.setScreenshotDataURL(result.croppedDataURL);
+    setScreenshotDataURL(result.croppedDataURL);
   }
 }
 </script>

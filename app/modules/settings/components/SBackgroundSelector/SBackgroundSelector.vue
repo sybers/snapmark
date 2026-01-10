@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useI18n } from '#imports';
-import { useBackgroundStore, type BackgroundStyle, type BackgroundType } from '~/modules/shared/stores/background.store';
+import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 import SBackgroundSelectorGradient from './SBackgroundSelectorGradient.vue';
 import SBackgroundSelectorSolid from './SBackgroundSelectorSolid.vue';
-
-const { getBackgroundStyleAsCss } = useBackgroundStore();
+import type { BackgroundStyle, BackgroundType } from '~/modules/shared/types';
 
 const { t } = useI18n();
+
+const { getBackgroundStyleAsCss } = useBackgroundSettings();
 
 const model = defineModel<BackgroundStyle>({ required: true });
 const modelAsCssStyle = computed(() => getBackgroundStyleAsCss(model.value));

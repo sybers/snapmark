@@ -5,7 +5,7 @@
   >
     <div
       class="overflow-hidden"
-      :style="{ borderRadius: `${roundness}px` }"
+      :style="{ borderRadius: `${screenshotRoundness}px` }"
     >
       <slot />
     </div>
@@ -13,16 +13,13 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
 import { computed, ref } from 'vue';
-import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';
+import { useScreenshotSettings } from '~/modules/shared/composables/useScreenshotSettings';
 
-const screenshotStore = useScreenshotStore();
-
-const { roundness } = storeToRefs(screenshotStore);
+const { screenshotRoundness } = useScreenshotSettings();
 
 const framePadding = ref(6);
 const frameRoundness = computed(() => {
-  return roundness.value + framePadding.value;
+  return screenshotRoundness.value + framePadding.value;
 });
 </script>

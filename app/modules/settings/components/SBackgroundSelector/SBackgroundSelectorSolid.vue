@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useBackgroundStore, type BackgroundStyle, type BackgroundStyleSolid } from '~/modules/shared/stores/background.store';
+import type { BackgroundStyle, BackgroundStyleSolid } from '~/modules/shared/types';
+import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 import { solidPresets } from './presets';
 import SColorSwatch from './SColorSwatch.vue';
 
-const { getBackgroundStyleAsCss } = useBackgroundStore();
+const { getBackgroundStyleAsCss } = useBackgroundSettings();
 
 const model = defineModel<BackgroundStyle>({ required: true });
 

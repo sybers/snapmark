@@ -1,7 +1,7 @@
 <template>
   <div
     class="overflow-hidden bg-white"
-    :style="{ borderRadius: `${roundness}px` }"
+    :style="{ borderRadius: `${screenshotRoundness}px` }"
   >
     <div class="flex items-center gap-2 py-4 px-8">
       <div class="w-4 h-4 bg-red-500 rounded-full" />
@@ -13,8 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
-import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';
+import { useScreenshotSettings } from '~/modules/shared/composables/useScreenshotSettings';
 
-const { roundness } = storeToRefs(useScreenshotStore());
+const { screenshotRoundness } = useScreenshotSettings();
 </script>

@@ -5,15 +5,11 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
-import { useFrameStore } from '~/modules/shared/stores/frame.store';
-
 import FrameNone from './Frames/FrameNone.vue';
 import { computed, defineAsyncComponent } from 'vue';
+import { useFrameSettings } from '~/modules/shared/composables/useFrameSettings';
 
-const frameStore = useFrameStore();
-
-const { frameName } = storeToRefs(frameStore);
+const { frameName } = useFrameSettings();
 
 const frameComponent = computed(() => {
   if (!frameName.value) return FrameNone;

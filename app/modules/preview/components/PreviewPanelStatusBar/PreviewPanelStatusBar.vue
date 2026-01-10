@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { storeToRefs } from '#imports';
-import { useCanvasStore } from '~/modules/shared/stores/canvas.store';
+import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
 import ExportImageActions from './ExportImageActions.vue';
 
-const canvasStore = useCanvasStore();
-
-const { canvasWidth, canvasHeight, previewScalePercentage } = storeToRefs(canvasStore);
+const { canvasWidth, canvasHeight, previewScalePercentage } = useCanvasSettings();
 </script>
 
 <template>

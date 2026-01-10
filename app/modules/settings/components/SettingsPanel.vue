@@ -3,15 +3,15 @@
     <SettingsPanelSection :title="$t('screenshot.title')">
       <SettingsItem :label="$t('ui.frame')">
         <USelect
-          v-model="frameStore.frameName"
+          v-model="frameName"
           class="w-full"
-          :items="frameStore.availableFrames"
+          :items="availableFrames"
         />
       </SettingsItem>
 
       <SettingsItem :label="$t('ui.scale')">
         <USlider
-          v-model="screenshotStore.scale"
+          v-model="screenshotScale"
           class="mt-2"
           size="xs"
           color="neutral"
@@ -20,7 +20,7 @@
           :step="1"
         />
         <div class="text-xs text-neutral-500 text-right">
-          {{ screenshotStore.scale }}
+          {{ screenshotScale }}
         </div>
       </SettingsItem>
 
@@ -31,7 +31,7 @@
           size="xs"
           color="neutral"
           :min="0"
-          :max="boxShadowOptions.length - 1"
+          :max="screenshotBoxShadowOptions.length - 1"
         />
         <div class="text-xs text-neutral-500 text-right mt-1">
           {{ selectedBoxShadowIndex }}
@@ -40,7 +40,7 @@
 
       <SettingsItem :label="$t('ui.roundness')">
         <USlider
-          v-model="screenshotStore.roundness"
+          v-model="screenshotRoundness"
           class="mt-2"
           size="xs"
           color="neutral"
@@ -49,13 +49,13 @@
           :step="1"
         />
         <div class="text-xs text-neutral-500 text-right">
-          {{ screenshotStore.roundness }}px
+          {{ screenshotRoundness }}px
         </div>
       </SettingsItem>
 
       <SettingsItem :label="$t('ui.perspective')">
         <SXYControl
-          v-model="screenshotStore.perspective"
+          v-model="screenshotPerspective"
           icon="i-heroicons-cube-transparent"
           :min="-10"
           :max="10"
@@ -68,7 +68,7 @@
 
       <SettingsItem :label="$t('ui.rotation')">
         <USlider
-          v-model="screenshotStore.rotation"
+          v-model="screenshotRotation"
           class="mt-2"
           size="xs"
           color="neutral"
@@ -77,13 +77,13 @@
           :step="1"
         />
         <div class="text-xs text-neutral-500 text-right">
-          {{ screenshotStore.rotation }}deg
+          {{ screenshotRotation }}deg
         </div>
       </SettingsItem>
 
       <SettingsItem :label="$t('ui.offset')">
         <SXYControl
-          v-model="screenshotStore.offset"
+          v-model="screenshotOffset"
           icon="material-symbols-light:drag-pan"
           :min="-50"
           :max="50"
@@ -97,12 +97,12 @@
 
     <SettingsPanelSection :title="$t('background.title')">
       <SettingsItem :label="$t('ui.color')">
-        <SBackgroundSelector v-model="backgroundStore.backgroundStyle" />
+        <SBackgroundSelector v-model="backgroundStyle" />
       </SettingsItem>
 
       <SettingsItem :label="$t('ui.opacity')">
         <USlider
-          v-model="backgroundStore.opacity"
+          v-model="backgroundOpacity"
           class="mt-2"
           size="xs"
           color="neutral"
@@ -113,7 +113,7 @@
 
       <SettingsItem :label="$t('ui.roundness')">
         <USlider
-          v-model="backgroundStore.roundness"
+          v-model="backgroundRoundness"
           class="mt-2"
           size="xs"
           color="neutral"
@@ -122,25 +122,25 @@
           :step="1"
         />
         <div class="text-xs text-neutral-500 text-right">
-          {{ backgroundStore.roundness }}px
+          {{ backgroundRoundness }}px
         </div>
       </SettingsItem>
       <SettingsItem :label="$t('background.noise')">
-        <USwitch v-model="backgroundStore.noise" />
+        <USwitch v-model="backgroundNoise" />
       </SettingsItem>
     </SettingsPanelSection>
 
     <SettingsPanelSection :title="$t('canvas.title')">
       <SettingsItem :label="$t('ui.width')">
         <UInput
-          v-model="canvasStore.canvasWidth"
+          v-model="canvasWidth"
           type="number"
         />
       </SettingsItem>
 
       <SettingsItem :label="$t('ui.height')">
         <UInput
-          v-model="canvasStore.canvasHeight"
+          v-model="canvasHeight"
           type="number"
         />
       </SettingsItem>
@@ -186,32 +186,34 @@ import SBackgroundSelector from './SBackgroundSelector';
 import SXYControl from './SXYControl.vue';
 import SettingsItem from './SettingsItem.vue';
 
-import { useScreenshotStore } from '~/modules/shared/stores/screenshot.store';
-import { useFrameStore } from '~/modules/shared/stores/frame.store';
-import { useBackgroundStore } from '~/modules/shared/stores/background.store';
-import { useCanvasStore } from '~/modules/shared/stores/canvas.store';
+import { useFrameSettings } from '~/modules/shared/composables/useFrameSettings';
+import { useScreenshotSettings } from '~/modules/shared/composables/useScreenshotSettings';
+import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
+import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
 
-const screenshotStore = useScreenshotStore();
-const frameStore = useFrameStore();
-const backgroundStore = useBackgroundStore();
-const canvasStore = useCanvasStore();
+const { frameName, availableFrames } = useFrameSettings();
 
-const boxShadowOptions = [
-  'none',
-  'rgba(0, 0, 0, 0.1) 0px 0px 10px',
-  'rgba(0, 0, 0, 0.2) 0px 10px 35px 0px',
-  'rgba(0, 0, 0, 0.25) 0px 20px 40px 0px',
-  'rgba(0, 0, 0, 0.3) 0px 25px 45px 0px',
-  'rgba(0, 0, 0, 0.3) 0px 30px 50px 0px',
-  'rgba(0, 0, 0, 0.34) 0px 35px 55px 0px',
-  'rgba(0, 0, 0, 0.38) 0px 40px 60px 0px',
-  'rgba(0, 0, 0, 0.38) 0px 45px 65px 0px',
-  'rgba(0, 0, 0, 0.4) 0px 50px 70px 0px',
-  'rgba(0, 0, 0, 0.5) 0px 55px 75px 0px',
-];
+const {
+  screenshotScale,
+  screenshotRoundness,
+  screenshotPerspective,
+  screenshotRotation,
+  screenshotOffset,
+  screenshotBoxShadow,
+  screenshotBoxShadowOptions,
+} = useScreenshotSettings();
 
-const selectedBoxShadowIndex = ref(boxShadowOptions.indexOf(screenshotStore.boxShadow));
+const {
+  backgroundStyle,
+  backgroundOpacity,
+  backgroundRoundness,
+  backgroundNoise,
+} = useBackgroundSettings();
+
+const { canvasWidth, canvasHeight } = useCanvasSettings();
+
+const selectedBoxShadowIndex = ref(screenshotBoxShadowOptions.indexOf(screenshotBoxShadow.value));
 watch(selectedBoxShadowIndex, (index) => {
-  screenshotStore.boxShadow = boxShadowOptions[index] as string;
+  screenshotBoxShadow.value = screenshotBoxShadowOptions[index] as string;
 }, { immediate: true });
 </script>

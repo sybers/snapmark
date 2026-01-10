@@ -26,7 +26,6 @@
 </template>
 
 <script setup lang="ts">
-import { usePresetsStore } from '~/modules/shared/stores/presets.store';
 import AppHeader from '~/modules/app/components/AppHeader.vue';
 import LoadingFallback from '~/modules/app/components/LoadingFallback.vue';
 import PreviewPanel from '~/modules/preview/components/PreviewPanel.vue';
@@ -36,11 +35,7 @@ import { useAppStore } from '~/stores/app.store';
 import { useAppConfig } from '#app';
 
 const appConfig = useAppConfig();
-
-const presetsStore = usePresetsStore();
 const appStore = useAppStore();
-
-presetsStore.loadDefaultPreset();
 
 const clientOnlyContainer = useTemplateRef('clientOnlyContainer');
 watch(clientOnlyContainer, () => {
