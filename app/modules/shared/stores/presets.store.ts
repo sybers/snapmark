@@ -1,10 +1,8 @@
 import { defineStore } from 'pinia';
-import type { CanvasStoreOptions } from './canvas.store';
-import type { BackgroundStoreOptions } from './background.store';
-import { useScreenshotStore, type ScreenshotStoreOptions } from './screenshot.store';
-import { useCanvasStore } from './canvas.store';
-import { useBackgroundStore } from './background.store';
 import { useLocalStorage } from '@vueuse/core';
+import { useScreenshotStore, type ScreenshotStoreOptions } from './screenshot.store';
+import { useCanvasStore, type CanvasStoreOptions } from './canvas.store';
+import { useBackgroundStore, type BackgroundStoreOptions } from './background.store';
 import { useFrameStore, type FrameStoreOptions } from './frame.store';
 
 type Preset = {
@@ -57,7 +55,12 @@ export const usePresetsStore = defineStore('presets', () => {
   const savedPresets = useLocalStorage<Preset[]>('presets', []);
 
   function loadDefaultPreset() {
-    loadPreset(defaultPreset);
+    const savedDefaultPreset = savedPresets.value.find((preset) => preset.name === 'Default');
+    if (savedDefaultPreset) {
+      loadPreset(savedDefaultPreset);
+    } else {
+      loadPreset(defaultPreset);
+    }
   };
 
   function loadPreset(preset: Preset) {
@@ -88,6 +91,15 @@ export const usePresetsStore = defineStore('presets', () => {
   function deletePreset(name: string) {
     savedPresets.value = savedPresets.value.filter((preset) => preset.name !== name);
   }
+
+  function handleStoreUpdate() {
+    saveStateAsPreset('Default');
+  }
+
+  screenshotStore.$subscribe(handleStoreUpdate);
+  frameStore.$subscribe(handleStoreUpdate);
+  canvasStore.$subscribe(handleStoreUpdate);
+  backgroundStore.$subscribe(handleStoreUpdate);
 
   return {
     loadDefaultPreset,
