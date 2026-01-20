@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineShortcuts, extractShortcuts, reactive, useI18n, useToast, watch } from '#imports';
-import { domToPng, domToJpeg, domToSvg, domToBlob } from 'modern-screenshot';
+import { toPng, toJpeg, toSvg, toBlob } from 'html-to-image';
 import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
 import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 
@@ -94,9 +94,9 @@ async function saveImage() {
     return;
 
   const formatFunctions = {
-    PNG: domToPng,
-    JPEG: domToJpeg,
-    SVG: domToSvg,
+    PNG: toPng,
+    JPEG: toJpeg,
+    SVG: toSvg,
   };
 
   const formatFunction = formatFunctions[exportSettings.format];
@@ -105,9 +105,9 @@ async function saveImage() {
   }
 
   const dataUrl = await formatFunction(exportContainer.value, {
-    scale: exportSettings.pixelRatio,
+    pixelRatio: exportSettings.pixelRatio,
     quality: exportSettings.format === 'JPEG' ? (exportSettings.quality / 100) : undefined,
-    filter: (el) => (el as HTMLElement).dataset?.exportExcluded === undefined,
+    filter: (el) => el.dataset?.exportExcluded === undefined,
   });
 
   const downloadLink = document.createElement('a');
@@ -144,8 +144,8 @@ async function openImageInNewTab(): Promise<void> {
 }
 
 async function getImageBlob(el: HTMLElement): Promise<Blob> {
-  const pngImageBlob = await domToBlob(el, {
-    scale: Math.min(window.devicePixelRatio, 3),
+  const pngImageBlob = await toBlob(el, {
+    pixelRatio: 1,
   });
 
   if (!pngImageBlob) {
