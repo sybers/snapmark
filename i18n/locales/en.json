@@ -66,6 +66,16 @@
         "title": "Canvas Size"
     },
     "presets": {
-        "title": "Presets"
+        "title": "Presets",
+        "saveTitle": "Save preset",
+        "loadTitle": "Load preset",
+        "namePlaceholder": "Preset name",
+        "nameRequired": "Name is required",
+        "nameAlreadyExists": "This name already exists",
+        "emptyState": "No presets saved",
+        "emptyStateHint": "Save your current settings as your first preset",
+        "saveCurrentSettings": "Save current settings",
+        "delete": "Delete",
+        "cancel": "Cancel"
     }
 }

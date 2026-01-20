@@ -1,5 +1,5 @@
 import { storeToRefs } from 'pinia';
-import { computed, watch } from 'vue';
+import { computed } from 'vue';
 import { useSettingsStore } from '../stores/settings.store';
 
 const screenshotBoxShadowOptions = [
@@ -17,29 +17,15 @@ const screenshotBoxShadowOptions = [
 ];
 
 export function useScreenshotSettings() {
+  const settingsStore = useSettingsStore();
   const {
-    screenshotFile,
-    screenshot,
     settings,
-  } = storeToRefs(useSettingsStore());
-
-  const screenshotDataURL = computed<string | null>(() => {
-    if (!screenshotFile.value)
-      return null;
-
-    return URL.createObjectURL(screenshotFile.value);
-  });
-
-  watch(
     screenshotFile,
-    () => {
-      if (!screenshotDataURL.value)
-        return;
+    screenshotDataURL,
+    screenshot,
+  } = storeToRefs(settingsStore);
 
-      setScreenshotDataURL(screenshotDataURL.value);
-    },
-    { immediate: true },
-  );
+  const { setScreenshotDataURL } = settingsStore;
 
   const screenshotRotation = computed({
     get: () => settings.value.screenshot.rotation,
@@ -82,17 +68,6 @@ export function useScreenshotSettings() {
       settings.value.screenshot.boxShadow = value;
     },
   });
-
-  function setScreenshotDataURL(dataURL: string) {
-    const image = new Image();
-    image.src = dataURL;
-    image.onload = () => {
-      screenshot.value = image;
-    };
-    image.onerror = () => {
-      screenshot.value = null;
-    };
-  }
 
   function resetScreenshot() {
     screenshotFile.value = null;

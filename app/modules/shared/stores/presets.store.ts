@@ -1,6 +1,9 @@
+import * as v from 'valibot';
 import { defineStore } from 'pinia';
 import { useLocalStorage } from '@vueuse/core';
+import { computed } from 'vue';
 import { useSettingsStore } from './settings.store';
+import { SettingsSchema } from '../schemas';
 import type { Settings } from '../types';
 
 type Preset = {
@@ -10,7 +13,28 @@ type Preset = {
 
 export const usePresetsStore = defineStore('presets', () => {
   const settingsStore = useSettingsStore();
-  const presets = useLocalStorage<Preset[]>('presets', []);
+  const rawPresets = useLocalStorage<Preset[]>('presets', []);
+
+  const presets = computed({
+    get() {
+      const validPresets = rawPresets.value.filter((preset) => {
+        const result = v.safeParse(SettingsSchema, preset.settings);
+        return result.success;
+      });
+
+      if (validPresets.length !== rawPresets.value.length) {
+        console.warn(
+          `Removed ${rawPresets.value.length - validPresets.length} invalid preset(s) from storage`,
+        );
+        rawPresets.value = validPresets;
+      }
+
+      return validPresets;
+    },
+    set(value: Preset[]) {
+      rawPresets.value = value;
+    },
+  });
 
   function loadPreset(name: string) {
     const preset = presets.value.find((p) => p.name === name);
@@ -26,11 +50,11 @@ export const usePresetsStore = defineStore('presets', () => {
       throw new Error(`Preset ${preset.name} already exists`);
     }
 
-    presets.value.push(preset);
+    rawPresets.value.unshift(preset);
   }
 
   function deletePreset(name: string) {
-    presets.value = presets.value.filter((preset) => preset.name !== name);
+    rawPresets.value = rawPresets.value.filter((preset) => preset.name !== name);
   }
 
   return {

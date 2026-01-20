@@ -66,6 +66,16 @@
         "title": "Taille du canvas"
     },
     "presets": {
-        "title": "Préréglages"
+        "title": "Préréglages",
+        "saveTitle": "Enregistrer un préréglage",
+        "loadTitle": "Charger un préréglage",
+        "namePlaceholder": "Nom du préréglage",
+        "nameRequired": "Le nom est requis",
+        "nameAlreadyExists": "Ce nom existe déjà",
+        "emptyState": "Aucun préréglage sauvegardé",
+        "emptyStateHint": "Sauvegardez vos paramètres actuels comme premier préréglage",
+        "saveCurrentSettings": "Enregistrer les paramètres actuels",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
     }
 }

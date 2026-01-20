@@ -1,13 +1,19 @@
 <template>
   <div
     class="overflow-hidden bg-white"
-    :style="{ borderRadius: `${screenshotRoundness}px` }"
+    :style="{ borderRadius: `${roundness}px` }"
   >
-    <div class="flex items-center justify-end gap-6 py-4 px-6 text-black">
+    <div
+      class="flex items-center justify-end text-black"
+      :style="{
+        gap: `${24 * scale}px`,
+        padding: `${16 * scale}px ${24 * scale}px`,
+      }"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
+        :width="16 * scale"
+        :height="16 * scale"
         fill="currentColor"
         viewBox="0 0 256 256"
       ><rect
@@ -27,8 +33,8 @@
       /></svg>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
+        :width="16 * scale"
+        :height="16 * scale"
         fill="currentColor"
         viewBox="0 0 256 256"
       ><rect
@@ -49,8 +55,8 @@
       /></svg>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
+        :width="16 * scale"
+        :height="16 * scale"
         fill="currentColor"
         viewBox="0 0 256 256"
       ><rect
@@ -84,7 +90,18 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import { useScreenshotSettings } from '~/modules/shared/composables/useScreenshotSettings';
 
+const props = withDefaults(defineProps<{
+  roundness?: number;
+  scale?: number;
+}>(), {
+  scale: 1,
+});
+
 const { screenshotRoundness } = useScreenshotSettings();
+
+const roundness = computed(() => props.roundness ?? screenshotRoundness.value);
+const scale = computed(() => props.scale);
 </script>

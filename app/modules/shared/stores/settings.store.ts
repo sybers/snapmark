@@ -1,6 +1,6 @@
 import * as v from 'valibot';
 import { defineStore } from 'pinia';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import type { Settings } from '../types';
 import { SettingsSchema } from '../schemas';
 
@@ -82,6 +82,35 @@ export const useSettingsStore = defineStore('settings', () => {
   const screenshotFile = ref<File | null>(null);
   const screenshot = ref<HTMLImageElement | null>(null);
 
+  const screenshotDataURL = computed<string | null>(() => {
+    if (!screenshotFile.value)
+      return null;
+
+    return URL.createObjectURL(screenshotFile.value);
+  });
+
+  function setScreenshotDataURL(dataURL: string) {
+    const image = new Image();
+    image.src = dataURL;
+    image.onload = () => {
+      screenshot.value = image;
+    };
+    image.onerror = () => {
+      screenshot.value = null;
+    };
+  }
+
+  watch(
+    screenshotFile,
+    () => {
+      if (!screenshotDataURL.value)
+        return;
+
+      setScreenshotDataURL(screenshotDataURL.value);
+    },
+    { immediate: true },
+  );
+
   const settings = ref<Settings>(loadFromLocalStorage());
 
   watch(
@@ -93,21 +122,23 @@ export const useSettingsStore = defineStore('settings', () => {
   );
 
   function importSettings(newSettings: Settings) {
-    settings.value = newSettings;
+    settings.value = JSON.parse(JSON.stringify(newSettings));
   }
 
   function exportSettings(): Settings {
-    return structuredClone(settings.value);
+    return JSON.parse(JSON.stringify(settings.value));
   }
 
   function resetToDefaults() {
-    settings.value = structuredClone(defaultSettings);
+    settings.value = JSON.parse(JSON.stringify(defaultSettings));
   }
 
   return {
     screenshotFile,
+    screenshotDataURL,
     screenshot,
     settings,
+    setScreenshotDataURL,
     importSettings,
     exportSettings,
     resetToDefaults,

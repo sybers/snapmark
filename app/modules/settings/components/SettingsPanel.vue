@@ -155,6 +155,7 @@
           color="neutral"
           variant="outline"
           block
+          @click="openSavePresetModal"
         >
           <UIcon
             name="i-heroicons-bookmark"
@@ -166,6 +167,7 @@
           color="neutral"
           variant="outline"
           block
+          @click="openLoadPresetModal"
         >
           <UIcon
             name="i-heroicons-folder-open"
@@ -179,17 +181,22 @@
 </template>
 
 <script setup lang="ts">
+import { useOverlay } from '#imports';
 import { ref, watch } from 'vue';
 
 import SettingsPanelSection from './SettingsPanelSection.vue';
 import SBackgroundSelector from './SBackgroundSelector';
 import SXYControl from './SXYControl.vue';
 import SettingsItem from './SettingsItem.vue';
+import SavePresetModal from './SavePresetModal.vue';
+import LoadPresetModal from './LoadPresetModal.vue';
 
 import { useFrameSettings } from '~/modules/shared/composables/useFrameSettings';
 import { useScreenshotSettings } from '~/modules/shared/composables/useScreenshotSettings';
 import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
+
+const overlay = useOverlay();
 
 const { frameName, availableFrames } = useFrameSettings();
 
@@ -216,4 +223,18 @@ const selectedBoxShadowIndex = ref(screenshotBoxShadowOptions.indexOf(screenshot
 watch(selectedBoxShadowIndex, (index) => {
   screenshotBoxShadow.value = screenshotBoxShadowOptions[index] as string;
 }, { immediate: true });
+
+async function openSavePresetModal() {
+  const saveModal = overlay.create(SavePresetModal);
+  await saveModal.open();
+}
+
+async function openLoadPresetModal() {
+  const loadPresetModal = overlay.create(LoadPresetModal, {
+    props: {
+      onOpenSaveModal: openSavePresetModal,
+    },
+  });
+  await loadPresetModal.open();
+}
 </script>
