@@ -33,12 +33,12 @@
     "@vueuse/core": "14.1.0",
     "@vueuse/nuxt": "14.1.0",
     "eslint": "9.39.2",
-    "happy-dom": "20.1.0",
+    "happy-dom": "20.3.4",
     "lint-staged": "16.2.7",
     "playwright-core": "1.57.0",
     "simple-git-hooks": "2.13.1",
     "typescript": "5.9.3",
-    "vitest": "4.0.16"
+    "vitest": "4.0.17"
   },
   "resolutions": {
     "css-tree": "2.2.1"
