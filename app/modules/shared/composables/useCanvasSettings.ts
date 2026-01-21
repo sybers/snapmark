@@ -2,6 +2,8 @@ import { storeToRefs } from 'pinia';
 import { computed, ref } from 'vue';
 import { useSettingsStore } from '../stores/settings.store';
 
+const exportContainer = ref<HTMLDivElement | null>(null);
+
 export function useCanvasSettings() {
   const { settings } = storeToRefs(useSettingsStore());
 
@@ -21,7 +23,6 @@ export function useCanvasSettings() {
 
   const previewScale = ref(1);
   const previewScalePercentage = computed(() => Math.round(previewScale.value * 100));
-  const exportContainer = ref<HTMLDivElement | null>(null);
 
   return {
     canvasWidth,
