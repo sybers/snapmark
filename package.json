@@ -38,7 +38,7 @@
     "playwright-core": "1.57.0",
     "simple-git-hooks": "2.13.1",
     "typescript": "5.9.3",
-    "vitest": "4.0.17"
+    "vitest": "4.0.18"
   },
   "resolutions": {
     "css-tree": "2.2.1"
