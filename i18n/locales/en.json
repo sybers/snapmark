@@ -63,7 +63,38 @@
         "noise": "Noise"
     },
     "canvas": {
-        "title": "Canvas Size"
+        "title": "Canvas Size",
+        "socialPresets": {
+            "title": "Social Media Sizes",
+            "platforms": {
+                "instagram": "Instagram",
+                "linkedin": "LinkedIn",
+                "x": "Twitter (currently X)",
+                "tiktok": "TikTok",
+                "bluesky": "Bluesky",
+                "youtube": "YouTube",
+                "threads": "Threads",
+                "dribbble": "Dribbble",
+                "producthunt": "Product Hunt"
+            },
+            "kinds": {
+                "post-square": "Post (Square)",
+                "post-vertical": "Post (Vertical)",
+                "post-landscape": "Post (Landscape)",
+                "story": "Story / Reel",
+                "banner": "Banner",
+                "banner-compact": "Banner (Compact)",
+                "cover": "Cover Photo",
+                "cover-company": "Cover (Company)",
+                "cover-personal": "Cover (Personal)",
+                "profile": "Profile Picture",
+                "thumbnail": "Thumbnail",
+                "header": "Header",
+                "shot-4-3": "Shot (4:3)",
+                "shot-16-9": "Shot (16:9)",
+                "gallery": "Gallery Image"
+            }
+        }
     },
     "presets": {
         "title": "Presets",
