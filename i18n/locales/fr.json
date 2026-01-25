@@ -63,7 +63,38 @@
         "noise": "Bruit"
     },
     "canvas": {
-        "title": "Taille du canvas"
+        "title": "Taille du canvas",
+        "socialPresets": {
+            "title": "Tailles réseaux sociaux",
+            "platforms": {
+                "instagram": "Instagram",
+                "linkedin": "LinkedIn",
+                "x": "Twitter (actuellement X)",
+                "tiktok": "TikTok",
+                "bluesky": "Bluesky",
+                "youtube": "YouTube",
+                "threads": "Threads",
+                "dribbble": "Dribbble",
+                "producthunt": "Product Hunt"
+            },
+            "kinds": {
+                "post-square": "Post (Carré)",
+                "post-vertical": "Post (Vertical)",
+                "post-landscape": "Post (Paysage)",
+                "story": "Story / Reel",
+                "banner": "Bannière",
+                "banner-compact": "Bannière (Compacte)",
+                "cover": "Photo de couverture",
+                "cover-company": "Couverture (Entreprise)",
+                "cover-personal": "Couverture (Personnelle)",
+                "profile": "Photo de profil",
+                "thumbnail": "Miniature",
+                "header": "En-tête",
+                "shot-4-3": "Shot (4:3)",
+                "shot-16-9": "Shot (16:9)",
+                "gallery": "Image galerie"
+            }
+        }
     },
     "presets": {
         "title": "Préréglages",

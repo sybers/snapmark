@@ -135,15 +135,43 @@
         <UInput
           v-model="canvasWidth"
           type="number"
-        />
+          :placeholder="$t('ui.width')"
+        >
+          <template #trailing>
+            <span class="text-xs text-neutral-400">px</span>
+          </template>
+        </UInput>
       </SettingsItem>
 
       <SettingsItem :label="$t('ui.height')">
         <UInput
           v-model="canvasHeight"
           type="number"
-        />
+          :placeholder="$t('ui.height')"
+        >
+          <template #trailing>
+            <span class="text-xs text-neutral-400">px</span>
+          </template>
+        </UInput>
       </SettingsItem>
+
+      <UPopover
+        :ui="{ content: 'p-0' }"
+        :popper="{ placement: 'bottom-start' }"
+      >
+        <UButton
+          icon="i-heroicons-photo"
+          color="neutral"
+          variant="outline"
+          block
+        >
+          {{ $t('canvas.socialPresets.title') }}
+        </UButton>
+
+        <template #content="{ close }">
+          <CanvasSizePresetsPopover @close="close" />
+        </template>
+      </UPopover>
     </SettingsPanelSection>
 
     <SettingsPanelSection
@@ -190,6 +218,7 @@ import SXYControl from './SXYControl.vue';
 import SettingsItem from './SettingsItem.vue';
 import SavePresetModal from './SavePresetModal.vue';
 import LoadPresetModal from './LoadPresetModal.vue';
+import CanvasSizePresetsPopover from './CanvasSizePresetsPopover.vue';
 
 import { useFrameSettings } from '~/modules/shared/composables/useFrameSettings';
 import { useScreenshotSettings } from '~/modules/shared/composables/useScreenshotSettings';
