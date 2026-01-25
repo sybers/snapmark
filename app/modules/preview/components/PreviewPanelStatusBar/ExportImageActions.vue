@@ -105,6 +105,8 @@ async function saveImage() {
   }
 
   const dataUrl = await formatFunction(exportContainer.value, {
+    width: canvasWidth.value,
+    height: canvasHeight.value,
     scale: exportSettings.pixelRatio,
     quality: exportSettings.format === 'JPEG' ? (exportSettings.quality / 100) : undefined,
     filter: (el) => (el as HTMLElement).dataset?.exportExcluded === undefined,
@@ -146,6 +148,9 @@ async function openImageInNewTab(): Promise<void> {
 async function getImageBlob(el: HTMLElement): Promise<Blob> {
   const pngImageBlob = await domToBlob(el, {
     scale: Math.min(window.devicePixelRatio, 3),
+    filter: (node) => (node as HTMLElement).dataset?.exportExcluded === undefined,
+    width: canvasWidth.value,
+    height: canvasHeight.value,
   });
 
   if (!pngImageBlob) {
