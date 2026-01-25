@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from '#imports';
 import { computed } from 'vue';
 import type { BackgroundStyle, BackgroundStyleSolid } from '~/modules/shared/types';
 import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
@@ -6,6 +7,8 @@ import { solidPresets } from './presets';
 import SColorSwatch from './SColorSwatch.vue';
 
 const { getBackgroundStyleAsCss } = useBackgroundSettings();
+
+const { t } = useI18n();
 
 const model = defineModel<BackgroundStyle>({ required: true });
 
@@ -42,7 +45,7 @@ function selectPreset(preset: BackgroundStyleSolid) {
     :ui="{ selector: 'w-full' }"
   />
   <div>
-    <label class="text-sm font-medium mb-2 block">{{ $t('ui.colorSwatches') }}</label>
+    <label class="text-sm font-medium mb-2 block">{{ t('ui.colorSwatches') }}</label>
     <div class="grid grid-cols-6 gap-2">
       <SColorSwatch
         v-for="preset in solidPresets"

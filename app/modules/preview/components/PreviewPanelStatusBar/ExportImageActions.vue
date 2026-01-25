@@ -187,13 +187,13 @@ defineShortcuts(computed(() => ({
       :items="exportOptions"
     >
       <UTooltip
-        :text="$t('export.settings')"
+        :text="t('export.settings')"
         :delay-duration="50"
         :content="{ side: 'top' }"
       >
         <UButton
           :disabled="!canExportImage"
-          :aria-label="$t('export.settings')"
+          :aria-label="t('export.settings')"
           color="neutral"
           variant="outline"
           icon="heroicons:adjustments-horizontal-16-solid"
@@ -203,11 +203,11 @@ defineShortcuts(computed(() => ({
       <template #content>
         <div class="p-6 space-y-6">
           <h3 class="text-lg font-medium">
-            {{ $t('export.settings') }}
+            {{ t('export.settings') }}
           </h3>
 
           <div class="flex flex-col gap-2">
-            <label class="text-sm font-medium">{{ $t('ui.format') }}</label>
+            <label class="text-sm font-medium">{{ t('ui.format') }}</label>
             <URadioGroup
               v-model="exportSettings.format"
               orientation="horizontal"
@@ -222,8 +222,8 @@ defineShortcuts(computed(() => ({
               v-if="exportSettings.format === 'JPEG' && hasTransparency"
               color="neutral"
               variant="subtle"
-              :title="$t('export.jpegNoTransparency')"
-              :description="$t('export.jpegTransparencyDescription')"
+              :title="t('export.jpegNoTransparency')"
+              :description="t('export.jpegTransparencyDescription')"
             />
           </div>
 
@@ -231,7 +231,7 @@ defineShortcuts(computed(() => ({
             v-if="exportSettings.format === 'JPEG'"
             class="flex flex-col gap-2"
           >
-            <label class="text-sm font-medium">{{ $t('ui.quality') }}</label>
+            <label class="text-sm font-medium">{{ t('ui.quality') }}</label>
             <USlider
               v-model="exportSettings.quality"
               :min="0"
@@ -244,7 +244,7 @@ defineShortcuts(computed(() => ({
           </div>
 
           <div class="flex flex-col gap-2">
-            <label class="text-sm font-medium">{{ $t('ui.scale') }} <span class="text-xs text-neutral-500">{{ exportSettings.pixelRatio }}x</span></label>
+            <label class="text-sm font-medium">{{ t('ui.scale') }} <span class="text-xs text-neutral-500">{{ exportSettings.pixelRatio }}x</span></label>
             <URadioGroup
               v-model="exportSettings.pixelRatio"
               orientation="horizontal"
@@ -257,7 +257,7 @@ defineShortcuts(computed(() => ({
           </div>
 
           <div class="flex flex-col gap-2">
-            <label class="text-sm font-medium">{{ $t('export.outputResolution') }}</label>
+            <label class="text-sm font-medium">{{ t('export.outputResolution') }}</label>
             <div class="text-xs text-neutral-500">
               {{ canvasWidth * exportSettings.pixelRatio }} × {{ canvasHeight * exportSettings.pixelRatio }}
             </div>
@@ -268,7 +268,7 @@ defineShortcuts(computed(() => ({
 
     <UFieldGroup>
       <UTooltip
-        :text="$t('export.asFormat', { format: exportSettings.format })"
+        :text="t('export.asFormat', { format: exportSettings.format })"
         :delay-duration="50"
         :content="{ side: 'top' }"
         :kbds="['meta', 's']"
@@ -278,7 +278,7 @@ defineShortcuts(computed(() => ({
           :disabled="!canExportImage"
           color="primary"
           variant="subtle"
-          :label="$t('ui.save')"
+          :label="t('ui.save')"
         />
       </UTooltip>
 

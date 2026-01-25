@@ -1,3 +1,48 @@
+<script setup lang="ts">
+import { useI18n } from '#imports';
+import { computed } from 'vue';
+import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
+import { useSettingsStore } from '~/modules/shared/stores/settings.store';
+import PresetPreviewFrame from './PresetPreviewFrame.vue';
+import type { Settings } from '~/modules/shared/types';
+
+const props = defineProps<{
+  preset: {
+    name: string;
+    settings: Settings;
+  };
+}>();
+
+defineEmits<{
+  load: [];
+  delete: [];
+}>();
+
+const { t } = useI18n();
+
+const settingsStore = useSettingsStore();
+const { getBackgroundStyleAsCss } = useBackgroundSettings();
+
+const backgroundCss = computed(() =>
+  getBackgroundStyleAsCss(props.preset.settings.background.backgroundStyle),
+);
+
+const previewRoundness = computed(() =>
+  Math.min(props.preset.settings.background.roundness, 12),
+);
+
+const screenshotRoundness = computed(() =>
+  Math.min(props.preset.settings.screenshot.roundness, 8),
+);
+
+const previewImage = computed(() => {
+  if (settingsStore.screenshot) {
+    return settingsStore.screenshot.src;
+  }
+  return null;
+});
+</script>
+
 <template>
   <div
     class="group relative aspect-square rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 overflow-hidden hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors cursor-pointer"
@@ -72,7 +117,7 @@
         color="neutral"
         variant="ghost"
         size="xs"
-        :aria-label="$t('presets.delete')"
+        :aria-label="t('presets.delete')"
         @click.stop="$emit('delete')"
       >
         <UIcon
@@ -83,48 +128,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { computed } from 'vue';
-import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
-import { useSettingsStore } from '~/modules/shared/stores/settings.store';
-import PresetPreviewFrame from './PresetPreviewFrame.vue';
-import type { Settings } from '~/modules/shared/types';
-
-const props = defineProps<{
-  preset: {
-    name: string;
-    settings: Settings;
-  };
-}>();
-
-defineEmits<{
-  load: [];
-  delete: [];
-}>();
-
-const settingsStore = useSettingsStore();
-const { getBackgroundStyleAsCss } = useBackgroundSettings();
-
-const backgroundCss = computed(() =>
-  getBackgroundStyleAsCss(props.preset.settings.background.backgroundStyle),
-);
-
-const previewRoundness = computed(() =>
-  Math.min(props.preset.settings.background.roundness, 12),
-);
-
-const screenshotRoundness = computed(() =>
-  Math.min(props.preset.settings.screenshot.roundness, 8),
-);
-
-const previewImage = computed(() => {
-  if (settingsStore.screenshot) {
-    return settingsStore.screenshot.src;
-  }
-  return null;
-});
-</script>
 
 <style scoped>
 .noisy-background {

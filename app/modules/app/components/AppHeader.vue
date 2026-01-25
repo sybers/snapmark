@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import LocaleSwitcher from './LocaleSwitcher.vue';
+import { useI18n } from '#imports';
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -20,12 +23,12 @@ import LocaleSwitcher from './LocaleSwitcher.vue';
         <UColorModeButton />
 
         <UTooltip
-          :text="$t('header.viewOnGitHub')"
+          :text="t('header.viewOnGitHub')"
           :delay-duration="50"
         >
           <UButton
             icon="i-simple-icons-github"
-            :aria-label="$t('header.viewOnGitHub')"
+            :aria-label="t('header.viewOnGitHub')"
             color="neutral"
             variant="ghost"
             trailing

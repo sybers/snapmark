@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from '#imports';
 import { ref } from 'vue';
 import { gradientPresets } from './presets';
 import SColorSwatch from './SColorSwatch.vue';
@@ -6,6 +7,8 @@ import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroun
 import type { BackgroundStyle, BackgroundStyleGradient } from '~/modules/shared/types';
 
 const { getBackgroundStyleAsCss } = useBackgroundSettings();
+
+const { t } = useI18n();
 
 const model = defineModel<BackgroundStyle>({ required: true });
 
@@ -50,7 +53,7 @@ function selectGradientRotation(rotation: number) {
   </div>
 
   <div>
-    <label class="text-sm font-medium mb-2 block">{{ $t('ui.gradientDirection') }}</label>
+    <label class="text-sm font-medium mb-2 block">{{ t('ui.gradientDirection') }}</label>
     <div class="grid grid-cols-4 gap-2">
       <UButton
         v-for="rotation in gradientRotationOptions"

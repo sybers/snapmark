@@ -3,7 +3,7 @@ import { computed } from 'vue';
 import type { DropdownMenuItem } from '@nuxt/ui';
 import { useI18n } from '#imports';
 
-const { locales, setLocale } = useI18n();
+const { locales, setLocale, t } = useI18n();
 
 const menuItems = computed<DropdownMenuItem[]>(() => locales.value.map((locale) => ({
   label: locale.name,
@@ -17,7 +17,7 @@ const menuItems = computed<DropdownMenuItem[]>(() => locales.value.map((locale) 
 <template>
   <UDropdownMenu :items="menuItems">
     <UButton
-      :aria-label="$t('ui.open')"
+      :aria-label="t('ui.open')"
       icon="heroicons:language-20-solid"
       color="neutral"
       variant="ghost"

@@ -37,7 +37,7 @@ const backgroundType = ref<BackgroundType>(model.value.type);
       <div class="p-6 space-y-6">
         <div class="flex flex-col gap-2">
           <div class="flex justify-between items-center gap-2">
-            <label class="text-lg font-bold">{{ $t('ui.color') }}</label>
+            <label class="text-lg font-bold">{{ t('ui.color') }}</label>
             <UButton
               icon="heroicons:x-mark-20-solid"
               color="neutral"

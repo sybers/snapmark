@@ -1,45 +1,3 @@
-<template>
-  <UModal
-    :close="{ onClick: closeModal }"
-    :ui="{ content: 'w-[calc(100vw-2rem)] max-w-md' }"
-    :title="$t('presets.saveTitle')"
-  >
-    <template #content>
-      <div class="flex flex-col gap-4 p-4">
-        <UFormField
-          :label="$t('presets.namePlaceholder')"
-          :error="errorMessage"
-          required
-        >
-          <UInput
-            v-model="presetName"
-            :placeholder="$t('presets.namePlaceholder')"
-            class="w-full"
-            autofocus
-            @keyup.enter="savePreset"
-          />
-        </UFormField>
-
-        <div class="flex gap-3 justify-end">
-          <UButton
-            color="neutral"
-            variant="outline"
-            :label="$t('presets.cancel')"
-            @click="closeModal"
-          />
-          <UButton
-            color="neutral"
-            variant="solid"
-            :label="$t('ui.save')"
-            :disabled="!canSave"
-            @click="savePreset"
-          />
-        </div>
-      </div>
-    </template>
-  </UModal>
-</template>
-
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -84,3 +42,45 @@ function closeModal() {
   emit('close', { success: false });
 }
 </script>
+
+<template>
+  <UModal
+    :close="{ onClick: closeModal }"
+    :ui="{ content: 'w-[calc(100vw-2rem)] max-w-md' }"
+    :title="t('presets.saveTitle')"
+  >
+    <template #content>
+      <div class="flex flex-col gap-4 p-4">
+        <UFormField
+          :label="t('presets.namePlaceholder')"
+          :error="errorMessage"
+          required
+        >
+          <UInput
+            v-model="presetName"
+            :placeholder="t('presets.namePlaceholder')"
+            class="w-full"
+            autofocus
+            @keyup.enter="savePreset"
+          />
+        </UFormField>
+
+        <div class="flex gap-3 justify-end">
+          <UButton
+            color="neutral"
+            variant="outline"
+            :label="t('presets.cancel')"
+            @click="closeModal"
+          />
+          <UButton
+            color="neutral"
+            variant="solid"
+            :label="t('ui.save')"
+            :disabled="!canSave"
+            @click="savePreset"
+          />
+        </div>
+      </div>
+    </template>
+  </UModal>
+</template>
