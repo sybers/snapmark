@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { useI18n } from '#imports';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { socialMediaCanvasPresets } from './socialMediaCanvasPresets';
 import type { CanvasPreset } from './socialMediaCanvasPresets';
 import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
 
 const { t } = useI18n();
+
+const platformId = defineModel<string>('platformId', { required: true });
 
 const emit = defineEmits<{
   close: [];
@@ -13,10 +15,8 @@ const emit = defineEmits<{
 
 const { canvasWidth, canvasHeight } = useCanvasSettings();
 
-const selectedPlatformId = ref(socialMediaCanvasPresets[0]?.id || '');
-
 const selectedPlatform = computed(() =>
-  socialMediaCanvasPresets.find((p) => p.id === selectedPlatformId.value),
+  socialMediaCanvasPresets.find((p) => p.id === platformId.value),
 );
 
 function applyPreset(preset: CanvasPreset) {
@@ -57,9 +57,9 @@ function getAspectRatio(width: number, height: number): string {
           :key="platform.id"
           class="w-full px-3 py-2.5 text-left text-sm transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800 flex items-center gap-2"
           :class="{
-            'bg-neutral-100 dark:bg-neutral-800 font-medium': selectedPlatformId === platform.id,
+            'bg-neutral-100 dark:bg-neutral-800 font-medium': platformId === platform.id,
           }"
-          @click="selectedPlatformId = platform.id"
+          @click="platformId = platform.id"
         >
           <UIcon
             :name="platform.icon"

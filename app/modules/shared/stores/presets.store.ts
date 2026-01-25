@@ -5,6 +5,8 @@ import { computed } from 'vue';
 import { useSettingsStore } from './settings.store';
 import { SettingsSchema } from '../schemas';
 import type { Settings } from '../types';
+import deepmerge from 'deepmerge';
+import { DEFAULT_SETTINGS } from './settings.model';
 
 type Preset = {
   name: string;
@@ -18,7 +20,9 @@ export const usePresetsStore = defineStore('presets', () => {
   const presets = computed({
     get() {
       const validPresets = rawPresets.value.filter((preset) => {
-        const result = v.safeParse(SettingsSchema, preset.settings);
+        const result = v.safeParse(SettingsSchema, deepmerge(DEFAULT_SETTINGS, preset.settings, {
+          arrayMerge: (_destinationArray, sourceArray) => sourceArray,
+        }));
         return result.success;
       });
 

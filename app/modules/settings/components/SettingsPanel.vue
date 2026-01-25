@@ -39,6 +39,8 @@ const {
 
 const { canvasWidth, canvasHeight } = useCanvasSettings();
 
+const selectedPlatformId = ref('instagram');
+
 const selectedBoxShadowIndex = ref(screenshotBoxShadowOptions.indexOf(screenshotBoxShadow.value));
 watch(selectedBoxShadowIndex, (index) => {
   screenshotBoxShadow.value = screenshotBoxShadowOptions[index] as string;
@@ -230,7 +232,10 @@ async function openLoadPresetModal() {
         </UButton>
 
         <template #content="{ close }">
-          <CanvasSizePresetsPopover @close="close" />
+          <CanvasSizePresetsPopover
+            v-model:platform-id="selectedPlatformId"
+            @close="close"
+          />
         </template>
       </UPopover>
     </SettingsPanelSection>

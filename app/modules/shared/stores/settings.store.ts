@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { computed, ref, watch } from 'vue';
 import type { Settings } from '../types';
 import { DEFAULT_SETTINGS, loadSettings, saveSettings } from './settings.model';
+import deepmerge from 'deepmerge';
 
 export const useSettingsStore = defineStore('settings', () => {
   const screenshotFile = ref<File | null>(null);
@@ -47,15 +48,15 @@ export const useSettingsStore = defineStore('settings', () => {
   );
 
   function importSettings(newSettings: Settings) {
-    settings.value = JSON.parse(JSON.stringify(newSettings));
+    settings.value = clone(newSettings);
   }
 
   function exportSettings(): Settings {
-    return JSON.parse(JSON.stringify(settings.value));
+    return clone(settings.value);
   }
 
   function resetToDefaults() {
-    settings.value = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
+    settings.value = clone(DEFAULT_SETTINGS);
   }
 
   return {
@@ -69,3 +70,7 @@ export const useSettingsStore = defineStore('settings', () => {
     resetToDefaults,
   };
 });
+
+function clone<T>(value: T): T {
+  return deepmerge({}, value);
+}
