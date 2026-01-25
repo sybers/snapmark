@@ -133,8 +133,8 @@ async function openLoadPresetModal() {
           class="mt-2"
           size="xs"
           color="neutral"
-          :min="0"
-          :max="360"
+          :min="-180"
+          :max="180"
           :step="1"
         />
         <div class="text-xs text-neutral-500 text-right">
