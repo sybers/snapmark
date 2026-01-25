@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "@nuxt/image": "2.0.0",
-    "@nuxt/ui": "4.3.0",
+    "@nuxt/ui": "4.4.0",
     "@nuxtjs/i18n": "10.2.1",
     "modern-screenshot": "4.6.7",
-    "nuxt": "4.2.2",
+    "nuxt": "4.3.0",
     "valibot": "^1.2.0",
     "vue": "3.5.27",
     "vue-advanced-cropper": "2.8.9",
