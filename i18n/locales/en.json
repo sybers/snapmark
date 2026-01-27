@@ -33,9 +33,7 @@
         "copyToClipboard": "Copy to clipboard",
         "asFormat": "Save as {format}",
         "imageCopiedToClipboard": "Image copied to clipboard",
-        "failedToCopyImageToClipboard": "Failed to copy image to clipboard",
-        "jpegNoTransparency": "JPEG doesn't support transparency",
-        "jpegTransparencyDescription": "Transparent areas will be filled with a solid background."
+        "failedToCopyImageToClipboard": "Failed to copy image to clipboard"
     },
     "cropper": {
         "title": "Crop image",

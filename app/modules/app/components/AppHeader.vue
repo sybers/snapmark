@@ -6,7 +6,10 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <header class="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800">
+  <header
+    v-if="false"
+    class="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800"
+  >
     <div class="flex items-center justify-between px-6 py-3">
       <div class="flex items-center gap-3">
         <UColorModeImage

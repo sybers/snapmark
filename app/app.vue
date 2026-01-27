@@ -4,7 +4,7 @@
     :toaster="appConfig.toaster"
   >
     <UMain>
-      <div class="h-screen flex flex-col">
+      <div class="h-screen flex flex-col bg-neutral-200 dark:bg-neutral-950">
         <AppHeader />
 
         <ClientOnly>

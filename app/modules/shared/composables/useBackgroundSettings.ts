@@ -34,10 +34,6 @@ export function useBackgroundSettings() {
     },
   });
 
-  const hasTransparency = computed(() => {
-    return settings.value.background.roundness > 0 || settings.value.background.opacity < 100;
-  });
-
   function getBackgroundStyleAsCss(style: BackgroundStyle): string {
     if (style.type === 'solid') {
       return `${style.color}`;
@@ -54,7 +50,6 @@ export function useBackgroundSettings() {
     backgroundOpacity,
     backgroundRoundness,
     backgroundNoise,
-    hasTransparency,
     backgroundStyleAsCss,
     getBackgroundStyleAsCss,
   };

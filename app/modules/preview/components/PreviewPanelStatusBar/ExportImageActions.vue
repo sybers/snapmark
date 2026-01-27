@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed, defineShortcuts, extractShortcuts, reactive, useI18n, useToast, watch } from '#imports';
-import { domToPng, domToJpeg, domToSvg, domToBlob } from 'modern-screenshot';
+import { domToPng, domToJpeg, domToBlob } from 'modern-screenshot';
 import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
-import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 
 const toast = useToast();
 
@@ -17,13 +16,11 @@ const pixelRatioOptions = [
 const exportFormatOptions = [
   { label: 'PNG', value: 'PNG' },
   { label: 'JPEG', value: 'JPEG' },
-  { label: 'SVG', value: 'SVG' },
 ];
 
 const { exportContainer } = useCanvasSettings();
 const canExportImage = computed(() => Boolean(exportContainer.value));
 const { canvasWidth, canvasHeight } = useCanvasSettings();
-const { hasTransparency } = useBackgroundSettings();
 
 const { t } = useI18n();
 
@@ -41,14 +38,6 @@ const exportOptions = computed(() => [
     kbds: ['meta', 'j'],
     onSelect: () => {
       exportSettings.format = 'JPEG';
-      saveImage();
-    },
-  },
-  {
-    label: t('export.asFormat', { format: 'SVG' }),
-    kbds: ['meta', 'g'],
-    onSelect: () => {
-      exportSettings.format = 'SVG';
       saveImage();
     },
   },
@@ -74,7 +63,7 @@ const exportOptions = computed(() => [
 type ExportSettings = {
   pixelRatio: number;
 } & ({
-  format: 'PNG' | 'SVG';
+  format: 'PNG';
 } | {
   format: 'JPEG';
   quality: number;
@@ -96,7 +85,6 @@ async function saveImage() {
   const formatFunctions = {
     PNG: domToPng,
     JPEG: domToJpeg,
-    SVG: domToSvg,
   };
 
   const formatFunction = formatFunctions[exportSettings.format];
@@ -196,6 +184,7 @@ defineShortcuts(computed(() => ({
           :aria-label="t('export.settings')"
           color="neutral"
           variant="outline"
+          size="xl"
           icon="heroicons:adjustments-horizontal-16-solid"
         />
       </UTooltip>
@@ -216,14 +205,6 @@ defineShortcuts(computed(() => ({
               size="sm"
               :items="exportFormatOptions"
               :ui="{ item: 'grow' }"
-            />
-
-            <UAlert
-              v-if="exportSettings.format === 'JPEG' && hasTransparency"
-              color="neutral"
-              variant="subtle"
-              :title="t('export.jpegNoTransparency')"
-              :description="t('export.jpegTransparencyDescription')"
             />
           </div>
 
@@ -276,7 +257,9 @@ defineShortcuts(computed(() => ({
       >
         <UButton
           :disabled="!canExportImage"
+          icon="i-heroicons-arrow-down-tray-20-solid"
           color="primary"
+          size="xl"
           variant="subtle"
           :label="t('ui.save')"
         />
@@ -289,6 +272,7 @@ defineShortcuts(computed(() => ({
         <UButton
           :disabled="!canExportImage"
           color="primary"
+          size="xl"
           variant="subtle"
           icon="heroicons:chevron-down-20-solid"
         />

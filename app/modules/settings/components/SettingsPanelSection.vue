@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between">
       <span
         v-if="title"
-        class="text-lg font-bold mb-2"
+        class="text-xs text-neutral-400 font-semibold mb-2 uppercase"
       >{{ title }}</span>
 
       <slot name="title-right" />
