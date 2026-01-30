@@ -2,6 +2,7 @@
 import { computed, defineShortcuts, extractShortcuts, reactive, useI18n, useToast, watch } from '#imports';
 import { domToPng, domToJpeg, domToBlob } from 'modern-screenshot';
 import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
+import SSlider from '~/modules/shared/components/SSlider.vue';
 
 const toast = useToast();
 
@@ -208,21 +209,15 @@ defineShortcuts(computed(() => ({
             />
           </div>
 
-          <div
+          <SSlider
             v-if="exportSettings.format === 'JPEG'"
-            class="flex flex-col gap-2"
-          >
-            <label class="text-sm font-medium">{{ t('ui.quality') }}</label>
-            <USlider
-              v-model="exportSettings.quality"
-              :min="0"
-              :max="100"
-              :step="1"
-            />
-            <div class="text-xs text-neutral-500 text-right">
-              {{ exportSettings.quality }}
-            </div>
-          </div>
+            v-model="exportSettings.quality"
+            :label="t('ui.quality')"
+            :min="0"
+            :max="100"
+            :step="1"
+            :default-value="80"
+          />
 
           <div class="flex flex-col gap-2">
             <label class="text-sm font-medium">{{ t('ui.scale') }} <span class="text-xs text-neutral-500">{{ exportSettings.pixelRatio }}x</span></label>

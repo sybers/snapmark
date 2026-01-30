@@ -16,6 +16,7 @@ import { useScreenshotSettings } from '~/modules/shared/composables/useScreensho
 import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
 import SContainer from '../../shared/components/SContainer.vue';
+import SSlider from '../../shared/components/SSlider.vue';
 
 const overlay = useOverlay();
 const { t } = useI18n();
@@ -75,49 +76,31 @@ async function openLoadPresetModal() {
           />
         </SettingsItem>
 
-        <SettingsItem :label="t('ui.scale')">
-          <USlider
-            v-model="screenshotScale"
-            class="mt-2"
-            size="xs"
-            color="neutral"
-            :min="0"
-            :max="150"
-            :step="1"
-          />
-          <div class="text-xs text-neutral-500 text-right">
-            {{ screenshotScale }}
-          </div>
-        </SettingsItem>
+        <SSlider
+          v-model="screenshotScale"
+          :label="t('ui.scale')"
+          :min="0"
+          :max="150"
+          :step="1"
+          :default-value="65"
+        />
 
-        <SettingsItem :label="t('screenshot.shadow')">
-          <USlider
-            v-model="selectedBoxShadowIndex"
-            class="mt-2"
-            size="xs"
-            color="neutral"
-            :min="0"
-            :max="screenshotBoxShadowOptions.length - 1"
-          />
-          <div class="text-xs text-neutral-500 text-right mt-1">
-            {{ selectedBoxShadowIndex }}
-          </div>
-        </SettingsItem>
+        <SSlider
+          v-model="selectedBoxShadowIndex"
+          :label="t('screenshot.shadow')"
+          :min="0"
+          :max="screenshotBoxShadowOptions.length - 1"
+          :default-value="4"
+        />
 
-        <SettingsItem :label="t('ui.roundness')">
-          <USlider
-            v-model="screenshotRoundness"
-            class="mt-2"
-            size="xs"
-            color="neutral"
-            :min="0"
-            :max="48"
-            :step="1"
-          />
-          <div class="text-xs text-neutral-500 text-right">
-            {{ screenshotRoundness }}px
-          </div>
-        </SettingsItem>
+        <SSlider
+          v-model="screenshotRoundness"
+          :label="t('ui.roundness')"
+          :min="0"
+          :max="48"
+          :step="1"
+          suffix="px"
+        />
 
         <SettingsItem :label="t('ui.perspective')">
           <SXYControl
@@ -132,20 +115,14 @@ async function openLoadPresetModal() {
           </SXYControl>
         </SettingsItem>
 
-        <SettingsItem :label="t('ui.rotation')">
-          <USlider
-            v-model="screenshotRotation"
-            class="mt-2"
-            size="xs"
-            color="neutral"
-            :min="-180"
-            :max="180"
-            :step="1"
-          />
-          <div class="text-xs text-neutral-500 text-right">
-            {{ screenshotRotation }}deg
-          </div>
-        </SettingsItem>
+        <SSlider
+          v-model="screenshotRotation"
+          :label="t('ui.rotation')"
+          :min="-180"
+          :max="180"
+          :step="1"
+          suffix="deg"
+        />
 
         <SettingsItem :label="t('ui.offset')">
           <SXYControl
@@ -166,31 +143,22 @@ async function openLoadPresetModal() {
           <SBackgroundSelector v-model="backgroundStyle" />
         </SettingsItem>
 
-        <SettingsItem :label="t('ui.opacity')">
-          <USlider
-            v-model="backgroundOpacity"
-            class="mt-2"
-            size="xs"
-            color="neutral"
-            :min="0"
-            :max="100"
-          />
-        </SettingsItem>
+        <SSlider
+          v-model="backgroundOpacity"
+          :label="t('ui.opacity')"
+          :min="0"
+          :max="100"
+          :default-value="100"
+        />
 
-        <SettingsItem :label="t('ui.roundness')">
-          <USlider
-            v-model="backgroundRoundness"
-            class="mt-2"
-            size="xs"
-            color="neutral"
-            :min="0"
-            :max="48"
-            :step="1"
-          />
-          <div class="text-xs text-neutral-500 text-right">
-            {{ backgroundRoundness }}px
-          </div>
-        </SettingsItem>
+        <SSlider
+          v-model="backgroundRoundness"
+          :label="t('ui.roundness')"
+          :min="0"
+          :max="48"
+          :step="1"
+          suffix="px"
+        />
         <SettingsItem :label="t('background.noise')">
           <USwitch v-model="backgroundNoise" />
         </SettingsItem>
