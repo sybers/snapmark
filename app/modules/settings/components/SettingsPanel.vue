@@ -38,6 +38,7 @@ const {
   backgroundOpacity,
   backgroundRoundness,
   backgroundNoise,
+  backgroundNoiseOpacity,
 } = useBackgroundSettings();
 
 const { canvasWidth, canvasHeight } = useCanvasSettings();
@@ -121,6 +122,7 @@ async function openLoadPresetModal() {
           :min="-180"
           :max="180"
           :step="1"
+          :default-value="0"
           suffix="deg"
         />
 
@@ -159,9 +161,19 @@ async function openLoadPresetModal() {
           :step="1"
           suffix="px"
         />
+
         <SettingsItem :label="t('background.noise')">
           <USwitch v-model="backgroundNoise" />
         </SettingsItem>
+
+        <SSlider
+          v-model="backgroundNoiseOpacity"
+          :label="t('background.noiseOpacity')"
+          :min="0"
+          :max="100"
+          :default-value="35"
+          :step="1"
+        />
       </SettingsPanelSection>
 
       <SettingsPanelSection :title="t('canvas.title')">

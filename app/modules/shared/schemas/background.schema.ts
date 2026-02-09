@@ -26,4 +26,9 @@ export const BackgroundSchema = v.object({
   opacity: v.number(),
   roundness: v.number(),
   noise: v.boolean(),
+  noiseOpacity: v.pipe(
+    v.number(),
+    v.minValue(0),
+    v.maxValue(100),
+  ),
 });

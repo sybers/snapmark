@@ -6,6 +6,7 @@ const {
   backgroundOpacity,
   backgroundRoundness,
   backgroundNoise,
+  backgroundNoiseOpacity,
 } = useBackgroundSettings();
 </script>
 
@@ -20,7 +21,8 @@ const {
     />
     <div
       v-if="backgroundNoise"
-      class="absolute inset-0 noisy-background"
+      class="absolute inset-0 noisy-background mix-blend-overlay bg-repeat"
+      :style="{ opacity: backgroundNoiseOpacity / 100 }"
     />
   </div>
 </template>
@@ -28,8 +30,5 @@ const {
 <style scoped>
   .noisy-background {
     background-image: url('~/assets/images/noise-texture.png');
-    background-repeat: repeat;
-    mix-blend-mode: luminosity;
-    opacity: 0.25;
   }
 </style>

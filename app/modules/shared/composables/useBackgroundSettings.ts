@@ -34,6 +34,13 @@ export function useBackgroundSettings() {
     },
   });
 
+  const backgroundNoiseOpacity = computed({
+    get: () => settings.value.background.noiseOpacity,
+    set: (value) => {
+      settings.value.background.noiseOpacity = value;
+    },
+  });
+
   function getBackgroundStyleAsCss(style: BackgroundStyle): string {
     if (style.type === 'solid') {
       return `${style.color}`;
@@ -50,6 +57,7 @@ export function useBackgroundSettings() {
     backgroundOpacity,
     backgroundRoundness,
     backgroundNoise,
+    backgroundNoiseOpacity,
     backgroundStyleAsCss,
     getBackgroundStyleAsCss,
   };

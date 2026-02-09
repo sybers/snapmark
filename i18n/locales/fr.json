@@ -58,7 +58,8 @@
     },
     "background": {
         "title": "Arrière-plan",
-        "noise": "Bruit"
+        "noise": "Bruit",
+        "noiseOpacity": "Opacité du bruit"
     },
     "canvas": {
         "title": "Taille du canvas",
