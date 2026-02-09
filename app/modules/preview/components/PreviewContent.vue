@@ -3,21 +3,23 @@
     ref="previewContainer"
     class="flex items-center justify-center"
   >
-    <PreviewPanelUpload
-      v-if="!screenshotFile"
-      v-model="screenshotFile"
-    />
     <div
-      v-else
       class="shrink-0 relative"
       :style="scaledPreviewStyles"
     >
       <CheckerboardBackground class="absolute inset-0 overflow-hidden">
         <ImageExportContainer>
           <PreviewPanelBackground />
-          <PreviewPanelScreenshot />
+          <PreviewPanelScreenshot v-if="screenshotFile" />
         </ImageExportContainer>
       </CheckerboardBackground>
+
+      <div
+        v-if="!screenshotFile"
+        class="absolute inset-0 flex items-center justify-center z-10"
+      >
+        <PreviewPanelUpload v-model="screenshotFile" />
+      </div>
     </div>
   </div>
 </template>
