@@ -17,6 +17,7 @@
       <div
         v-if="!screenshotFile"
         class="absolute inset-0 flex items-center justify-center z-10"
+        :style="{ transform: `scale(${1 / previewScale})` }"
       >
         <PreviewPanelUpload v-model="screenshotFile" />
       </div>
