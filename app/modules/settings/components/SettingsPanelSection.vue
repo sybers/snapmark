@@ -1,5 +1,5 @@
 <template>
-  <div class="py-2">
+  <div class="py-2 mb-4">
     <div class="flex items-center justify-between">
       <span
         v-if="title"
@@ -12,18 +12,11 @@
     <div class="flex flex-col gap-2">
       <slot />
     </div>
-
-    <USeparator
-      v-if="!noBorder"
-      class="mt-4"
-      color="neutral"
-    />
   </div>
 </template>
 
 <script setup lang="ts">
 defineProps<{
   title?: string;
-  noBorder?: boolean;
 }>();
 </script>

@@ -223,10 +223,7 @@ async function openLoadPresetModal() {
         </UPopover>
       </SettingsPanelSection>
 
-      <SettingsPanelSection
-        :title="t('presets.title')"
-        no-border
-      >
+      <SettingsPanelSection :title="t('presets.title')">
         <div class="grid grid-cols-2 gap-2">
           <UButton
             color="neutral"
