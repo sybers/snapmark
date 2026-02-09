@@ -1,12 +1,15 @@
 <template>
   <div
-    class="sslider relative flex items-center overflow-hidden rounded-xl bg-neutral-200 dark:bg-neutral-700"
+    class="sslider relative flex items-center overflow-hidden rounded-xl bg-neutral-200 dark:bg-neutral-600"
     @dblclick="resetToDefault"
   >
     <div
       ref="trackRef"
       class="relative w-full h-8 flex items-center cursor-pointer select-none touch-none z-0"
       @pointerdown="onPointerDown"
+      @pointermove="onPointerMove"
+      @pointerup="onPointerUp"
+      @lostpointercapture="onPointerUp"
     >
       <div
         class="absolute left-0 top-0 bottom-0 bg-neutral-100 dark:bg-neutral-800 transition-colors rounded-l-xl rounded-r-lg"
@@ -14,7 +17,7 @@
       />
 
       <div
-        class="absolute h-4 w-0.5 bg-neutral-200 dark:bg-neutral-200 rounded-full pointer-events-none"
+        class="absolute h-4 w-0.5 bg-neutral-400 dark:bg-neutral-200 rounded-full pointer-events-none"
         :class="{ 'transition-all duration-75 ease-in-out': isAtMin }"
         :style="mainHandleStyle"
       />
@@ -33,7 +36,7 @@
 
     <div
       v-if="label"
-      class="absolute left-0 top-0 bottom-0 min-w-20 pl-3 pr-2 flex items-center text-neutral-600 dark:text-neutral-400 text-sm font-medium z-10 pointer-events-none"
+      class="absolute left-0 top-0 bottom-0 min-w-20 pl-3 pr-2 flex items-center text-neutral-600 dark:text-neutral-300 text-sm font-medium z-10 pointer-events-none"
     >
       {{ label }}
     </div>
@@ -41,8 +44,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
-import { useElementBounding, usePointer } from '@vueuse/core';
+import { computed, ref } from 'vue';
+import { useElementBounding } from '@vueuse/core';
 
 const props = withDefaults(
   defineProps<{
@@ -70,19 +73,13 @@ const trackRef = ref<HTMLElement | null>(null);
 const isDragging = ref(false);
 
 const { left: trackLeft, width: trackWidth } = useElementBounding(trackRef);
-const { x: pointerX, pressure } = usePointer();
 
-watch(pressure, (p) => {
-  if (p === 0) isDragging.value = false;
-});
-
-watch([pointerX, isDragging], ([x, dragging]) => {
-  if (!dragging || trackWidth.value <= 0) return;
-
-  const percent = Math.max(0, Math.min(1, (x - trackLeft.value) / trackWidth.value));
+function updateValueFromPointer(clientX: number) {
+  if (trackWidth.value <= 0) return;
+  const percent = Math.max(0, Math.min(1, (clientX - trackLeft.value) / trackWidth.value));
   const rawValue = props.min + percent * (props.max - props.min);
   emit('update:modelValue', clampValue(rawValue));
-});
+}
 
 const displayValue = computed(() =>
   Number.isInteger(props.modelValue) ? props.modelValue : props.modelValue.toFixed(2),
@@ -116,6 +113,16 @@ function resetToDefault() {
 function onPointerDown(event: PointerEvent) {
   if (event.button !== 0) return;
   isDragging.value = true;
-  (event.target as HTMLElement).setPointerCapture(event.pointerId);
+  trackRef.value?.setPointerCapture(event.pointerId);
+  updateValueFromPointer(event.clientX);
+}
+
+function onPointerMove(event: PointerEvent) {
+  if (!isDragging.value) return;
+  updateValueFromPointer(event.clientX);
+}
+
+function onPointerUp() {
+  isDragging.value = false;
 }
 </script>
