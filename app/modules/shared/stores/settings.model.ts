@@ -23,7 +23,6 @@ export const DEFAULT_SETTINGS: Settings = {
     },
     opacity: 100,
     roundness: 0,
-    noise: true,
     noiseOpacity: 35,
   },
   screenshot: {

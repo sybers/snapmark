@@ -27,13 +27,6 @@ export function useBackgroundSettings() {
     },
   });
 
-  const backgroundNoise = computed({
-    get: () => settings.value.background.noise,
-    set: (value) => {
-      settings.value.background.noise = value;
-    },
-  });
-
   const backgroundNoiseOpacity = computed({
     get: () => settings.value.background.noiseOpacity,
     set: (value) => {
@@ -56,7 +49,6 @@ export function useBackgroundSettings() {
     backgroundStyle,
     backgroundOpacity,
     backgroundRoundness,
-    backgroundNoise,
     backgroundNoiseOpacity,
     backgroundStyleAsCss,
     getBackgroundStyleAsCss,

@@ -61,10 +61,9 @@ const previewImage = computed(() => {
         }"
       />
       <div
-        v-if="preset.settings.background.noise"
-        class="absolute inset-0"
-        :class="{ 'noisy-background': preset.settings.background.noise }"
-        :style="{ borderRadius: `${previewRoundness}px` }"
+        v-if="preset.settings.background.noiseOpacity > 0"
+        class="absolute inset-0 bg-repeat mix-blend-overlay"
+        :style="{ borderRadius: `${previewRoundness}px`, opacity: preset.settings.background.noiseOpacity / 100 }"
       />
 
       <div
@@ -134,6 +133,5 @@ const previewImage = computed(() => {
   background-image: url('~/assets/images/noise-texture.png');
   background-repeat: repeat;
   mix-blend-mode: luminosity;
-  opacity: 0.25;
 }
 </style>

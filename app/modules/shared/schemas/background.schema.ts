@@ -25,7 +25,6 @@ export const BackgroundSchema = v.object({
   backgroundStyle: BackgroundStyleSchema,
   opacity: v.number(),
   roundness: v.number(),
-  noise: v.boolean(),
   noiseOpacity: v.pipe(
     v.number(),
     v.minValue(0),

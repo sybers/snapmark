@@ -37,7 +37,6 @@ const {
   backgroundStyle,
   backgroundOpacity,
   backgroundRoundness,
-  backgroundNoise,
   backgroundNoiseOpacity,
 } = useBackgroundSettings();
 
@@ -162,13 +161,9 @@ async function openLoadPresetModal() {
           suffix="px"
         />
 
-        <SettingsItem :label="t('background.noise')">
-          <USwitch v-model="backgroundNoise" />
-        </SettingsItem>
-
         <SSlider
           v-model="backgroundNoiseOpacity"
-          :label="t('background.noiseOpacity')"
+          :label="t('background.noise')"
           :min="0"
           :max="100"
           :default-value="35"

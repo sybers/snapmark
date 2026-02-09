@@ -5,7 +5,6 @@ const {
   backgroundStyleAsCss,
   backgroundOpacity,
   backgroundRoundness,
-  backgroundNoise,
   backgroundNoiseOpacity,
 } = useBackgroundSettings();
 </script>
@@ -20,7 +19,6 @@ const {
       :style="{ background: backgroundStyleAsCss }"
     />
     <div
-      v-if="backgroundNoise"
       class="absolute inset-0 noisy-background mix-blend-overlay bg-repeat"
       :style="{ opacity: backgroundNoiseOpacity / 100 }"
     />

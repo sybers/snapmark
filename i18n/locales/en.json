@@ -58,8 +58,7 @@
     },
     "background": {
         "title": "Background",
-        "noise": "Noise",
-        "noiseOpacity": "Noise opacity"
+        "noise": "Noise"
     },
     "canvas": {
         "title": "Canvas Size",
