@@ -78,7 +78,7 @@ describe('settings.model', () => {
           },
           opacity: 42,
           roundness: 12,
-          noise: false,
+          noiseOpacity: 35,
         },
         screenshot: {
           rotation: 10,
@@ -117,7 +117,7 @@ describe('settings.model', () => {
           },
           opacity: 42,
           roundness: 12,
-          noise: false,
+          noiseOpacity: 35,
         },
         screenshot: {
           rotation: 10,
@@ -163,7 +163,7 @@ describe('settings.model', () => {
           canvasWidth: 800,
         },
         background: {
-          noise: false,
+          noiseOpacity: 22,
         },
       };
 
@@ -181,7 +181,7 @@ describe('settings.model', () => {
         },
         background: {
           ...DEFAULT_SETTINGS.background,
-          noise: false,
+          noiseOpacity: 22,
         },
       });
       expect(warnSpy).not.toHaveBeenCalled();
