@@ -1,3 +1,19 @@
+<script setup lang="ts">
+import AppHeader from '~/modules/app/components/AppHeader.vue';
+import LoadingFallback from '~/modules/app/components/LoadingFallback.vue';
+import PreviewPanel from '~/modules/preview/components/PreviewPanel.vue';
+import SettingsPanel from '~/modules/settings/components/SettingsPanel.vue';
+import { useAppStore } from '~/stores/app.store';
+
+const appConfig = useAppConfig();
+const appStore = useAppStore();
+
+const clientOnlyContainer = useTemplateRef('clientOnlyContainer');
+watch(clientOnlyContainer, () => {
+  appStore.isReady = true;
+}, { once: true });
+</script>
+
 <template>
   <UApp
     class="relative"
@@ -19,34 +35,20 @@
       </div>
 
       <Transition name="fade">
-        <LoadingFallback v-if="!appStore.isReady" />
+        <LoadingFallback
+          v-if="!appStore.isReady"
+          class="z-50"
+        />
       </Transition>
     </UMain>
   </UApp>
 </template>
 
-<script setup lang="ts">
-import AppHeader from '~/modules/app/components/AppHeader.vue';
-import LoadingFallback from '~/modules/app/components/LoadingFallback.vue';
-import PreviewPanel from '~/modules/preview/components/PreviewPanel.vue';
-import SettingsPanel from '~/modules/settings/components/SettingsPanel.vue';
-import { useTemplateRef, watch } from 'vue';
-import { useAppStore } from '~/stores/app.store';
-import { useAppConfig } from '#app';
-
-const appConfig = useAppConfig();
-const appStore = useAppStore();
-
-const clientOnlyContainer = useTemplateRef('clientOnlyContainer');
-watch(clientOnlyContainer, () => {
-  appStore.isReady = true;
-}, { once: true });
-</script>
-
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .3s ease;
+  transition: opacity 300ms ease;
+  transition-delay: 200ms;
 }
 
 .fade-enter-from,

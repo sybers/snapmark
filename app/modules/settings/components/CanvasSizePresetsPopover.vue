@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from '#imports';
-import { computed } from 'vue';
 import { socialMediaCanvasPresets } from './socialMediaCanvasPresets';
 import type { CanvasPreset } from './socialMediaCanvasPresets';
 import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';

@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useColorMode } from '#imports';
-
 const props = withDefaults(defineProps<{
   lightColor?: string;
   darkColor?: string;

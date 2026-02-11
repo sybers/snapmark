@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { useI18n } from 'vue-i18n';
 import { usePresetsStore } from '~/modules/shared/stores/presets.store';
 import { useSettingsStore } from '~/modules/shared/stores/settings.store';
 

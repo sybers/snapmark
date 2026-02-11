@@ -7,13 +7,11 @@
     @pointerup="onPointerUp"
     @pointercancel="onPointerUp"
   >
-    <!-- Grid lines -->
     <div class="absolute inset-0 pointer-events-none">
       <div class="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-neutral-300 dark:bg-neutral-700" />
       <div class="absolute top-0 bottom-0 left-1/2 w-px -translate-x-1/2 bg-neutral-300 dark:bg-neutral-700" />
     </div>
 
-    <!-- Handle -->
     <div
       class="absolute size-5 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10"
       :style="handleStyle"
@@ -27,9 +25,6 @@
 </template>
 
 <script setup lang="ts">
-import { usePointer } from '@vueuse/core';
-import { computed, ref, watch } from 'vue';
-
 const props = withDefaults(defineProps<{
   min?: number;
   max?: number;

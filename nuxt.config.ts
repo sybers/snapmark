@@ -26,10 +26,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
   ],
   components: {
-    dirs: [],
-  },
-  imports: {
-    autoImport: false,
+    dirs: ['~/modules/app/components', '~/modules/shared/components'],
   },
   devtools: { enabled: true },
   app: {
@@ -70,6 +67,6 @@ export default defineNuxtConfig({
       { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
       { code: 'fr', language: 'fr-FR', name: 'Français', file: 'fr.json' },
     ],
-    defaultLocale: 'fr',
+    defaultLocale: 'en',
   },
 });

@@ -1,33 +1,4 @@
-<template>
-  <div
-    ref="previewContainer"
-    class="flex items-center justify-center"
-  >
-    <div
-      class="shrink-0 relative"
-      :style="scaledPreviewStyles"
-    >
-      <CheckerboardBackground class="absolute inset-0 overflow-hidden">
-        <ImageExportContainer>
-          <PreviewPanelBackground />
-          <PreviewPanelScreenshot v-if="screenshotFile" />
-        </ImageExportContainer>
-      </CheckerboardBackground>
-
-      <div
-        v-if="!screenshotFile"
-        class="absolute inset-0 flex items-center justify-center z-10"
-        :style="{ transform: `scale(${1 / previewScale})` }"
-      >
-        <PreviewPanelUpload v-model="screenshotFile" />
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
-import { computed, useTemplateRef, watch } from 'vue';
-import { useElementSize } from '@vueuse/core';
 import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
 import { useScreenshotSettings } from '~/modules/shared/composables/useScreenshotSettings';
 
@@ -56,3 +27,30 @@ const scaledPreviewStyles = computed(() => ({
   transform: `scale(${previewScale.value})`,
 }));
 </script>
+
+<template>
+  <div
+    ref="previewContainer"
+    class="flex items-center justify-center"
+  >
+    <div
+      class="shrink-0 relative"
+      :style="scaledPreviewStyles"
+    >
+      <CheckerboardBackground class="absolute inset-0 overflow-hidden">
+        <ImageExportContainer>
+          <PreviewPanelBackground />
+          <PreviewPanelScreenshot v-if="screenshotFile" />
+        </ImageExportContainer>
+      </CheckerboardBackground>
+
+      <div
+        v-if="!screenshotFile"
+        class="absolute inset-0 flex items-center justify-center z-10"
+        :style="{ transform: `scale(${1 / previewScale})` }"
+      >
+        <PreviewPanelUpload v-model="screenshotFile" />
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,3 +1,9 @@
+<script setup lang="ts">
+defineProps<{
+  label: string;
+}>();
+</script>
+
 <template>
   <UFormField
     :label="label"
@@ -6,9 +12,3 @@
     <slot />
   </UFormField>
 </template>
-
-<script setup lang="ts">
-defineProps<{
-  label: string;
-}>();
-</script>

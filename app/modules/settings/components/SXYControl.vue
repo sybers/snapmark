@@ -1,3 +1,20 @@
+<script setup lang="ts">
+withDefaults(defineProps<{
+  icon?: string;
+  min?: number;
+  max?: number;
+}>(), {
+  min: -100,
+  max: 100,
+});
+
+const model = defineModel<{ x: number; y: number }>({ required: true });
+
+function reset() {
+  model.value = { x: 0, y: 0 };
+}
+</script>
+
 <template>
   <UFieldGroup class="w-full">
     <UPopover
@@ -37,22 +54,3 @@
     />
   </UFieldGroup>
 </template>
-
-<script setup lang="ts">
-import SXYPad from '~/modules/shared/components/SXYPad.vue';
-
-withDefaults(defineProps<{
-  icon?: string;
-  min?: number;
-  max?: number;
-}>(), {
-  min: -100,
-  max: 100,
-});
-
-const model = defineModel<{ x: number; y: number }>({ required: true });
-
-function reset() {
-  model.value = { x: 0, y: 0 };
-}
-</script>

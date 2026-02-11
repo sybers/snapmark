@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from '#imports';
-import { useEventListener, useDropZone } from '@vueuse/core';
 import { useFileUpload } from '../composables/useImageUpload';
 
 const { t } = useI18n();

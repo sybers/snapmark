@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useOverlay, useI18n } from '#imports';
 import { useFileUpload } from '../composables/useImageUpload';
 import CropImageModal from './CropImageModal.vue';
 import PreviewPanelFrame from './PreviewPanelFrame.vue';

@@ -1,9 +1,3 @@
-<template>
-  <component :is="frameComponent">
-    <slot />
-  </component>
-</template>
-
 <script setup lang="ts">
 import FrameNone from './Frames/FrameNone.vue';
 import { computed, defineAsyncComponent } from 'vue';
@@ -20,3 +14,9 @@ function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 </script>
+
+<template>
+  <component :is="frameComponent">
+    <slot />
+  </component>
+</template>

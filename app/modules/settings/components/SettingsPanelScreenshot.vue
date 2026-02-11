@@ -1,14 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from '#imports';
-import { ref, watch } from 'vue';
-
+import { useFrameSettings } from '~/modules/shared/composables/useFrameSettings';
+import { useScreenshotSettings } from '~/modules/shared/composables/useScreenshotSettings';
 import SettingsPanelSection from './SettingsPanelSection.vue';
 import SXYControl from './SXYControl.vue';
 import SettingsItem from './SettingsItem.vue';
-
-import { useFrameSettings } from '~/modules/shared/composables/useFrameSettings';
-import { useScreenshotSettings } from '~/modules/shared/composables/useScreenshotSettings';
-import SSlider from '../../shared/components/SSlider.vue';
 
 const { t } = useI18n();
 

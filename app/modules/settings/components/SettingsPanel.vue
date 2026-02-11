@@ -4,15 +4,31 @@ import SettingsPanelBackground from './SettingsPanelBackground.vue';
 import SettingsPanelCanvas from './SettingsPanelCanvas.vue';
 import SettingsPanelPresets from './SettingsPanelPresets.vue';
 import SettingsPanelFooter from './SettingsPanelFooter.vue';
-import SContainer from '../../shared/components/SContainer.vue';
+
+const { t } = useI18n();
+
+const tabs = computed(() => [
+  { label: t('screenshot.title'), value: 'Screenshot' },
+  { label: t('background.title'), value: 'Background' },
+]);
+const activeTab = ref('Screenshot');
 </script>
 
 <template>
-  <SContainer class="w-full h-full lg:max-w-xs">
-    <div class="flex flex-col h-full overflow-y-auto">
-      <SettingsPanelScreenshot />
-      <SettingsPanelBackground />
-      <SettingsPanelCanvas />
+  <SContainer class="w-full h-full lg:max-w-xs lg:overflow-y-auto">
+    <div class="flex flex-col h-full gap-4">
+      <STabs
+        v-model="activeTab"
+        :tabs="tabs"
+      />
+      <template v-if="activeTab === 'Screenshot'">
+        <SettingsPanelScreenshot />
+      </template>
+      <template v-if="activeTab === 'Background'">
+        <SettingsPanelBackground />
+        <SettingsPanelCanvas />
+      </template>
+
       <SettingsPanelPresets />
       <SettingsPanelFooter />
     </div>

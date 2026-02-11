@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useOverlay, useI18n } from '#imports';
-
 import SettingsPanelSection from './SettingsPanelSection.vue';
 import SavePresetModal from './SavePresetModal.vue';
 import LoadPresetModal from './LoadPresetModal.vue';

@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { Cropper, type CropperResult } from 'vue-advanced-cropper';
 import 'vue-advanced-cropper/dist/style.css';
-import { useI18n } from '#imports';
 
 const { t } = useI18n();
 

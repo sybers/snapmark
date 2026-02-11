@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useOverlay, useI18n } from '#imports';
 import { usePresetsStore } from '~/modules/shared/stores/presets.store';
 import PresetPreviewCard from './PresetPreviewCard.vue';
 import SavePresetModal from './SavePresetModal.vue';

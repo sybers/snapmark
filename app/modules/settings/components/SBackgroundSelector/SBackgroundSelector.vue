@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import { useI18n } from '#imports';
+import type { BackgroundStyle, BackgroundType } from '~/modules/shared/types';
 import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 import SBackgroundSelectorGradient from './SBackgroundSelectorGradient.vue';
 import SBackgroundSelectorSolid from './SBackgroundSelectorSolid.vue';
-import type { BackgroundStyle, BackgroundType } from '~/modules/shared/types';
 
 const { t } = useI18n();
 

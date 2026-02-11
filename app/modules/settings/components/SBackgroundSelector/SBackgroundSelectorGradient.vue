@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from '#imports';
-import { ref } from 'vue';
+import type { BackgroundStyle, BackgroundStyleGradient } from '~/modules/shared/types';
+import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 import { gradientPresets } from './presets';
 import SColorSwatch from './SColorSwatch.vue';
-import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
-import type { BackgroundStyle, BackgroundStyleGradient } from '~/modules/shared/types';
 
 const { getBackgroundStyleAsCss } = useBackgroundSettings();
 

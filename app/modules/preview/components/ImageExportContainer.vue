@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, useTemplateRef } from 'vue';
 import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
 
 const exportContainerRef = useTemplateRef('exportContainerRef');

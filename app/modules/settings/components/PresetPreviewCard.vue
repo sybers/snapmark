@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from '#imports';
-import { computed } from 'vue';
+import type { Settings } from '~/modules/shared/types';
 import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 import { useSettingsStore } from '~/modules/shared/stores/settings.store';
 import PresetPreviewFrame from './PresetPreviewFrame.vue';
-import type { Settings } from '~/modules/shared/types';
 
 const props = defineProps<{
   preset: {

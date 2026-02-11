@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, defineShortcuts, extractShortcuts, reactive, useI18n, useToast, watch } from '#imports';
 import { domToPng, domToJpeg, domToBlob } from 'modern-screenshot';
 import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
 import SSlider from '~/modules/shared/components/SSlider.vue';

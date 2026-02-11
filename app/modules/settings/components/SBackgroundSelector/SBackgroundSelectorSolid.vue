@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from '#imports';
-import { computed } from 'vue';
 import type { BackgroundStyle, BackgroundStyleSolid } from '~/modules/shared/types';
 import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 import { solidPresets } from './presets';

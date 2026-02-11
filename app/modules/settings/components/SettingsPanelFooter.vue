@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { useI18n } from '#imports';
-
-import LocaleSwitcher from '@/modules/app/components/LocaleSwitcher.vue';
+import LocaleSwitcher from '~/modules/app/components/LocaleSwitcher.vue';
 
 const { t } = useI18n();
 </script>

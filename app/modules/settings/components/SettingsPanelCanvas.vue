@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from '#imports';
-import { ref } from 'vue';
-
+import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
 import SettingsPanelSection from './SettingsPanelSection.vue';
 import SettingsItem from './SettingsItem.vue';
 import CanvasSizePresetsPopover from './CanvasSizePresetsPopover.vue';
-
-import { useCanvasSettings } from '~/modules/shared/composables/useCanvasSettings';
 
 const { t } = useI18n();
 

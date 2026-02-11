@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from '#imports';
-
+import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 import SettingsPanelSection from './SettingsPanelSection.vue';
 import SBackgroundSelector from './SBackgroundSelector';
 import SettingsItem from './SettingsItem.vue';
-
-import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
-import SSlider from '../../shared/components/SSlider.vue';
 
 const { t } = useI18n();
 

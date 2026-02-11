@@ -1,15 +1,4 @@
-<template>
-  <component
-    :is="frameComponent"
-    :roundness="roundness"
-    :scale="scale"
-  >
-    <slot />
-  </component>
-</template>
-
 <script setup lang="ts">
-import { computed } from 'vue';
 import type { FrameSettings } from '~/modules/shared/types';
 
 import FrameNone from '~/modules/preview/components/Frames/FrameNone.vue';
@@ -36,3 +25,13 @@ const frameComponent = computed(() => {
   return frameComponents[props.frame.frameName] || FrameNone;
 });
 </script>
+
+<template>
+  <component
+    :is="frameComponent"
+    :roundness="roundness"
+    :scale="scale"
+  >
+    <slot />
+  </component>
+</template>

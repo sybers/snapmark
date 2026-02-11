@@ -1,3 +1,19 @@
+<script setup lang="ts">
+import { useScreenshotSettings } from '~/modules/shared/composables/useScreenshotSettings';
+
+const props = withDefaults(defineProps<{
+  roundness?: number;
+  scale?: number;
+}>(), {
+  scale: 1,
+});
+
+const { screenshotRoundness } = useScreenshotSettings();
+
+const roundness = computed(() => props.roundness ?? screenshotRoundness.value);
+const scale = computed(() => props.scale);
+</script>
+
 <template>
   <div
     class="overflow-hidden bg-white"
@@ -26,20 +42,3 @@
     <slot />
   </div>
 </template>
-
-<script setup lang="ts">
-import { computed } from 'vue';
-import { useScreenshotSettings } from '~/modules/shared/composables/useScreenshotSettings';
-
-const props = withDefaults(defineProps<{
-  roundness?: number;
-  scale?: number;
-}>(), {
-  scale: 1,
-});
-
-const { screenshotRoundness } = useScreenshotSettings();
-
-const roundness = computed(() => props.roundness ?? screenshotRoundness.value);
-const scale = computed(() => props.scale);
-</script>
