@@ -9,9 +9,10 @@ const { getBackgroundStyleAsCss } = useBackgroundSettings();
 const { t } = useI18n();
 
 const model = defineModel<BackgroundStyle>({ required: true });
-
-const gradientRotationOptions = [0, 45, 90, 135, 180, 225, 270, 315] as const;
 const gradientRotation = ref(model.value.type === 'gradient' ? model.value.rotation : 0);
+
+const isShowingMore = ref(false);
+const visiblePresets = computed(() => isShowingMore.value ? gradientPresets : gradientPresets.slice(0, 5));
 
 function isSelectedPreset(preset: BackgroundStyleGradient) {
   if (model.value.type !== 'gradient') {
@@ -27,46 +28,30 @@ function selectPreset(preset: BackgroundStyleGradient) {
     rotation: gradientRotation.value,
   };
 }
-
-function selectGradientRotation(rotation: number) {
-  gradientRotation.value = rotation;
-
-  if (model.value.type !== 'gradient') {
-    return;
-  }
-
-  selectPreset(model.value);
-}
 </script>
 
 <template>
-  <div class="grid grid-cols-6 gap-2">
-    <SColorSwatch
-      v-for="preset in gradientPresets"
-      :key="preset.stops.map((stop) => stop.color).join(',')"
-      :background-style="getBackgroundStyleAsCss(preset)"
-      :is-selected="isSelectedPreset(preset)"
-      @click="selectPreset(preset)"
-    />
-  </div>
-
-  <div>
-    <label class="text-sm font-medium mb-2 block">{{ t('ui.gradientDirection') }}</label>
-    <div class="grid grid-cols-4 gap-2">
-      <UButton
-        v-for="rotation in gradientRotationOptions"
-        :key="rotation"
-        class="h-12 justify-center items-center"
-        :color="gradientRotation === rotation ? 'primary' : 'neutral'"
-        variant="outline"
-        size="sm"
-        @click="selectGradientRotation(rotation)"
+  <div class="space-y-4">
+    <label class="text-sm font-medium mb-2 block">{{ t('ui.gradient') }}</label>
+    <div class="grid grid-cols-8 lg:grid-cols-6 gap-2">
+      <SColorSwatch
+        v-for="preset in visiblePresets"
+        :key="preset.stops.map((stop) => stop.color).join(',')"
+        :background-style="getBackgroundStyleAsCss(preset)"
+        :is-selected="isSelectedPreset(preset)"
+        @select="selectPreset(preset)"
+      />
+      <button
+        v-if="gradientPresets.length > 5"
+        :aria-label="isShowingMore ? t('ui.showLess') : t('ui.showMore')"
+        :icon="isShowingMore ? 'heroicons:chevron-up-20-solid' : 'heroicons:chevron-down-20-solid'"
+        class="aspect-square rounded-md border flex items-center justify-center text-primary"
+        @click="isShowingMore = !isShowingMore"
       >
         <UIcon
-          name="heroicons:arrow-up-20-solid"
-          :style="{ transform: `rotate(${rotation}deg)` }"
+          :name="isShowingMore ? 'heroicons:chevron-up-20-solid' : 'heroicons:chevron-down-20-solid'"
         />
-      </UButton>
+      </button>
     </div>
   </div>
 </template>

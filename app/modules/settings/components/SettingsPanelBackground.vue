@@ -2,7 +2,6 @@
 import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroundSettings';
 import SettingsPanelSection from './SettingsPanelSection.vue';
 import SBackgroundSelector from './SBackgroundSelector';
-import SettingsItem from './SettingsItem.vue';
 
 const { t } = useI18n();
 
@@ -16,9 +15,7 @@ const {
 
 <template>
   <SettingsPanelSection :title="t('background.title')">
-    <SettingsItem :label="t('ui.color')">
-      <SBackgroundSelector v-model="backgroundStyle" />
-    </SettingsItem>
+    <SBackgroundSelector v-model="backgroundStyle" />
 
     <SSlider
       v-model="backgroundOpacity"

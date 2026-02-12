@@ -18,7 +18,6 @@ export const solidPresets: BackgroundStyleSolid[] = [
   { type: 'solid', color: '#6366f1' },
   { type: 'solid', color: '#4f46e5' },
   { type: 'solid', color: '#000000' },
-  { type: 'solid', color: '#ffffff' },
 ];
 
 export const gradientPresets: BackgroundStyleGradient[] = [

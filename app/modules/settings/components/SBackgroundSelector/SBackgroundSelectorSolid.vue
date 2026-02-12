@@ -4,24 +4,14 @@ import { useBackgroundSettings } from '~/modules/shared/composables/useBackgroun
 import { solidPresets } from './presets';
 import SColorSwatch from './SColorSwatch.vue';
 
-const { getBackgroundStyleAsCss } = useBackgroundSettings();
-
 const { t } = useI18n();
 
+const { getBackgroundStyleAsCss } = useBackgroundSettings();
+
+const isShowingMore = ref(false);
+const visiblePresets = computed(() => isShowingMore.value ? solidPresets : solidPresets.slice(0, 5));
+
 const model = defineModel<BackgroundStyle>({ required: true });
-
-const rgbModel = computed({
-  get: () => {
-    if (model.value.type !== 'solid') {
-      return model.value.stops[0]?.color ?? '#000000';
-    }
-
-    return model.value.color;
-  },
-  set: (value: string) => {
-    model.value = { type: 'solid', color: value };
-  },
-});
 
 function isSelectedPreset(preset: BackgroundStyleSolid) {
   if (model.value.type !== 'solid') {
@@ -37,21 +27,27 @@ function selectPreset(preset: BackgroundStyleSolid) {
 </script>
 
 <template>
-  <UColorPicker
-    v-model="rgbModel"
-    class="p-2 w-full"
-    :ui="{ selector: 'w-full' }"
-  />
-  <div>
-    <label class="text-sm font-medium mb-2 block">{{ t('ui.colorSwatches') }}</label>
-    <div class="grid grid-cols-6 gap-2">
+  <div class="space-y-4">
+    <label class="text-sm font-medium mb-2 block">{{ t('ui.solid') }}</label>
+    <div class="grid grid-cols-8 lg:grid-cols-6 gap-2">
       <SColorSwatch
-        v-for="preset in solidPresets"
+        v-for="preset in visiblePresets"
         :key="preset.color"
         :background-style="getBackgroundStyleAsCss(preset)"
         :is-selected="isSelectedPreset(preset)"
-        @click="selectPreset(preset)"
+        @select="selectPreset(preset)"
       />
+      <button
+        v-if="solidPresets.length > 5"
+        :aria-label="isShowingMore ? t('ui.showLess') : t('ui.showMore')"
+        :icon="isShowingMore ? 'heroicons:chevron-up-20-solid' : 'heroicons:chevron-down-20-solid'"
+        class="aspect-square rounded-md border flex items-center justify-center text-primary"
+        @click="isShowingMore = !isShowingMore"
+      >
+        <UIcon
+          :name="isShowingMore ? 'heroicons:chevron-up-20-solid' : 'heroicons:chevron-down-20-solid'"
+        />
+      </button>
     </div>
   </div>
 </template>

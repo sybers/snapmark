@@ -5,13 +5,14 @@ defineProps<{
 }>();
 
 defineEmits<{
-  (e: 'click', event: MouseEvent): void;
+  (e: 'select'): void;
 }>();
 </script>
 
 <template>
-  <div
+  <button
     class="flex items-center justify-center"
+    @keydown.enter="$emit('select')"
   >
     <span
       class="block w-full aspect-square rounded-md border relative overflow-hidden"
@@ -20,7 +21,7 @@ defineEmits<{
         'border-primary': isSelected,
       }"
       :style="{ background: backgroundStyle }"
-      @click="$emit('click', $event)"
+      @click="$emit('select')"
     >
       <Transition name="slide-up">
         <span
@@ -29,7 +30,7 @@ defineEmits<{
         />
       </Transition>
     </span>
-  </div>
+  </button>
 </template>
 
 <style scoped>

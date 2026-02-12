@@ -29,8 +29,13 @@ function setSelectedTab(tab: Tab['value']) {
   model.value = tab;
 }
 
+const rootRef = useTemplateRef('rootRef');
 const tabRefs = useTemplateRef('tabRefs');
 const gliderPosition = shallowRef<{ left: number; width: number } | undefined>(undefined);
+
+useResizeObserver(rootRef, () => {
+  updateGliderPosition();
+});
 
 function updateGliderPosition() {
   if (activeTabIndex.value === undefined) {
@@ -58,10 +63,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative flex w-full gap-1 p-1 bg-neutral-100 dark:bg-black rounded-2xl">
+  <div
+    ref="rootRef"
+    class="relative flex w-full gap-1 p-1 bg-neutral-200 dark:bg-black rounded-2xl"
+  >
     <div
       v-if="gliderPosition"
-      class="absolute left-1 top-1 bottom-1 rounded-xl bg-neutral-200 dark:bg-neutral-700 transition-all duration-300"
+      class="absolute left-1 top-1 bottom-1 rounded-xl bg-white dark:bg-neutral-700 transition-all duration-300"
       :style="{ left: `${gliderPosition.left}px`, width: `${gliderPosition.width}px` }"
     />
     <div
