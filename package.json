@@ -20,7 +20,7 @@
     "@nuxtjs/i18n": "10.2.1",
     "deepmerge": "^4.3.1",
     "modern-screenshot": "4.6.7",
-    "nuxt": "4.3.0",
+    "nuxt": "4.3.1",
     "valibot": "1.2.0",
     "vue": "3.5.28",
     "vue-advanced-cropper": "2.8.9",
