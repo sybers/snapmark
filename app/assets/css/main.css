@@ -26,3 +26,13 @@
   --color-warm-900: #3a3730;
   --color-warm-950: #2a2723;
 }
+
+@layer utilities {
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
