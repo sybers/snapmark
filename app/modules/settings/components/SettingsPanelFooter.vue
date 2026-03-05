@@ -5,8 +5,6 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <div class="grow" />
-
   <div class="flex items-center justify-center gap-3">
     <LocaleSwitcher />
 

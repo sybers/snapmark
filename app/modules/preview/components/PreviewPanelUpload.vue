@@ -43,17 +43,17 @@ useEventListener(document, 'paste', (event) => {
 
 <template>
   <div
-    class="rounded-xl border border-white/20 bg-white/10 dark:bg-black/20 backdrop-blur-sm shadow-xl transition-all duration-200 p-8"
+    class="rounded-xl border border-neutral-300 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-900 shadow-xl transition-all duration-200 p-8"
     :class="{ 'ring-2 ring-primary bg-primary/10': isOverDropZone }"
   >
     <div class="text-center space-y-5">
       <div class="space-y-2">
         <UIcon
           :name="isOverDropZone ? 'i-heroicons-arrow-down-tray' : 'i-heroicons-photo'"
-          class="w-12 h-12 mx-auto text-white/70 transition-all duration-200"
+          class="w-12 h-12 mx-auto text-neutral-500 dark:text-white/70 transition-all duration-200"
           :class="{ 'scale-110 text-primary': isOverDropZone }"
         />
-        <p class="text-white/60 text-sm">
+        <p class="text-neutral-600 dark:text-white/60 text-sm">
           {{ isOverDropZone ? t('upload.dropToUpload') : t('upload.uploadScreenshotToGetStarted') }}
         </p>
       </div>
@@ -74,7 +74,7 @@ useEventListener(document, 'paste', (event) => {
           {{ t('upload.uploadScreenshot') }}
         </UButton>
 
-        <p class="text-white/50 text-xs flex items-center justify-center gap-2">
+        <p class="text-neutral-500 dark:text-white/50 text-xs flex items-center justify-center gap-2">
           <span class="inline-flex items-center gap-1">
             <UKbd
               value="meta"
