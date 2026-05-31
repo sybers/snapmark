@@ -25,6 +25,7 @@
     "deepmerge": "^4.3.1",
     "modern-screenshot": "4.6.7",
     "nuxt": "4.4.2",
+    "pinia": "3.0.4",
     "valibot": "1.2.0",
     "vue": "3.5.29",
     "vue-advanced-cropper": "2.8.9",
