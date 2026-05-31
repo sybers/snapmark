@@ -23,31 +23,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          bun-version: 'latest'
+          node-version: 24
+          cache: pnpm
 
-      - name: Cache Bun dependencies
-        uses: actions/cache@v5
-        with:
-          path: |
-            ~/.bun/install/cache
-            node_modules
-          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Install Vercel CLI
-        run: bun install --global vercel@canary
+        run: pnpm install --frozen-lockfile
 
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: pnpm dlx vercel@canary pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: pnpm dlx vercel@canary build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-
+        run: pnpm dlx vercel@canary deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

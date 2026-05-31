@@ -4,10 +4,12 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 
 ## Setup
 
-Make sure to install dependencies:
+Requires [Node.js 24+](https://nodejs.org/) and [pnpm 11](https://pnpm.io/) (via Corepack: `corepack enable`).
+
+Install dependencies:
 
 ```bash
-bun install
+pnpm install
 ```
 
 ## Development Server
@@ -15,7 +17,7 @@ bun install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-bun --bun run dev
+pnpm dev
 ```
 
 ## Production
@@ -23,13 +25,13 @@ bun --bun run dev
 Build the application for production:
 
 ```bash
-bun --bun run build
+pnpm build
 ```
 
 Locally preview production build:
 
 ```bash
-bun --bun run preview
+pnpm preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

@@ -2,6 +2,10 @@
   "name": "snapmark",
   "type": "module",
   "private": true,
+  "packageManager": "pnpm@11.5.0",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -42,13 +46,10 @@
     "typescript": "5.9.3",
     "vitest": "4.0.18"
   },
-  "resolutions": {
-    "css-tree": "2.2.1"
-  },
   "simple-git-hooks": {
-    "pre-commit": "bun lint-staged"
+    "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "bun lint:fix"
+    "*": "pnpm lint:fix"
   }
 }

@@ -41,10 +41,9 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   compatibilityDate: '2025-07-15',
   nitro: {
-    preset: 'bun',
-    /** This is a workaround to fix a bug in nuxt-image module
+    /** Workaround for a bug in nuxt-image module
     * see {@link https://github.com/nuxt/image/issues/2035#issuecomment-3666162555}
-    * The bug fix also requires to force the css-tree version to 2.2.1 in the package.json resolutions section
+    * Also requires forcing css-tree to 2.2.1 via pnpm-workspace.yaml overrides
     */
     externals: {
       traceInclude: [
